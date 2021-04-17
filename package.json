@@ -1,0 +1,29 @@
+{
+  "name": "tree-sitter-obse",
+  "version": "0.0.1",
+  "description": "Tree Sitter parser for TES4 Oblivion scripting language",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/katawful/tree-sitter-obse.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "parser"
+  ],
+  "author": "Kat",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/katawful/tree-sitter-obse/issues"
+  },
+  "homepage": "https://github.com/katawful/tree-sitter-obse#readme",
+  "dependencies": {
+    "nan": "^2.14.2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.19.4"
+  }
+}
