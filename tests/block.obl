@@ -1,0 +1,7 @@
+scn script
+int test
+
+Begin GameMode
+  set test to
+
+End
