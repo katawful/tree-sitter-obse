@@ -1,11 +1,192 @@
 [
   {
-    "type": "source_file",
+    "type": "block",
+    "named": true,
+    "fields": {
+      "block_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block_type",
+            "named": true
+          }
+        ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "body_repeat",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "block_type",
     "named": true,
     "fields": {}
   },
   {
-    "type": "hello",
-    "named": false
+    "type": "body_repeat",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "int_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "script_body",
+    "named": true,
+    "fields": {
+      "block_mode": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "declaration": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "var_declare",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "script_declarer",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "script_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "script_body",
+          "named": true
+        },
+        {
+          "type": "script_name_declare",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "script_name_declare",
+    "named": true,
+    "fields": {
+      "script_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "script_declarer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "var_declare",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "float_type",
+            "named": true
+          },
+          {
+            "type": "int_type",
+            "named": true
+          },
+          {
+            "type": "string_type",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "variable",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "array_type",
+    "named": true
+  },
+  {
+    "type": "body",
+    "named": true
+  },
+  {
+    "type": "float_type",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "string_type",
+    "named": true
   }
 ]

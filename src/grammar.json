@@ -1,9 +1,202 @@
 {
   "name": "obse",
   "rules": {
-    "source_file": {
-      "type": "STRING",
-      "value": "hello"
+    "script_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "script_name_declare"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "script_body"
+        }
+      ]
+    },
+    "script_name_declare": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "script_declarer"
+        },
+        {
+          "type": "FIELD",
+          "name": "script_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "script_declarer": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[sS][cC][nN]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[sS][cC][rR][iI][pP][tT][nN][aA][mM][eE]"
+        }
+      ]
+    },
+    "script_body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_top_level_items"
+      }
+    },
+    "_top_level_items": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "declaration",
+          "content": {
+            "type": "SYMBOL",
+            "name": "var_declare"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "block_mode",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block"
+          }
+        }
+      ]
+    },
+    "var_declare": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "variable"
+          }
+        }
+      ]
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]\\w*"
+    },
+    "_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "int_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "float_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "array_type"
+        }
+      ]
+    },
+    "int_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[iI][nN][tT]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[lL][oO][nN][gG]"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[sS][hH][oO][rR][tT]"
+        }
+      ]
+    },
+    "float_type": {
+      "type": "PATTERN",
+      "value": "[fF][lL][oO][aA][tT]"
+    },
+    "string_type": {
+      "type": "PATTERN",
+      "value": "[sS][tT][rR][iI][nN][gG]_[vV][aA][rR]"
+    },
+    "array_type": {
+      "type": "PATTERN",
+      "value": "[aA][rR][rR][aA][yY]_[vV][aA][rR]"
+    },
+    "variable": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[a-z]+"
+      }
+    },
+    "block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[bB][eE][gG][iI][nN]"
+        },
+        {
+          "type": "FIELD",
+          "name": "block_type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block_type"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "body_repeat"
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "[eE][nN][dD]"
+        }
+      ]
+    },
+    "block_type": {
+      "type": "PATTERN",
+      "value": "[a-z]+"
+    },
+    "body_repeat": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "body"
+      }
+    },
+    "body": {
+      "type": "PATTERN",
+      "value": "[a-z].+"
     }
   },
   "extras": [
@@ -15,7 +208,9 @@
   "conflicts": [],
   "precedences": [],
   "externals": [],
-  "inline": [],
+  "inline": [
+    "ReferenceError"
+  ],
   "supertypes": []
 }
 
