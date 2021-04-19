@@ -296,7 +296,7 @@
           "name": "variable",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "variable"
           }
         },
         {
@@ -307,6 +307,10 @@
           },
           "named": false,
           "value": "to"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "right_hand"
         }
       ]
     },
@@ -323,14 +327,118 @@
           "value": "let"
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "FIELD",
+          "name": "variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "variable"
+          }
         },
         {
           "type": "STRING",
           "value": ":="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "right_hand"
         }
       ]
+    },
+    "variable": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "plain_var",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "quest_variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "quest_variable"
+          }
+        }
+      ]
+    },
+    "quest_variable": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]\\w*\\.[a-zA-Z_]\\w*"
+    },
+    "right_hand": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "literal",
+          "content": {
+            "type": "SYMBOL",
+            "name": "literal"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "interpreted"
+        }
+      ]
+    },
+    "literal": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "[-]\\d+.\\d*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d+.\\d*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\"[a-zA-Z_]\\w*\""
+        }
+      ]
+    },
+    "interpreted": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "function_reference",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "quest_reference",
+          "content": {
+            "type": "SYMBOL",
+            "name": "quest_reference"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "function",
+          "content": {
+            "type": "SYMBOL",
+            "name": "functions"
+          }
+        }
+      ]
+    },
+    "functions": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]\\w* [a-zA-Z_]\\w*"
+    },
+    "quest_reference": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_]\\w*\\.[a-zA-Z_]\\w*"
     },
     "function_call": {
       "type": "STRING",

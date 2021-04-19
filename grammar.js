@@ -66,6 +66,7 @@ module.exports = grammar({
       $.loop,
       field('function_call', $.function_call),
     ),
+
     statement: $ => choice(
       $.let_statement,
       $.set_statement,
@@ -73,15 +74,49 @@ module.exports = grammar({
 
     set_statement: $ => seq(
       caseInsensitive('set'),
-      field('variable', $.identifier),
+      field('variable', $.variable),
       caseInsensitive('to'),
+      $.right_hand,
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
-      $.identifier,
+      field('variable', $.variable),
       // TODO make sure to add in expressions here
-      ':='
+      ':=',
+      $.right_hand,
     ),
+
+    variable: $ => choice(
+      field('plain_var', $.identifier),
+      field('quest_var', $.quest_variable),
+    ),
+
+    quest_variable: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
+
+    right_hand: $ => choice(
+      field('literal', $.literal),
+      $.interpreted,
+    ),
+
+    literal: $ => choice(
+      /[-]\d+.\d*/,
+      /\d+.\d*/,
+      /"[a-zA-Z_]\w*"/,
+    ),
+
+    // this contains all functions, all variables, and references
+    interpreted: $ => choice(
+      field('function_reference', $.identifier),
+      field('quest_reference', $.quest_reference),
+      field('function', $.functions),
+    ),
+
+    // functions that take an object
+    functions: $ => /[a-zA-Z_]\w* [a-zA-Z_]\w*/,
+
+    // quest variables and reference functions
+    quest_reference: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
+
     function_call: $ => 'tes',
     loop: $ => 'test',
     conditional: $ => 'tesa',

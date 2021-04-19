@@ -102,15 +102,103 @@
     "fields": {}
   },
   {
+    "type": "interpreted",
+    "named": true,
+    "fields": {
+      "function": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "functions",
+            "named": true
+          }
+        ]
+      },
+      "function_reference": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "quest_reference": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quest_reference",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "let_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "right_hand",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "quest_reference",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "quest_variable",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "right_hand",
+    "named": true,
+    "fields": {
+      "literal": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "interpreted",
           "named": true
         }
       ]
@@ -201,11 +289,21 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "variable",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "right_hand",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -271,6 +369,32 @@
     }
   },
   {
+    "type": "variable",
+    "named": true,
+    "fields": {
+      "plain_var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "quest_variable": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quest_variable",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": ":=",
     "named": false
   },
@@ -296,6 +420,10 @@
   },
   {
     "type": "function_call",
+    "named": true
+  },
+  {
+    "type": "functions",
     "named": true
   },
   {
