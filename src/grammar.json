@@ -35,12 +35,22 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[sS][cC][nN]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][cC][nN]"
+          },
+          "named": false,
+          "value": "scn"
         },
         {
-          "type": "PATTERN",
-          "value": "[sS][cC][rR][iI][pP][tT][nN][aA][mM][eE]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][cC][rR][iI][pP][tT][nN][aA][mM][eE]"
+          },
+          "named": false,
+          "value": "scriptname"
         }
       ]
     },
@@ -88,7 +98,7 @@
           "name": "variable",
           "content": {
             "type": "SYMBOL",
-            "name": "variable"
+            "name": "identifier"
           }
         }
       ]
@@ -122,48 +132,79 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[iI][nN][tT]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[iI][nN][tT]"
+          },
+          "named": false,
+          "value": "int"
         },
         {
-          "type": "PATTERN",
-          "value": "[lL][oO][nN][gG]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][hH][oO][rR][tT]"
+          },
+          "named": false,
+          "value": "short"
         },
         {
-          "type": "PATTERN",
-          "value": "[sS][hH][oO][rR][tT]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[lL][oO][nN][gG]"
+          },
+          "named": false,
+          "value": "long"
         }
       ]
     },
     "float_type": {
-      "type": "PATTERN",
-      "value": "[fF][lL][oO][aA][tT]"
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][lL][oO][aA][tT]"
+      },
+      "named": false,
+      "value": "float"
     },
     "string_type": {
-      "type": "PATTERN",
-      "value": "[sS][tT][rR][iI][nN][gG]_[vV][aA][rR]"
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[sS][tT][rR][iI][nN][gG]_[vV][aA][rR]"
+      },
+      "named": false,
+      "value": "string_var"
     },
     "array_type": {
-      "type": "PATTERN",
-      "value": "[aA][rR][rR][aA][yY]_[vV][aA][rR]"
-    },
-    "variable": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z_]\\w+"
+      "type": "ALIAS",
+      "content": {
+        "type": "PATTERN",
+        "value": "[aA][rR][rR][aA][yY]_[vV][aA][rR]"
+      },
+      "named": false,
+      "value": "array_var"
     },
     "block": {
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[bB][eE][gG][iI][nN]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[bB][eE][gG][iI][nN]"
+          },
+          "named": false,
+          "value": "begin"
         },
         {
           "type": "FIELD",
           "name": "block_type",
           "content": {
             "type": "SYMBOL",
-            "name": "block_type"
+            "name": "identifier"
           }
         },
         {
@@ -175,301 +216,13 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": "[eE][nN][dD]"
-        }
-      ]
-    },
-    "block_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[EE][xX][iI][tT][GG][aA][mM][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[EE][xX][iI][tT][TT][oO][MM][aA][iI][nN][MM][eE][nN][uU]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[FF][uU][nN][cC][tT][iI][oO][nN]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[GG][aA][mM][eE][MM][oO][dD][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[LL][oO][aA][dD][GG][aA][mM][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[MM][eE][nN][uU][MM][oO][dD][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][cC][tT][iI][vV][aA][tT][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][cC][tT][oO][rR][DD][rR][oO][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][cC][tT][oO][rR][EE][qQ][uU][iI][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][cC][tT][oO][rR][UU][nN][eE][qQ][uU][iI][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][dD][dD]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][lL][aA][rR][mM]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][lL][aA][rR][mM][TT][rR][eE][sS][pP][aA][sS][sS]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][lL][aA][rR][mM][VV][iI][cC][tT][iI][mM]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][AA][tT][tT][aA][cC][kK]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][BB][lL][oO][cC][kK]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][BB][oO][wW][AA][tT][tT][aA][cC][kK]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][CC][lL][iI][cC][kK]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][CC][lL][oO][sS][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][CC][rR][eE][aA][tT][eE][PP][oO][tT][iI][oO][nN]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][CC][rR][eE][aA][tT][eE][SS][pP][eE][lL][lL]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][DD][eE][aA][tT][hH]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][DD][oO][dD][gG][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][DD][rR][iI][nN][kK][PP][oO][tT][iI][oO][nN]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][DD][rR][oO][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][EE][aA][tT][II][nN][gG][rR][eE][dD][iI][eE][nN][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][EE][nN][cC][hH][aA][nN][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][EE][qQ][uU][iI][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][FF][aA][lL][lL][II][mM][pP][aA][cC][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][HH][eE][aA][lL][tT][hH][DD][aA][mM][aA][gG][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][HH][iI][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][HH][iI][tT][WW][iI][tT][hH]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][KK][nN][oO][cC][kK][oO][uU][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][LL][oO][aA][dD]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][MM][aA][gG][iI][cC][AA][pP][pP][lL][yY]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][MM][aA][gG][iI][cC][CC][aA][sS][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][MM][aA][gG][iI][cC][EE][fF][fF][eE][cC][tT][HH][iI][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][MM][aA][gG][iI][cC][EE][fF][fF][eE][cC][tT][HH][iI][tT]2"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][MM][aA][pP][MM][aA][rR][kK][eE][rR][AA][dD][dD]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][MM][oO][uU][sS][eE][oO][vV][eE][rR]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][MM][uU][rR][dD][eE][rR]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][NN][eE][wW][GG][aA][mM][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][OO][pP][eE][nN]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][PP][aA][cC][kK][aA][gG][eE][CC][hH][aA][nN][gG][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][PP][aA][cC][kK][aA][gG][eE][DD][oO][nN][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][PP][aA][cC][kK][aA][gG][eE][SS][tT][aA][rR][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][QQ][uU][eE][sS][tT][CC][oO][mM][pP][lL][eE][tT][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][RR][eE][cC][oO][iI][lL]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][RR][eE][lL][eE][aA][sS][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][RR][eE][sS][eE][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][aA][vV][eE][II][nN][iI]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][cC][rR][iI][pP][tT][eE][dD][SS][kK][iI][lL][lL][UU][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][cC][rR][oO][lL][lL][CC][aA][sS][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][eE][lL][lL]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][kK][iI][lL][lL][UU][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][oO][uU][lL][TT][rR][aA][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][pP][eE][lL][lL][CC][aA][sS][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][tT][aA][gG][gG][eE][rR]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][SS][tT][aA][rR][tT][CC][oO][mM][bB][aA][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][TT][rR][iI][gG][gG][eE][rR]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][TT][rR][iI][gG][gG][eE][rR][AA][cC][tT][oO][rR]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][TT][rR][iI][gG][gG][eE][rR][MM][oO][bB]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][UU][nN][eE][qQ][uU][iI][pP]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][VV][aA][mM][pP][iI][rR][eE][FF][eE][eE][dD]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][WW][aA][tT][eE][rR][DD][iI][vV][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[OO][nN][WW][aA][tT][eE][rR][SS][uU][rR][fF][aA][cC][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[PP][oO][sS][tT][LL][oO][aA][dD][GG][aA][mM][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[QQ][QQ][QQ]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[SS][aA][vV][eE][GG][aA][mM][eE]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[SS][cC][rR][iI][pP][tT][EE][fF][fF][eE][cC][tT][FF][iI][nN][iI][sS][hH]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[SS][cC][rR][iI][pP][tT][EE][fF][fF][eE][cC][tT][SS][tT][aA][rR][tT]"
-        },
-        {
-          "type": "PATTERN",
-          "value": "[SS][cC][rR][iI][pP][tT][EE][fF][fF][eE][cC][tT][UU][pP][dD][aA][tT][eE]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[eE][nN][dD]"
+          },
+          "named": false,
+          "value": "end"
         }
       ]
     },
@@ -530,20 +283,30 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "[sS][eE][tT]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[sS][eE][tT]"
+          },
+          "named": false,
+          "value": "set"
         },
         {
           "type": "FIELD",
           "name": "variable",
           "content": {
             "type": "SYMBOL",
-            "name": "variable"
+            "name": "identifier"
           }
         },
         {
-          "type": "PATTERN",
-          "value": "[tT][oO]"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[tT][oO]"
+          },
+          "named": false,
+          "value": "to"
         }
       ]
     },
@@ -551,16 +314,21 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[lL][eE][tT]"
+          },
+          "named": false,
           "value": "let"
         },
         {
           "type": "SYMBOL",
-          "name": "variable"
+          "name": "identifier"
         },
         {
-          "type": "PATTERN",
-          "value": "[tT][oO]"
+          "type": "STRING",
+          "value": ":="
         }
       ]
     },

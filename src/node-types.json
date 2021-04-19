@@ -1,5 +1,10 @@
 [
   {
+    "type": "array_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {
@@ -8,7 +13,7 @@
         "required": true,
         "types": [
           {
-            "type": "block_type",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -24,11 +29,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "block_type",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "body",
@@ -92,6 +92,11 @@
     }
   },
   {
+    "type": "float_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "int_type",
     "named": true,
     "fields": {}
@@ -105,7 +110,7 @@
       "required": true,
       "types": [
         {
-          "type": "variable",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -196,7 +201,7 @@
         "required": true,
         "types": [
           {
-            "type": "variable",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -221,6 +226,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "string_type",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "var_declare",
@@ -253,7 +263,7 @@
         "required": true,
         "types": [
           {
-            "type": "variable",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -261,16 +271,28 @@
     }
   },
   {
-    "type": "array_type",
-    "named": true
+    "type": ":=",
+    "named": false
+  },
+  {
+    "type": "array_var",
+    "named": false
+  },
+  {
+    "type": "begin",
+    "named": false
   },
   {
     "type": "conditional",
     "named": true
   },
   {
-    "type": "float_type",
-    "named": true
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "float",
+    "named": false
   },
   {
     "type": "function_call",
@@ -281,7 +303,15 @@
     "named": true
   },
   {
+    "type": "int",
+    "named": false
+  },
+  {
     "type": "let",
+    "named": false
+  },
+  {
+    "type": "long",
     "named": false
   },
   {
@@ -289,11 +319,27 @@
     "named": true
   },
   {
-    "type": "string_type",
-    "named": true
+    "type": "scn",
+    "named": false
   },
   {
-    "type": "variable",
-    "named": true
+    "type": "scriptname",
+    "named": false
+  },
+  {
+    "type": "set",
+    "named": false
+  },
+  {
+    "type": "short",
+    "named": false
+  },
+  {
+    "type": "string_var",
+    "named": false
+  },
+  {
+    "type": "to",
+    "named": false
   }
 ]
