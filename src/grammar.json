@@ -453,6 +453,14 @@
             "type": "SYMBOL",
             "name": "functions"
           }
+        },
+        {
+          "type": "FIELD",
+          "name": "array_var",
+          "content": {
+            "type": "SYMBOL",
+            "name": "array_var"
+          }
         }
       ]
     },

@@ -112,6 +112,7 @@ module.exports = grammar({
       field('function_reference', $.identifier),
       field('quest_reference', $.quest_reference),
       field('function', $.functions),
+      field('array_var', $.array_var),
     ),
 
     // functions that take an object

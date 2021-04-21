@@ -131,6 +131,16 @@
     "type": "interpreted",
     "named": true,
     "fields": {
+      "array_var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_var",
+            "named": true
+          }
+        ]
+      },
       "function": {
         "multiple": false,
         "required": false,
