@@ -5,6 +5,12 @@ module.exports = grammar({
     $.top_level_items,
   ],
 
+  conflicts: $ => [
+    [$.variable, $.interpreted],
+    [$.quest_reference, $.quest_variable],
+    [$.conditional, $.identifier],
+  ],
+
   rules: {
     script_file: $ => seq(
       $.script_name_declare,
@@ -87,16 +93,18 @@ module.exports = grammar({
     ),
 
     variable: $ => choice(
-      field('array_var', $.array_var),
-      field('quest_var', $.quest_variable),
-      field('plain_var', $.identifier),
+      field('plain_var', prec(20, $.identifier)),
+      field('array_var', prec(0, $.array_var)),
+      field('quest_var', prec(10, $.quest_variable)),
     ),
 
     quest_variable: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
 
-    right_hand: $ => choice(
-      field('literal', $.literal),
-      $.interpreted,
+    right_hand: $ => seq(
+      choice(
+        $.no_parenthetical,
+        field('parenthetical', $.parenthetical),
+      ),
     ),
 
     literal: $ => choice(
@@ -112,7 +120,6 @@ module.exports = grammar({
       field('function_reference', $.identifier),
       field('quest_reference', $.quest_reference),
       field('function', $.functions),
-      field('array_var', $.array_var),
     ),
 
     // functions that take an object
@@ -129,9 +136,71 @@ module.exports = grammar({
       ']',
     ),
 
+    no_parenthetical: $ => choice(
+      $.interpreted,
+      $.literal,
+      $.variable,
+    ),
+    parenthetical: $ => seq(
+      '(',
+      choice(
+        $.literal,
+        $.interpreted,
+        $.variable,
+        $.equality,
+        $.parenthetical,
+      ),
+      ')',
+    ),
+
+    equality: $ => seq(
+      choice(
+        $.literal,
+        $.interpreted,
+        $.variable,
+      ),
+      choice(
+        '==',
+        '>',
+        '<',
+        '!=',
+        '<=',
+        '>=',
+      ),
+      choice(
+        $.literal,
+        $.interpreted,
+        $.variable,
+      ),
+    ),
+
+    conditional: $ => seq(
+      caseInsensitive('if'),
+      choice(
+        $.equality,
+        $.parenthetical,
+        $.variable,
+      ),
+      optional($.and_or),
+      repeat($.body),
+      optional($.con_else),
+      caseInsensitive('endif'),
+    ),
+
+    and_or: $ => seq(
+      choice(
+        '&&',
+        '||',
+      ),
+      choice(
+        $.equality,
+        $.parenthetical,
+        $.variable,
+      ),
+    ),
+    con_else: $ => 'fjdkls',
     function_call: $ => 'tes',
     loop: $ => 'test',
-    conditional: $ => 'tesa',
   }
 });
 
