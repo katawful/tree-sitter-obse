@@ -5,6 +5,32 @@
     "fields": {}
   },
   {
+    "type": "array_var",
+    "named": true,
+    "fields": {
+      "array": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {
@@ -309,20 +335,27 @@
   {
     "type": "statement",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "let_statement",
-          "named": true
-        },
-        {
-          "type": "set_statement",
-          "named": true
-        }
-      ]
+    "fields": {
+      "let": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
+      "set": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -372,6 +405,16 @@
     "type": "variable",
     "named": true,
     "fields": {
+      "array_var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_var",
+            "named": true
+          }
+        ]
+      },
       "plain_var": {
         "multiple": false,
         "required": false,
@@ -382,7 +425,7 @@
           }
         ]
       },
-      "quest_variable": {
+      "quest_var": {
         "multiple": false,
         "required": false,
         "types": [
@@ -396,6 +439,14 @@
   },
   {
     "type": ":=",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {

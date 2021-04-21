@@ -68,8 +68,8 @@ module.exports = grammar({
     ),
 
     statement: $ => choice(
-      $.let_statement,
-      $.set_statement,
+      field('let', $.let_statement),
+      field('set', $.set_statement),
     ),
 
     set_statement: $ => seq(
@@ -87,8 +87,9 @@ module.exports = grammar({
     ),
 
     variable: $ => choice(
-      field('plain_var', $.identifier),
+      field('array_var', $.array_var),
       field('quest_var', $.quest_variable),
+      field('plain_var', $.identifier),
     ),
 
     quest_variable: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
@@ -99,8 +100,10 @@ module.exports = grammar({
     ),
 
     literal: $ => choice(
-      /[-]\d+.\d*/,
-      /\d+.\d*/,
+      /\d+/,
+      /\-\d+/,
+      /\-\d+\.\d*/,
+      /\d+\.\d*/,
       /"[a-zA-Z_]\w*"/,
     ),
 
@@ -116,6 +119,14 @@ module.exports = grammar({
 
     // quest variables and reference functions
     quest_reference: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
+
+    // Array variables
+    array_var: $ => seq(
+      field('array', $.identifier),
+      '[',
+      field('key', $.literal),
+      ']',
+    ),
 
     function_call: $ => 'tes',
     loop: $ => 'test',

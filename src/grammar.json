@@ -270,12 +270,20 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "let_statement"
+          "type": "FIELD",
+          "name": "let",
+          "content": {
+            "type": "SYMBOL",
+            "name": "let_statement"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "set_statement"
+          "type": "FIELD",
+          "name": "set",
+          "content": {
+            "type": "SYMBOL",
+            "name": "set_statement"
+          }
         }
       ]
     },
@@ -349,18 +357,26 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "plain_var",
+          "name": "array_var",
           "content": {
             "type": "SYMBOL",
-            "name": "identifier"
+            "name": "array_var"
           }
         },
         {
           "type": "FIELD",
-          "name": "quest_variable",
+          "name": "quest_var",
           "content": {
             "type": "SYMBOL",
             "name": "quest_variable"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "plain_var",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
           }
         }
       ]
@@ -391,11 +407,19 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "[-]\\d+.\\d*"
+          "value": "\\d+"
         },
         {
           "type": "PATTERN",
-          "value": "\\d+.\\d*"
+          "value": "\\-\\d+"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\-\\d+\\.\\d*"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\d+\\.\\d*"
         },
         {
           "type": "PATTERN",
@@ -439,6 +463,35 @@
     "quest_reference": {
       "type": "PATTERN",
       "value": "[a-zA-Z_]\\w*\\.[a-zA-Z_]\\w*"
+    },
+    "array_var": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "array",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "FIELD",
+          "name": "key",
+          "content": {
+            "type": "SYMBOL",
+            "name": "literal"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
     },
     "function_call": {
       "type": "STRING",
