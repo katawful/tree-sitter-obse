@@ -1,0 +1,15 @@
+==============
+Set statements
+==============
+set word to word
+---
+statement: (statement
+  set: (set_statement
+    variable: (variable
+      plain_var: (identifier))
+    (right_hand
+      (contained
+        (declarator
+          variable: (variable
+            plain_var: (identifier)))))))
+
