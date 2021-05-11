@@ -9,6 +9,7 @@ module.exports = grammar({
     [$.variable, $.interpreted],
     [$.quest_reference, $.quest_variable],
     [$.conditional, $.identifier],
+    [$.contained, $.equality],
   ],
 
   rules: {
@@ -101,10 +102,7 @@ module.exports = grammar({
     quest_variable: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
 
     right_hand: $ => seq(
-      choice(
-        $.no_parenthetical,
-        field('parenthetical', $.parenthetical),
-      ),
+      $.contained,
     ),
 
     literal: $ => choice(
@@ -136,29 +134,24 @@ module.exports = grammar({
       ']',
     ),
 
-    no_parenthetical: $ => choice(
-      $.interpreted,
-      $.literal,
-      $.variable,
-    ),
-    parenthetical: $ => seq(
-      '(',
-      choice(
-        $.literal,
-        $.interpreted,
-        $.variable,
-        $.equality,
-        $.parenthetical,
-      ),
-      ')',
+    declarator: $ => choice(
+      field('interpreted', $.interpreted),
+      field('literal', $.literal),
+      field('variable', $.variable),
     ),
 
-    equality: $ => seq(
+    parenthetical: $ => prec.dynamic(0, seq(
+      '(',
       choice(
-        $.literal,
-        $.interpreted,
-        $.variable,
+        $.contained,
+        $.and_or,
+        $.equality,
       ),
+      ')',
+    )),
+
+    equality: $ => seq(
+      $.declarator,
       choice(
         '==',
         '>',
@@ -167,36 +160,41 @@ module.exports = grammar({
         '<=',
         '>=',
       ),
-      choice(
-        $.literal,
-        $.interpreted,
-        $.variable,
-      ),
+      $.declarator,
+    ),
+
+    contained: $ => choice(
+      prec(20, $.parenthetical),
+      prec(10, $.declarator),
     ),
 
     conditional: $ => seq(
       caseInsensitive('if'),
       choice(
-        $.equality,
-        $.parenthetical,
-        $.variable,
+        prec(10, $.contained),
+        prec(0, $.equality),
       ),
+      // choice(
+      //   // prec(30, $.and_or),
+      //   prec(20, $.parenthetical),
+      //   prec(0, $.declarator),
+      //   prec(10, $.equality),
+      // ),
       optional($.and_or),
-      repeat($.body),
+      // repeat($.body),
+      $.body,
       optional($.con_else),
       caseInsensitive('endif'),
     ),
 
-    and_or: $ => seq(
-      choice(
+    and_or: $ => choice(
         '&&',
         '||',
-      ),
-      choice(
-        $.equality,
-        $.parenthetical,
-        $.variable,
-      ),
+      // choice(
+      //   $.equality,
+      //   $.parenthetical,
+      //   $.declarator,
+      // ),
     ),
     con_else: $ => 'fjdkls',
     function_call: $ => 'tes',
@@ -205,11 +203,11 @@ module.exports = grammar({
 });
 
 function caseInsensitive (keyword, aliasAsWord = true) {
-let result = new RegExp(keyword
-  .split('')
-  .map(l => l !== l.toUpperCase() ? `[${l}${l.toUpperCase()}]` : l)
-  .join('')
-)
-if (aliasAsWord) result = alias(result, keyword)
-return result
+  let result = new RegExp(keyword
+    .split('')
+    .map(l => l !== l.toUpperCase() ? `[${l}${l.toUpperCase()}]` : l)
+    .join('')
+  )
+  if (aliasAsWord) result = alias(result, keyword)
+  return result
 }

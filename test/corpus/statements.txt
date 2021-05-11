@@ -1,15 +1,114 @@
-==============
-Set statements
-==============
-set word to word
----
-statement: (statement
-  set: (set_statement
-    variable: (variable
-      plain_var: (identifier))
-    (right_hand
-      (contained
-        (declarator
-          variable: (variable
-            plain_var: (identifier)))))))
+============================
+Set statement plain_var left
+============================
 
+scn scriptname
+begin blockmode
+  set x to y
+end
+
+---
+(script_file
+  (script_name_declare
+    (script_declarer)
+      script_name: (identifier))
+  (script_body
+    block_mode: (block
+      block_type: (identifier)
+      body: (body_repeat
+        (body
+          statement: (statement
+            set: (set_statement
+              variable: (variable
+                plain_var: (identifier))
+              (right_hand
+                (contained
+                  (declarator
+                    variable: (variable
+                      plain_var: (identifier))))))))))))
+
+============================
+Let statement plain_var left
+============================
+
+scn scriptname
+begin blockmode
+  let x := y
+end
+
+---
+(script_file
+  (script_name_declare
+    (script_declarer)
+      script_name: (identifier))
+  (script_body
+    block_mode: (block
+      block_type: (identifier)
+      body: (body_repeat
+        (body
+          statement: (statement
+            let: (let_statement
+              variable: (variable
+                plain_var: (identifier))
+              (right_hand
+                (contained
+                  (declarator
+                    variable: (variable
+                      plain_var: (identifier))))))))))))
+============================
+Set statement quest var left
+============================
+
+scn scriptname
+begin blockmode
+  set quest.x to y
+end
+
+---
+(script_file
+  (script_name_declare
+    (script_declarer)
+      script_name: (identifier))
+  (script_body
+    block_mode: (block
+      block_type: (identifier)
+      body: (body_repeat
+        (body
+          statement: (statement
+            set: (set_statement
+              variable: (variable
+                quest_var: (quest_variable))
+              (right_hand
+                (contained
+                  (declarator
+                    variable: (variable
+                      plain_var: (identifier))))))))))))
+
+============================
+Let statement quest var left
+============================
+
+scn scriptname
+begin blockmode
+  let quest.x := y
+end
+
+---
+(script_file
+  (script_name_declare
+    (script_declarer)
+      script_name: (identifier))
+  (script_body
+    block_mode: (block
+      block_type: (identifier)
+      body: (body_repeat
+        (body
+          statement: (statement
+            let: (let_statement
+              variable: (variable
+                quest_var: (quest_variable))
+              (right_hand
+                (contained
+                  (declarator
+                    variable: (variable
+                      plain_var: (identifier))))))))))))

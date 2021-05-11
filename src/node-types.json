@@ -2,25 +2,7 @@
   {
     "type": "and_or",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "equality",
-          "named": true
-        },
-        {
-          "type": "parenthetical",
-          "named": true
-        },
-        {
-          "type": "variable",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "array_type",
@@ -161,18 +143,69 @@
           "named": true
         },
         {
+          "type": "contained",
+          "named": true
+        },
+        {
           "type": "equality",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "contained",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "declarator",
           "named": true
         },
         {
           "type": "parenthetical",
           "named": true
-        },
-        {
-          "type": "variable",
-          "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "declarator",
+    "named": true,
+    "fields": {
+      "interpreted": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "interpreted",
+            "named": true
+          }
+        ]
+      },
+      "literal": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "variable",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -184,15 +217,7 @@
       "required": true,
       "types": [
         {
-          "type": "interpreted",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "variable",
+          "type": "declarator",
           "named": true
         }
       ]
@@ -276,29 +301,6 @@
     "fields": {}
   },
   {
-    "type": "no_parenthetical",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "interpreted",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parenthetical",
     "named": true,
     "fields": {},
@@ -307,23 +309,15 @@
       "required": true,
       "types": [
         {
+          "type": "and_or",
+          "named": true
+        },
+        {
+          "type": "contained",
+          "named": true
+        },
+        {
           "type": "equality",
-          "named": true
-        },
-        {
-          "type": "interpreted",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "parenthetical",
-          "named": true
-        },
-        {
-          "type": "variable",
           "named": true
         }
       ]
@@ -342,24 +336,13 @@
   {
     "type": "right_hand",
     "named": true,
-    "fields": {
-      "parenthetical": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthetical",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "no_parenthetical",
+          "type": "contained",
           "named": true
         }
       ]
