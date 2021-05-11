@@ -14,16 +14,16 @@ module.exports = grammar({
 
   rules: {
     script_file: $ => seq(
-      $.script_name_declare,
-      $.script_body,
+      field('script_name', $.script_name),
+      // $.script_body,
     ),
 
-    script_name_declare: $ => seq(
-      $.script_declarer,
+    script_name: $ => seq(
+      field('declaration', $.script_declarator),
       field('script_name', $.identifier),
     ),
 
-    script_declarer: $ => choice(
+    script_declarator: $ => choice(
       caseInsensitive('scn'),
       caseInsensitive('scriptname'),
     ),

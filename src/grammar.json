@@ -5,21 +5,25 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "script_name_declare"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "script_body"
+          "type": "FIELD",
+          "name": "script_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "script_name"
+          }
         }
       ]
     },
-    "script_name_declare": {
+    "script_name": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "script_declarer"
+          "type": "FIELD",
+          "name": "declaration",
+          "content": {
+            "type": "SYMBOL",
+            "name": "script_declarator"
+          }
         },
         {
           "type": "FIELD",
@@ -31,7 +35,7 @@
         }
       ]
     },
-    "script_declarer": {
+    "script_declarator": {
       "type": "CHOICE",
       "members": [
         {

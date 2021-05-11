@@ -349,25 +349,20 @@
     }
   },
   {
-    "type": "script_body",
+    "type": "script_declarator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "script_file",
     "named": true,
     "fields": {
-      "block_mode": {
-        "multiple": true,
-        "required": false,
+      "script_name": {
+        "multiple": false,
+        "required": true,
         "types": [
           {
-            "type": "block",
-            "named": true
-          }
-        ]
-      },
-      "declaration": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "var_declare",
+            "type": "script_name",
             "named": true
           }
         ]
@@ -375,33 +370,19 @@
     }
   },
   {
-    "type": "script_declarer",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "script_file",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "script_body",
-          "named": true
-        },
-        {
-          "type": "script_name_declare",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "script_name_declare",
+    "type": "script_name",
     "named": true,
     "fields": {
+      "declaration": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "script_declarator",
+            "named": true
+          }
+        ]
+      },
       "script_name": {
         "multiple": false,
         "required": true,
@@ -412,16 +393,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "script_declarer",
-          "named": true
-        }
-      ]
     }
   },
   {
