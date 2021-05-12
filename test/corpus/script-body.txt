@@ -26,23 +26,28 @@ array_var var
     var_declaration: (var_declare
       type: (type
         (int))
-      variable: (identifier))
+      variable: (identifier)))
+  body: (script_body
     var_declaration: (var_declare
       type: (type
         (int))
-      variable: (identifier))
+      variable: (identifier)))
+  body: (script_body
     var_declaration: (var_declare
       type: (type
         (int))
-      variable: (identifier))
+      variable: (identifier)))
+  body: (script_body
     var_declaration: (var_declare
       type: (type
         (float))
-      variable: (identifier))
+      variable: (identifier)))
+  body: (script_body
     var_declaration: (var_declare
       type: (type
         (string))
-      variable: (identifier))
+      variable: (identifier)))
+  body: (script_body
     var_declaration: (var_declare
       type: (type
         (array))

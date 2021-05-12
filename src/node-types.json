@@ -50,11 +50,11 @@
         ]
       },
       "body": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
-            "type": "body_repeat",
+            "type": "body",
             "named": true
           }
         ]
@@ -102,21 +102,6 @@
       "types": [
         {
           "type": "loop",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "body_repeat",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "body",
           "named": true
         }
       ]
@@ -353,7 +338,7 @@
     "named": true,
     "fields": {
       "block_mode": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -363,7 +348,7 @@
         ]
       },
       "var_declaration": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -384,8 +369,8 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "script_body",

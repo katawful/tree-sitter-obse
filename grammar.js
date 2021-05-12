@@ -13,9 +13,10 @@ module.exports = grammar({
   ],
 
   rules: {
+
     script_file: $ => seq(
       field('script_name', $.script_name),
-      field('body', $.script_body),
+      repeat(field('body', $.script_body)),
     ),
 
     script_name: $ => seq(
@@ -27,9 +28,7 @@ module.exports = grammar({
       caseInsensitive('scriptname'),
     ),
 
-    script_body: $ => repeat1($.top_level_items),
-
-    top_level_items: $ => choice(
+    script_body: $ => choice(
       field('var_declaration', $.var_declare),
       field('block_mode', $.block),
     ),
@@ -38,16 +37,12 @@ module.exports = grammar({
       field('type', $.type),
       field('variable', $.identifier),
     ),
-
-    identifier: $ => /[a-zA-Z_]\w*/,
-
     type: $ => choice(
       $.int,
       $.float,
       $.string,
       $.array,
     ),
-
     int: $ => choice(
       caseInsensitive('int'),
       caseInsensitive('short'),
@@ -60,11 +55,10 @@ module.exports = grammar({
     block: $ => seq(
       caseInsensitive('begin'),
       field('block_type', $.identifier),
-      field('body', $.body_repeat),
+      repeat(field('body', $.body)),
       caseInsensitive('end'),
     ),
 
-    body_repeat: $ => repeat1($.body),
 
     body: $ => choice(
       field('statement', $.statement),
@@ -198,6 +192,7 @@ module.exports = grammar({
     con_else: $ => 'fjdkls',
     function_call: $ => 'tes',
     loop: $ => 'test',
+    identifier: $ => /[a-zA-Z_]\w*/,
   }
 });
 
