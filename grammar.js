@@ -15,48 +15,47 @@ module.exports = grammar({
   rules: {
     script_file: $ => seq(
       field('script_name', $.script_name),
-      // $.script_body,
+      field('body', $.script_body),
     ),
 
     script_name: $ => seq(
       field('declaration', $.script_declarator),
       field('script_name', $.identifier),
     ),
-
     script_declarator: $ => choice(
       caseInsensitive('scn'),
       caseInsensitive('scriptname'),
     ),
 
-    script_body: $ => repeat1($._top_level_items),
+    script_body: $ => repeat1($.top_level_items),
 
-    _top_level_items: $ => choice(
-      field('declaration', $.var_declare),
+    top_level_items: $ => choice(
+      field('var_declaration', $.var_declare),
       field('block_mode', $.block),
     ),
 
     var_declare: $ => seq(
-      field('type', $._type),
+      field('type', $.type),
       field('variable', $.identifier),
     ),
 
     identifier: $ => /[a-zA-Z_]\w*/,
 
-    _type: $ => choice(
-      $.int_type,
-      $.float_type,
-      $.string_type,
-      $.array_type,
+    type: $ => choice(
+      $.int,
+      $.float,
+      $.string,
+      $.array,
     ),
 
-    int_type: $ => choice(
+    int: $ => choice(
       caseInsensitive('int'),
       caseInsensitive('short'),
       caseInsensitive('long'),
     ),
-    float_type: $ => caseInsensitive('float'),
-    string_type: $ => caseInsensitive('string_var'),
-    array_type: $ => caseInsensitive('array_var'),
+    float: $ => caseInsensitive('float'),
+    string: $ => caseInsensitive('string_var'),
+    array: $ => caseInsensitive('array_var'),
 
     block: $ => seq(
       caseInsensitive('begin'),

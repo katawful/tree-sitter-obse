@@ -11,6 +11,14 @@
             "type": "SYMBOL",
             "name": "script_name"
           }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "script_body"
+          }
         }
       ]
     },
@@ -62,15 +70,15 @@
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
-        "name": "_top_level_items"
+        "name": "top_level_items"
       }
     },
-    "_top_level_items": {
+    "top_level_items": {
       "type": "CHOICE",
       "members": [
         {
           "type": "FIELD",
-          "name": "declaration",
+          "name": "var_declaration",
           "content": {
             "type": "SYMBOL",
             "name": "var_declare"
@@ -94,7 +102,7 @@
           "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "_type"
+            "name": "type"
           }
         },
         {
@@ -111,28 +119,28 @@
       "type": "PATTERN",
       "value": "[a-zA-Z_]\\w*"
     },
-    "_type": {
+    "type": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "int_type"
+          "name": "int"
         },
         {
           "type": "SYMBOL",
-          "name": "float_type"
+          "name": "float"
         },
         {
           "type": "SYMBOL",
-          "name": "string_type"
+          "name": "string"
         },
         {
           "type": "SYMBOL",
-          "name": "array_type"
+          "name": "array"
         }
       ]
     },
-    "int_type": {
+    "int": {
       "type": "CHOICE",
       "members": [
         {
@@ -164,7 +172,7 @@
         }
       ]
     },
-    "float_type": {
+    "float": {
       "type": "ALIAS",
       "content": {
         "type": "PATTERN",
@@ -173,7 +181,7 @@
       "named": false,
       "value": "float"
     },
-    "string_type": {
+    "string": {
       "type": "ALIAS",
       "content": {
         "type": "PATTERN",
@@ -182,7 +190,7 @@
       "named": false,
       "value": "string_var"
     },
-    "array_type": {
+    "array": {
       "type": "ALIAS",
       "content": {
         "type": "PATTERN",
@@ -752,7 +760,7 @@
   "precedences": [],
   "externals": [],
   "inline": [
-    "ReferenceError"
+    "top_level_items"
   ],
   "supertypes": []
 }

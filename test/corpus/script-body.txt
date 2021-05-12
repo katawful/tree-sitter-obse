@@ -3,8 +3,47 @@ Script name
 ===========
 scn scriptname
 ---
-
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier)))
+===========
+Var declare
+===========
+scn scriptname
+int var
+short var
+long var
+float var
+string_var var
+array_var var
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+  body: (script_body
+    var_declaration: (var_declare
+      type: (type
+        (int))
+      variable: (identifier))
+    var_declaration: (var_declare
+      type: (type
+        (int))
+      variable: (identifier))
+    var_declaration: (var_declare
+      type: (type
+        (int))
+      variable: (identifier))
+    var_declaration: (var_declare
+      type: (type
+        (float))
+      variable: (identifier))
+    var_declaration: (var_declare
+      type: (type
+        (string))
+      variable: (identifier))
+    var_declaration: (var_declare
+      type: (type
+        (array))
+      variable: (identifier))))

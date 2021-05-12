@@ -5,7 +5,7 @@
     "fields": {}
   },
   {
-    "type": "array_type",
+    "type": "array",
     "named": true,
     "fields": {}
   },
@@ -224,12 +224,12 @@
     }
   },
   {
-    "type": "float_type",
+    "type": "float",
     "named": true,
     "fields": {}
   },
   {
-    "type": "int_type",
+    "type": "int",
     "named": true,
     "fields": {}
   },
@@ -349,6 +349,32 @@
     }
   },
   {
+    "type": "script_body",
+    "named": true,
+    "fields": {
+      "block_mode": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "var_declaration": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "var_declare",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "script_declarator",
     "named": true,
     "fields": {}
@@ -357,6 +383,16 @@
     "type": "script_file",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "script_body",
+            "named": true
+          }
+        ]
+      },
       "script_name": {
         "multiple": false,
         "required": true,
@@ -448,9 +484,36 @@
     }
   },
   {
-    "type": "string_type",
+    "type": "string",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "int",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "var_declare",
@@ -461,19 +524,7 @@
         "required": true,
         "types": [
           {
-            "type": "array_type",
-            "named": true
-          },
-          {
-            "type": "float_type",
-            "named": true
-          },
-          {
-            "type": "int_type",
-            "named": true
-          },
-          {
-            "type": "string_type",
+            "type": "type",
             "named": true
           }
         ]
