@@ -39,6 +39,16 @@
     "type": "block",
     "named": true,
     "fields": {
+      "block_body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "block_body",
+            "named": true
+          }
+        ]
+      },
       "block_type": {
         "multiple": false,
         "required": true,
@@ -48,21 +58,11 @@
             "named": true
           }
         ]
-      },
-      "body": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "body",
-            "named": true
-          }
-        ]
       }
     }
   },
   {
-    "type": "body",
+    "type": "block_body",
     "named": true,
     "fields": {
       "conditional": {
@@ -120,7 +120,7 @@
           "named": true
         },
         {
-          "type": "body",
+          "type": "block_body",
           "named": true
         },
         {
@@ -368,7 +368,7 @@
     "type": "script_file",
     "named": true,
     "fields": {
-      "body": {
+      "script_body": {
         "multiple": true,
         "required": false,
         "types": [

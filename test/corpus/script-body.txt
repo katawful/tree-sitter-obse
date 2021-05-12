@@ -7,6 +7,7 @@ scn scriptname
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier)))
+
 ===========
 Var declare
 ===========
@@ -22,33 +23,48 @@ array_var var
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-  body: (script_body
+  script_body: (script_body
     var_declaration: (var_declare
       type: (type
         (int))
       variable: (identifier)))
-  body: (script_body
+  script_body: (script_body
     var_declaration: (var_declare
       type: (type
         (int))
       variable: (identifier)))
-  body: (script_body
+  script_body: (script_body
     var_declaration: (var_declare
       type: (type
         (int))
       variable: (identifier)))
-  body: (script_body
+  script_body: (script_body
     var_declaration: (var_declare
       type: (type
         (float))
       variable: (identifier)))
-  body: (script_body
+  script_body: (script_body
     var_declaration: (var_declare
       type: (type
         (string))
       variable: (identifier)))
-  body: (script_body
+  script_body: (script_body
     var_declaration: (var_declare
       type: (type
         (array))
       variable: (identifier))))
+
+==========
+Block mode
+==========
+scn scriptname
+begin blockmode
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+  script_body: (script_body
+    block_mode: (block
+      block_type: (identifier))))

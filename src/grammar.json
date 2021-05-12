@@ -16,7 +16,7 @@
           "type": "REPEAT",
           "content": {
             "type": "FIELD",
-            "name": "body",
+            "name": "script_body",
             "content": {
               "type": "SYMBOL",
               "name": "script_body"
@@ -215,10 +215,10 @@
           "type": "REPEAT",
           "content": {
             "type": "FIELD",
-            "name": "body",
+            "name": "block_body",
             "content": {
               "type": "SYMBOL",
-              "name": "body"
+              "name": "block_body"
             }
           }
         },
@@ -233,7 +233,7 @@
         }
       ]
     },
-    "body": {
+    "block_body": {
       "type": "CHOICE",
       "members": [
         {
@@ -670,7 +670,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "body"
+          "name": "block_body"
         },
         {
           "type": "CHOICE",

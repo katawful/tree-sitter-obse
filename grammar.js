@@ -16,7 +16,7 @@ module.exports = grammar({
 
     script_file: $ => seq(
       field('script_name', $.script_name),
-      repeat(field('body', $.script_body)),
+      repeat(field('script_body', $.script_body)),
     ),
 
     script_name: $ => seq(
@@ -55,12 +55,12 @@ module.exports = grammar({
     block: $ => seq(
       caseInsensitive('begin'),
       field('block_type', $.identifier),
-      repeat(field('body', $.body)),
+      repeat(field('block_body', $.block_body)),
       caseInsensitive('end'),
     ),
 
 
-    body: $ => choice(
+    block_body: $ => choice(
       field('statement', $.statement),
       field('conditional', $.conditional),
       $.loop,
@@ -175,7 +175,7 @@ module.exports = grammar({
       // ),
       optional($.and_or),
       // repeat($.body),
-      $.body,
+      $.block_body,
       optional($.con_else),
       caseInsensitive('endif'),
     ),
