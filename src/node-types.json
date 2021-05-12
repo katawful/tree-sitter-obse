@@ -10,7 +10,23 @@
     "fields": {}
   },
   {
-    "type": "array_var",
+    "type": "array_index",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "array_variable",
     "named": true,
     "fields": {
       "array": {
@@ -23,12 +39,12 @@
           }
         ]
       },
-      "key": {
-        "multiple": false,
+      "index": {
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "literal",
+            "type": "array_index",
             "named": true
           }
         ]
@@ -65,29 +81,9 @@
     "type": "block_body",
     "named": true,
     "fields": {
-      "conditional": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "conditional",
-            "named": true
-          }
-        ]
-      },
-      "function_call": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "function_call",
-            "named": true
-          }
-        ]
-      },
       "statement": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "statement",
@@ -95,16 +91,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "loop",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -186,7 +172,7 @@
         "required": false,
         "types": [
           {
-            "type": "variable",
+            "type": "left_operand",
             "named": true
           }
         ]
@@ -255,15 +241,51 @@
     }
   },
   {
+    "type": "left_operand",
+    "named": true,
+    "fields": {
+      "array_var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_variable",
+            "named": true
+          }
+        ]
+      },
+      "plain_var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "quest_var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quest_variable",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "let_statement",
     "named": true,
     "fields": {
-      "variable": {
+      "left_operand": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "variable",
+            "type": "left_operand",
             "named": true
           }
         ]
@@ -420,12 +442,12 @@
     "type": "set_statement",
     "named": true,
     "fields": {
-      "variable": {
+      "left_operand": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "variable",
+            "type": "left_operand",
             "named": true
           }
         ]
@@ -446,12 +468,42 @@
     "type": "statement",
     "named": true,
     "fields": {
+      "condition": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
+      "function_call": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
       "let": {
         "multiple": false,
         "required": false,
         "types": [
           {
             "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
+      "loop": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "loop",
             "named": true
           }
         ]
@@ -520,42 +572,6 @@
         "types": [
           {
             "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "variable",
-    "named": true,
-    "fields": {
-      "array_var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "array_var",
-            "named": true
-          }
-        ]
-      },
-      "plain_var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "quest_var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_variable",
             "named": true
           }
         ]

@@ -6,7 +6,7 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$.variable, $.interpreted],
+    [$.left_operand, $.interpreted],
     [$.quest_reference, $.quest_variable],
     [$.conditional, $.identifier],
     [$.contained, $.equality],
@@ -62,37 +62,48 @@ module.exports = grammar({
 
     block_body: $ => choice(
       field('statement', $.statement),
-      field('conditional', $.conditional),
-      $.loop,
-      field('function_call', $.function_call),
     ),
 
     statement: $ => choice(
       field('let', $.let_statement),
       field('set', $.set_statement),
+      field('condition', $.conditional),
+      field('loop', $.loop),
+      field('function_call', $.function_call),
     ),
 
     set_statement: $ => seq(
       caseInsensitive('set'),
-      field('variable', $.variable),
+      field('left_operand', $.left_operand),
       caseInsensitive('to'),
       $.right_hand,
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
-      field('variable', $.variable),
+      field('left_operand', $.left_operand),
       // TODO make sure to add in expressions here
       ':=',
       $.right_hand,
     ),
 
-    variable: $ => choice(
+    left_operand: $ => choice(
       field('plain_var', prec(20, $.identifier)),
-      field('array_var', prec(0, $.array_var)),
+      field('array_var', prec(0, $.array_variable)),
       field('quest_var', prec(10, $.quest_variable)),
     ),
 
+    // Quest variables
     quest_variable: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
+    // Array variables
+    array_variable: $ => seq(
+      field('array', $.identifier),
+      repeat1(field('index', $.array_index)),
+    ),
+    array_index: $ => seq(
+      '[',
+      field('key', $.literal),
+      ']',
+    ),
 
     right_hand: $ => seq(
       $.contained,
@@ -119,18 +130,11 @@ module.exports = grammar({
     // quest variables and reference functions
     quest_reference: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
 
-    // Array variables
-    array_var: $ => seq(
-      field('array', $.identifier),
-      '[',
-      field('key', $.literal),
-      ']',
-    ),
 
     declarator: $ => choice(
       field('interpreted', $.interpreted),
       field('literal', $.literal),
-      field('variable', $.variable),
+      field('variable', $.left_operand),
     ),
 
     parenthetical: $ => prec.dynamic(0, seq(
