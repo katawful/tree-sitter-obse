@@ -94,6 +94,11 @@
     }
   },
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "conditional",
     "named": true,
     "fields": {},
@@ -596,6 +601,10 @@
   },
   {
     "type": ":=",
+    "named": false
+  },
+  {
+    "type": ";",
     "named": false
   },
   {

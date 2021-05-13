@@ -1,6 +1,13 @@
 module.exports = grammar({
   name: 'obse',
 
+  extras: $ => [
+    /\s|\\\r?\n/,
+    $.comment,
+  ],
+
+  word: $ => $.identifier,
+
   inline: $ => [
     $.top_level_items,
   ],
@@ -196,7 +203,12 @@ module.exports = grammar({
     con_else: $ => 'fjdkls',
     function_call: $ => 'tes',
     loop: $ => 'test',
+
     identifier: $ => /[a-zA-Z_]\w*/,
+    comment: $ => seq(
+      ';',
+      /(\\(.|\r?\n)|[^\\\n])*/
+    ),
   }
 });
 
