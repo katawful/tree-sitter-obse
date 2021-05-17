@@ -1,3 +1,25 @@
+const PREC = {
+  PAREN_DECLARATOR: -10,
+  CONDITIONAL: -2,
+  DEFAULT: 0,
+  LOGICAL_OR: 1,
+  LOGICAL_AND: 2,
+  INCLUSIVE_OR: 3,
+  EXCLUSIVE_OR: 4,
+  BITWISE_AND: 5,
+  EQUAL: 6,
+  RELATIONAL: 7,
+  SHIFT: 9,
+  ADD: 10,
+  MULTIPLY: 11,
+  UNARY: 13,
+  CALL: 14,
+  SUBSCRIPT: 16,
+  ASSIGNMENT: 15,
+  COMPOUND: 13,
+  EQUALITY: 11,
+};
+
 module.exports = grammar({
   name: 'obse',
 
@@ -9,7 +31,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   inline: $ => [
-    $.top_level_items,
+    $._top_level_items,
   ],
 
   conflicts: $ => [
@@ -23,7 +45,7 @@ module.exports = grammar({
 
     script_file: $ => seq(
       field('script_name', $.script_name),
-      repeat(field('script_body', $.script_body)),
+      repeat(field('script_body', $._script_body)),
     ),
 
     script_name: $ => seq(
@@ -35,20 +57,20 @@ module.exports = grammar({
       caseInsensitive('scriptname'),
     ),
 
-    script_body: $ => choice(
+    _script_body: $ => choice(
       field('var_declaration', $.var_declare),
       field('block_mode', $.block),
     ),
 
     var_declare: $ => seq(
-      field('type', $.type),
+      field('type', $._type),
       field('variable', $.identifier),
     ),
-    type: $ => choice(
-      $.int,
-      $.float,
-      $.string,
-      $.array,
+    _type: $ => choice(
+      field('type_int', $.int),
+      field('type_float', $.float),
+      field('type_string', $.string),
+      field('type_array', $.array),
     ),
     int: $ => choice(
       caseInsensitive('int'),
@@ -62,16 +84,15 @@ module.exports = grammar({
     block: $ => seq(
       caseInsensitive('begin'),
       field('block_type', $.identifier),
-      repeat(field('block_body', $.block_body)),
+      repeat(field('block_body', $._block_body)),
       caseInsensitive('end'),
     ),
 
-
-    block_body: $ => choice(
-      field('statement', $.statement),
+    _block_body: $ => choice(
+      field('statement', $._statement),
     ),
 
-    statement: $ => choice(
+    _statement: $ => choice(
       field('let', $.let_statement),
       field('set', $.set_statement),
       field('condition', $.conditional),
@@ -89,8 +110,23 @@ module.exports = grammar({
       caseInsensitive('let'),
       field('left_operand', $.left_operand),
       // TODO make sure to add in expressions here
-      ':=',
+      $._let_assignment,
       $.right_hand,
+    ),
+
+    _let_assignment: $ => choice(
+      prec(PREC.ASSIGNMENT, field('assignment', $.assignment)),
+      prec(PREC.COMPOUND, field('compound', $.compound_assignment)),
+    ),
+
+    assignment: $ => ':=',
+
+    compound_assignment: $ => choice(
+      '+=',
+      '-=',
+      '*=',
+      '/=',
+      '^=',
     ),
 
     left_operand: $ => choice(
@@ -111,6 +147,38 @@ module.exports = grammar({
       field('key', $.literal),
       ']',
     ),
+
+    // contains the following:
+    // binary operation
+    // unary operation
+    // plain function
+    // reference function
+    // function with argument
+    // user function call (with arguments)
+    // _expresssions: $ => choice(
+    //   $.binary_expression,
+    // ),
+
+    // binary_expression: $ => seq(
+    //     ['+', PREC.ADD],
+    //     ['-', PREC.ADD],
+    //     ['*', PREC.MULTIPLY],
+    //     ['/', PREC.MULTIPLY],
+    //     ['%', PREC.MULTIPLY],
+    //     ['||', PREC.LOGICAL_OR],
+    //     ['&&', PREC.LOGICAL_AND],
+    //     ['|', PREC.INCLUSIVE_OR],
+    //     ['^', PREC.EXCLUSIVE_OR],
+    //     ['&', PREC.BITWISE_AND],
+    //     ['==', PREC.EQUAL],
+    //     ['!=', PREC.EQUAL],
+    //     ['>', PREC.RELATIONAL],
+    //     ['>=', PREC.RELATIONAL],
+    //     ['<=', PREC.RELATIONAL],
+    //     ['<', PREC.RELATIONAL],
+    //     ['<<', PREC.SHIFT],
+    //     ['>>', PREC.SHIFT],
+    // ),
 
     right_hand: $ => seq(
       $.contained,
@@ -186,7 +254,7 @@ module.exports = grammar({
       // ),
       optional($.and_or),
       // repeat($.body),
-      $.block_body,
+      $._block_body,
       optional($.con_else),
       caseInsensitive('endif'),
     ),
@@ -211,6 +279,7 @@ module.exports = grammar({
     ),
   }
 });
+module.exports.PREC = PREC
 
 function caseInsensitive (keyword, aliasAsWord = true) {
   let result = new RegExp(keyword

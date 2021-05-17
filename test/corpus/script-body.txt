@@ -23,36 +23,24 @@ array_var var
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-  script_body: (script_body
     var_declaration: (var_declare
-      type: (type
-        (int))
+      type_int: (int)
+      variable: (identifier))
+    var_declaration: (var_declare
+      type_int: (int)
+      variable: (identifier))
+    var_declaration: (var_declare
+      type_int: (int)
+      variable: (identifier))
+    var_declaration: (var_declare
+      type_float: (float)
+      variable: (identifier))
+    var_declaration: (var_declare
+      type_string: (string)
+      variable: (identifier))
+    var_declaration: (var_declare
+      type_array: (array)
       variable: (identifier)))
-  script_body: (script_body
-    var_declaration: (var_declare
-      type: (type
-        (int))
-      variable: (identifier)))
-  script_body: (script_body
-    var_declaration: (var_declare
-      type: (type
-        (int))
-      variable: (identifier)))
-  script_body: (script_body
-    var_declaration: (var_declare
-      type: (type
-        (float))
-      variable: (identifier)))
-  script_body: (script_body
-    var_declaration: (var_declare
-      type: (type
-        (string))
-      variable: (identifier)))
-  script_body: (script_body
-    var_declaration: (var_declare
-      type: (type
-        (array))
-      variable: (identifier))))
 
 ==========
 Block mode
@@ -65,6 +53,5 @@ end
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-  script_body: (script_body
     block_mode: (block
-      block_type: (identifier))))
+      block_type: (identifier)))

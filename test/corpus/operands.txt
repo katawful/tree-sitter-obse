@@ -10,19 +10,16 @@ end
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-  script_body: (script_body
     block_mode: (block
       block_type: (identifier)
-    block_body: (block_body
-      statement: (statement
-        set: (set_statement
-          left_operand: (left_operand
-            plain_var: (identifier))
-          (right_hand
-            (contained
-              (declarator
-                variable: (left_operand
-                  plain_var: (identifier)))))))))))
+      set: (set_statement
+        left_operand: (left_operand
+          plain_var: (identifier))
+        (right_hand
+          (contained
+            (declarator
+              variable: (left_operand
+                plain_var: (identifier))))))))
 
 ===================
 Left quest variable
@@ -36,19 +33,16 @@ end
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-  script_body: (script_body
     block_mode: (block
       block_type: (identifier)
-    block_body: (block_body
-      statement: (statement
-        set: (set_statement
-          left_operand: (left_operand
-            quest_var: (quest_variable))
-          (right_hand
-            (contained
-              (declarator
-                variable: (left_operand
-                  plain_var: (identifier)))))))))))
+      set: (set_statement
+        left_operand: (left_operand
+          quest_var: (quest_variable))
+        (right_hand
+          (contained
+            (declarator
+              variable: (left_operand
+                plain_var: (identifier))))))))
 
 ===================
 Left array variable
@@ -63,34 +57,29 @@ end
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-  script_body: (script_body
     block_mode: (block
       block_type: (identifier)
-    block_body: (block_body
-      statement: (statement
-        set: (set_statement
-          left_operand: (left_operand
-            array_var: (array_variable
-              array: (identifier)
-              index: (array_index
-                key: (literal))))
-          (right_hand
-            (contained
-              (declarator
-                variable: (left_operand
-                  plain_var: (identifier))))))))
-    block_body: (block_body
-      statement: (statement
-        set: (set_statement
-          left_operand: (left_operand
-            array_var: (array_variable
-              array: (identifier)
-              index: (array_index
-                key: (literal))
-              index: (array_index
-                key: (literal))))
-          (right_hand
-            (contained
-              (declarator
-                variable: (left_operand
-                  plain_var: (identifier)))))))))))
+      set: (set_statement
+        left_operand: (left_operand
+          array_var: (array_variable
+            array: (identifier)
+            index: (array_index
+              key: (literal))))
+        (right_hand
+          (contained
+            (declarator
+              variable: (left_operand
+                plain_var: (identifier))))))
+      set: (set_statement
+        left_operand: (left_operand
+          array_var: (array_variable
+            array: (identifier)
+            index: (array_index
+              key: (literal))
+            index: (array_index
+              key: (literal))))
+        (right_hand
+          (contained
+            (declarator
+              variable: (left_operand
+                plain_var: (identifier))))))))
