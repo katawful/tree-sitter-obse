@@ -1,5 +1,5 @@
 ==============
-let assignment
+Let assignment
 ==============
 scn scriptname
 begin block
@@ -23,7 +23,7 @@ end
                 plain_var: (identifier))))))))
 
 ============
-let compound
+Let compound
 ============
 scn scriptname
 begin block
