@@ -9,7 +9,7 @@ const PREC = {
   BITWISE_OR: 9,
   BITWISE_AND: 8,
   BITWISE_SHIFT: 7,
-  ADD_SUBTRACT: 6,
+  ADD_SUB_CAT: 6,
   MULT_DIV: 5,
   EXPONENT: 4,
   NEGATION: 3,
@@ -32,10 +32,6 @@ module.exports = grammar({
   ],
 
   word: $ => $.identifier,
-
-  inline: $ => [
-    $._top_level_items,
-  ],
 
   conflicts: $ => [
     [$.left_operand, $.interpreted],
@@ -112,7 +108,6 @@ module.exports = grammar({
     let_statement: $ => seq(
       caseInsensitive('let'),
       field('left_operand', $.left_operand),
-      // TODO make sure to add in expressions here
       $._let_assignment,
       $.right_hand,
     ),
@@ -121,9 +116,7 @@ module.exports = grammar({
       prec(PREC.ASSIGNMENT, field('assignment', $.assignment)),
       prec(PREC.COMPOUND, field('compound', $.compound_assignment)),
     ),
-
     assignment: $ => ':=',
-
     compound_assignment: $ => choice(
       '+=',
       '-=',
