@@ -15,7 +15,7 @@ end
       set: (set_statement
         left_operand: (left_operand
           plain_var: (identifier))
-        (right_hand
+        (right_operand
           (contained
             (declarator
               variable: (left_operand
@@ -38,7 +38,7 @@ end
       set: (set_statement
         left_operand: (left_operand
           quest_var: (quest_variable))
-        (right_hand
+        (right_operand
           (contained
             (declarator
               variable: (left_operand
@@ -65,7 +65,7 @@ end
             array: (identifier)
             index: (array_index
               key: (literal))))
-        (right_hand
+        (right_operand
           (contained
             (declarator
               variable: (left_operand
@@ -78,7 +78,7 @@ end
               key: (literal))
             index: (array_index
               key: (literal))))
-        (right_hand
+        (right_operand
           (contained
             (declarator
               variable: (left_operand

@@ -3,6 +3,7 @@ const PREC = {
   ASSIGNMENT: 15,
   LOGICAL_AND: 14,
   LOGICAL_OR: 13,
+  SLICE_PAIR: 12,
   COMPOUND: 13,
   EQUALITY: 11,
   GREATER_LESS: 10,
@@ -87,9 +88,7 @@ module.exports = grammar({
       caseInsensitive('end'),
     ),
 
-    _block_body: $ => choice(
-      field('statement', $._statement),
-    ),
+    _block_body: $ => field('statement', $._statement),
 
     _statement: $ => choice(
       field('let', $.let_statement),
@@ -97,19 +96,98 @@ module.exports = grammar({
       field('condition', $.conditional),
       field('loop', $.loop),
       field('function_call', $.function_call),
+      field('user_function', $.user_function),
+      field('eval', $.eval),
+      field('testexpr', $.testexpr),
+    ),
+
+    _expression: $ => choice(
+      $.binary_expr,
+      $.parenthesized_binary_expr,
+      $.urnary_expr,
+      $.parenthesized_urnary_expr,
+    ),
+
+    binary_expr: $ => seq(
+      $.left_operand,
+      $.binary_operator,
+      $.right_operand,
+    ),
+
+    parenthesized_binary_expr: $ => seq(
+      '(',
+      $.left_operand,
+      $.binary_operator,
+      $.right_operand,
+      ')',
+    ),
+
+    binary_operator: $ => choice(
+      prec(PREC.LOGICAL_OR, '||'),
+      prec(PREC.LOGICAL_AND, '&&'),
+      prec(PREC.SLICE_PAIR, ':'),
+      prec(PREC.SLICE_PAIR, '::'),
+      prec(PREC.EQUALITY, '=='),
+      prec(PREC.EQUALITY, '!='),
+      prec(PREC.GREATER_LESS, '>'),
+      prec(PREC.GREATER_LESS, '>='),
+      prec(PREC.GREATER_LESS, '<'),
+      prec(PREC.GREATER_LESS, '<='),
+      prec(PREC.BITWISE_OR, '|'),
+      prec(PREC.BITWISE_AND, '&'),
+      prec(PREC.BITWISE_SHIFT, '<<'),
+      prec(PREC.BITWISE_SHIFT, '>>'),
+      prec(PREC.ADD_SUB_CAT, '+'),
+      prec(PREC.ADD_SUB_CAT, '-'),
+      prec(PREC.MULT_DIV, '*'),
+      prec(PREC.MULT_DIV, '/'),
+      prec(PREC.MULT_DIV, '%'),
+      prec(PREC.EXPONENT, '^'),
+      prec(PREC.MEMBER_ACCESS, '->'),
+    ),
+
+    urnary_expr: $ => seq(
+      $.left_operand,
+      $.urnary_operator,
+      $.right_operand,
+    ),
+ 
+    parenthesized_urnary_expr: $ => seq(
+      '(',
+      $.left_operand,
+      $.urnary_operator,
+      $.right_operand,
+      ')',
+    ),
+
+    urnary_operator: $ => choice(
+      prec(PREC.NEGATION, '-'),
+      prec(PREC.STRINGIZE, '$'),
+      prec(PREC.NUMERICIZE, '#'),
+      prec(PREC.DEREFERENCE, '*'),
+      prec(PREC.BOX, '&'),
+      prec(PREC.LOGICAL_NOT, '!'),
+    ),
+
+    eval: $ => seq(
+      caseInsensitive('eval')
+    ),
+
+    testexpr: $ => seq(
+      caseInsensitive('testexpr')
     ),
 
     set_statement: $ => seq(
       caseInsensitive('set'),
       field('left_operand', $.left_operand),
       caseInsensitive('to'),
-      $.right_hand,
+      $.right_operand,
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
       field('left_operand', $.left_operand),
       $._let_assignment,
-      $.right_hand,
+      $.right_operand,
     ),
 
     _let_assignment: $ => choice(
@@ -144,39 +222,7 @@ module.exports = grammar({
       ']',
     ),
 
-    // contains the following:
-    // binary operation
-    // unary operation
-    // plain function
-    // reference function
-    // function with argument
-    // user function call (with arguments)
-    // _expresssions: $ => choice(
-    //   $.binary_expression,
-    // ),
-
-    // binary_expression: $ => seq(
-    //     ['+', PREC.ADD],
-    //     ['-', PREC.ADD],
-    //     ['*', PREC.MULTIPLY],
-    //     ['/', PREC.MULTIPLY],
-    //     ['%', PREC.MULTIPLY],
-    //     ['||', PREC.LOGICAL_OR],
-    //     ['&&', PREC.LOGICAL_AND],
-    //     ['|', PREC.INCLUSIVE_OR],
-    //     ['^', PREC.EXCLUSIVE_OR],
-    //     ['&', PREC.BITWISE_AND],
-    //     ['==', PREC.EQUAL],
-    //     ['!=', PREC.EQUAL],
-    //     ['>', PREC.RELATIONAL],
-    //     ['>=', PREC.RELATIONAL],
-    //     ['<=', PREC.RELATIONAL],
-    //     ['<', PREC.RELATIONAL],
-    //     ['<<', PREC.SHIFT],
-    //     ['>>', PREC.SHIFT],
-    // ),
-
-    right_hand: $ => seq(
+    right_operand: $ => seq(
       $.contained,
     ),
 
@@ -266,6 +312,7 @@ module.exports = grammar({
     ),
     con_else: $ => 'fjdkls',
     function_call: $ => 'tes',
+    user_function: $ => 'ts',
     loop: $ => 'test',
 
     identifier: $ => /[a-zA-Z_]\w*/,
