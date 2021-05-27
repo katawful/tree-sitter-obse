@@ -102,10 +102,10 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
-      $.binary_expr,
-      $.parenthesized_binary_expr,
-      $.urnary_expr,
-      $.parenthesized_urnary_expr,
+      field('binary_expression', $.binary_expr),
+      field('paren_binary_expression',$.parenthesized_binary_expr),
+      field('urnary_expression', $.urnary_expr),
+      field('paren_urnary_expression', $.parenthesized_urnary_expr),
     ),
 
     binary_expr: $ => seq(
@@ -123,6 +123,7 @@ module.exports = grammar({
     ),
 
     binary_operator: $ => choice(
+      prec(PREC.ASSIGNMENT, ':='),
       prec(PREC.LOGICAL_OR, '||'),
       prec(PREC.LOGICAL_AND, '&&'),
       prec(PREC.SLICE_PAIR, ':'),
@@ -170,11 +171,13 @@ module.exports = grammar({
     ),
 
     eval: $ => seq(
-      caseInsensitive('eval')
+      caseInsensitive('eval'),
+      $._expression,
     ),
 
     testexpr: $ => seq(
-      caseInsensitive('testexpr')
+      caseInsensitive('testexpr'),
+      $._expression,
     ),
 
     set_statement: $ => seq(

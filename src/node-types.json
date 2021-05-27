@@ -52,6 +52,11 @@
     }
   },
   {
+    "type": "assignment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "binary_expr",
     "named": true,
     "fields": {},
@@ -480,7 +485,48 @@
   {
     "type": "eval",
     "named": true,
-    "fields": {}
+    "fields": {
+      "binary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "binary_expr",
+            "named": true
+          }
+        ]
+      },
+      "paren_binary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parenthesized_binary_expr",
+            "named": true
+          }
+        ]
+      },
+      "paren_urnary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parenthesized_urnary_expr",
+            "named": true
+          }
+        ]
+      },
+      "urnary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "urnary_expr",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "float",
@@ -824,7 +870,48 @@
   {
     "type": "testexpr",
     "named": true,
-    "fields": {}
+    "fields": {
+      "binary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "binary_expr",
+            "named": true
+          }
+        ]
+      },
+      "paren_binary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parenthesized_binary_expr",
+            "named": true
+          }
+        ]
+      },
+      "paren_urnary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parenthesized_urnary_expr",
+            "named": true
+          }
+        ]
+      },
+      "urnary_expression": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "urnary_expr",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "urnary_expr",
@@ -1013,6 +1100,10 @@
     "named": false
   },
   {
+    "type": ":=",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -1063,10 +1154,6 @@
   {
     "type": "array_var",
     "named": false
-  },
-  {
-    "type": "assignment",
-    "named": true
   },
   {
     "type": "begin",

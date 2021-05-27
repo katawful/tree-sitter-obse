@@ -331,20 +331,36 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "binary_expr"
+          "type": "FIELD",
+          "name": "binary_expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "binary_expr"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "parenthesized_binary_expr"
+          "type": "FIELD",
+          "name": "paren_binary_expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parenthesized_binary_expr"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "urnary_expr"
+          "type": "FIELD",
+          "name": "urnary_expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "urnary_expr"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "parenthesized_urnary_expr"
+          "type": "FIELD",
+          "name": "paren_urnary_expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parenthesized_urnary_expr"
+          }
         }
       ]
     },
@@ -393,6 +409,14 @@
     "binary_operator": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "PREC",
+          "value": 15,
+          "content": {
+            "type": "STRING",
+            "value": ":="
+          }
+        },
         {
           "type": "PREC",
           "value": 13,
@@ -669,6 +693,10 @@
           },
           "named": false,
           "value": "eval"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
         }
       ]
     },
@@ -683,6 +711,10 @@
           },
           "named": false,
           "value": "testexpr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
         }
       ]
     },

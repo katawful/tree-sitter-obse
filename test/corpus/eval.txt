@@ -3,7 +3,7 @@ eval
 ====
 scn scriptname
 begin block
-  eval
+  eval array[1] := x
 end
 ---
 (script_file
@@ -12,4 +12,44 @@ end
     script_name: (identifier))
     block_mode: (block
       block_type: (identifier)
-      eval: (eval)))
+      eval: (eval
+      binary_expression: (binary_expr
+        (left_operand 
+          array_var: (array_variable
+            array: (identifier)
+            index: (array_index
+              key: (literal))))
+        (binary_operator)
+        (right_operand
+          (contained
+            (declarator
+              variable: (left_operand
+                plain_var: (identifier)))))))))
+
+========
+testexpr
+========
+scn scriptname
+begin block
+  testexpr array[1] := x
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      testexpr: (testexpr
+      binary_expression: (binary_expr
+        (left_operand 
+          array_var: (array_variable
+            array: (identifier)
+            index: (array_index
+              key: (literal))))
+        (binary_operator)
+        (right_operand
+          (contained
+            (declarator
+              variable: (left_operand
+                plain_var: (identifier)))))))))
