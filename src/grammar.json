@@ -875,8 +875,32 @@
       ]
     },
     "quest_variable": {
-      "type": "PATTERN",
-      "value": "[a-zA-Z_]\\w*\\.[a-zA-Z_]\\w*"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "quest",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "."
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "variable",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
     },
     "array_variable": {
       "type": "SEQ",
@@ -906,8 +930,12 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "literal"
+          "type": "PREC",
+          "value": -20,
+          "content": {
+            "type": "SYMBOL",
+            "name": "literal"
+          }
         },
         {
           "type": "PREC",
@@ -1349,7 +1377,8 @@
     "LOGICAL_NOT": 2,
     "PARENTHETICAL": 1,
     "SUBSCRIPT": 0,
-    "MEMBER_ACCESS": 0
+    "MEMBER_ACCESS": 0,
+    "LITERAL": -20
   }
 }
 

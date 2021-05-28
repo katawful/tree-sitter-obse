@@ -715,14 +715,30 @@
     }
   },
   {
-    "type": "quest_reference",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "quest_variable",
     "named": true,
-    "fields": {}
+    "fields": {
+      "quest": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "right_operand",
@@ -1103,6 +1119,10 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": "/",
     "named": false
   },
@@ -1228,6 +1248,10 @@
   },
   {
     "type": "loop",
+    "named": true
+  },
+  {
+    "type": "quest_reference",
     "named": true
   },
   {

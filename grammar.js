@@ -22,6 +22,7 @@ const PREC = {
   PARENTHETICAL: 1,
   SUBSCRIPT: 0,
   MEMBER_ACCESS: 0,
+  LITERAL: -20,
 };
 
 module.exports = grammar({
@@ -212,14 +213,19 @@ module.exports = grammar({
     ),
 
     // Quest variables
-    quest_variable: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
+    quest_variable: $ => seq(
+      field('quest', $.identifier),
+      token.immediate('.'),
+      field('variable', $.identifier),
+    ),
+
     // Array variables
     array_variable: $ => seq(
       field('array', $.identifier),
       repeat1(field('index', $.subscript)),
     ),
     _array_key: $ => choice(
-      $.literal,
+      prec(PREC.LITERAL, $.literal),
       prec(PREC.SLICE_PAIR, field( 'slice', $.slice)),
     ),
     slice: $ => seq(
@@ -228,6 +234,7 @@ module.exports = grammar({
       choice(/\d+/, /\-\d+/,),
     ),
 
+    // arrays and strings use this
     subscript: $ => seq(
       '[',
       field('key', $._array_key),
