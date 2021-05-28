@@ -17,7 +17,7 @@ end
         (left_operand 
           array_var: (array_variable
             array: (identifier)
-            index: (array_index
+            index: (subscript
               key: (literal))))
         (binary_operator)
         (right_operand
@@ -45,7 +45,7 @@ end
         (left_operand 
           array_var: (array_variable
             array: (identifier)
-            index: (array_index
+            index: (subscript
               key: (literal))))
         (binary_operator)
         (right_operand

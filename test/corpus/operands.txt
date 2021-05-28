@@ -63,7 +63,7 @@ end
         left_operand: (left_operand
           array_var: (array_variable
             array: (identifier)
-            index: (array_index
+            index: (subscript
               key: (literal))))
         (right_operand
           (contained
@@ -74,9 +74,9 @@ end
         left_operand: (left_operand
           array_var: (array_variable
             array: (identifier)
-            index: (array_index
+            index: (subscript
               key: (literal))
-            index: (array_index
+            index: (subscript
               key: (literal))))
         (right_operand
           (contained

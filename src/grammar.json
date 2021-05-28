@@ -438,14 +438,6 @@
           "value": 12,
           "content": {
             "type": "STRING",
-            "value": ":"
-          }
-        },
-        {
-          "type": "PREC",
-          "value": 12,
-          "content": {
-            "type": "STRING",
             "value": "::"
           }
         },
@@ -904,13 +896,69 @@
             "name": "index",
             "content": {
               "type": "SYMBOL",
-              "name": "array_index"
+              "name": "subscript"
             }
           }
         }
       ]
     },
-    "array_index": {
+    "_array_key": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "literal"
+        },
+        {
+          "type": "PREC",
+          "value": 12,
+          "content": {
+            "type": "FIELD",
+            "name": "slice",
+            "content": {
+              "type": "SYMBOL",
+              "name": "slice"
+            }
+          }
+        }
+      ]
+    },
+    "slice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "\\d+"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\-\\d+"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "\\d+"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\-\\d+"
+            }
+          ]
+        }
+      ]
+    },
+    "subscript": {
       "type": "SEQ",
       "members": [
         {
@@ -922,7 +970,7 @@
           "name": "key",
           "content": {
             "type": "SYMBOL",
-            "name": "literal"
+            "name": "_array_key"
           }
         },
         {

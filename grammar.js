@@ -126,7 +126,6 @@ module.exports = grammar({
       prec(PREC.ASSIGNMENT, ':='),
       prec(PREC.LOGICAL_OR, '||'),
       prec(PREC.LOGICAL_AND, '&&'),
-      prec(PREC.SLICE_PAIR, ':'),
       prec(PREC.SLICE_PAIR, '::'),
       prec(PREC.EQUALITY, '=='),
       prec(PREC.EQUALITY, '!='),
@@ -217,11 +216,21 @@ module.exports = grammar({
     // Array variables
     array_variable: $ => seq(
       field('array', $.identifier),
-      repeat1(field('index', $.array_index)),
+      repeat1(field('index', $.subscript)),
     ),
-    array_index: $ => seq(
+    _array_key: $ => choice(
+      $.literal,
+      prec(PREC.SLICE_PAIR, field( 'slice', $.slice)),
+    ),
+    slice: $ => seq(
+      choice(/\d+/, /\-\d+/,),
+      ':',
+      choice(/\d+/, /\-\d+/,),
+    ),
+
+    subscript: $ => seq(
       '[',
-      field('key', $.literal),
+      field('key', $._array_key),
       ']',
     ),
 
