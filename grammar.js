@@ -41,10 +41,8 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   conflicts: $ => [
-    [$.left_operand, $.interpreted],
-    [$.quest_reference, $.dot_object],
-    [$.conditional, $.identifier],
-    [$.contained, $.equality],
+    [$.parenthesized_binary_expr, $.binary_expr],
+    [$.parenthesized_urnary_expr, $.urnary_expr],
   ],
 
   rules: {
@@ -112,6 +110,12 @@ module.exports = grammar({
       field('paren_binary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_binary_expr)),
       field('urnary_expression', prec(PREC.TOP, $.urnary_expr)),
       field('paren_urnary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_urnary_expr)),
+    ),
+
+    _paren_expression: $ => seq(
+      '(',
+      $._expression,
+      ')',
     ),
 
     binary_expr: $ => seq(
@@ -198,12 +202,12 @@ module.exports = grammar({
 
     eval: $ => seq(
       caseInsensitive('eval'),
-      $._expression,
+      choice(prec(PREC.PLAIN, $._expression), prec(PREC.PARENTHETICAL, $._paren_expression)),
     ),
 
     testexpr: $ => seq(
       caseInsensitive('testexpr'),
-      $._expression,
+      choice(prec(PREC.PLAIN, $._expression), prec(PREC.PARENTHETICAL, $._paren_expression)),
     ),
 
     set_statement: $ => seq(

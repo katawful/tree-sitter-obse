@@ -380,6 +380,23 @@
         }
       ]
     },
+    "_paren_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
     "binary_expr": {
       "type": "SEQ",
       "members": [
@@ -834,8 +851,25 @@
           "value": "eval"
         },
         {
-          "type": "SYMBOL",
-          "name": "_expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PREC",
+              "value": -5,
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            },
+            {
+              "type": "PREC",
+              "value": 1,
+              "content": {
+                "type": "SYMBOL",
+                "name": "_paren_expression"
+              }
+            }
+          ]
         }
       ]
     },
@@ -852,8 +886,25 @@
           "value": "testexpr"
         },
         {
-          "type": "SYMBOL",
-          "name": "_expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PREC",
+              "value": -5,
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            },
+            {
+              "type": "PREC",
+              "value": 1,
+              "content": {
+                "type": "SYMBOL",
+                "name": "_paren_expression"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1515,20 +1566,12 @@
   ],
   "conflicts": [
     [
-      "left_operand",
-      "interpreted"
+      "parenthesized_binary_expr",
+      "binary_expr"
     ],
     [
-      "quest_reference",
-      "dot_object"
-    ],
-    [
-      "conditional",
-      "identifier"
-    ],
-    [
-      "contained",
-      "equality"
+      "parenthesized_urnary_expr",
+      "urnary_expr"
     ]
   ],
   "precedences": [],
