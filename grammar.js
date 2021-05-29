@@ -40,7 +40,19 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  inline: $ => [
+    $._paren_multi_expr,
+    $._multi_expr,
+  ],
+
   conflicts: $ => [
+    [$.binary_expr],
+    [$.parenthesized_binary_expr],
+    [$.argumentative],
+    [$._paren_multi_expr, $._multi_expr],
+    [$._multi_expr],
+    [$._expression, $.binary_expr],
+    [$._expression, $.parenthesized_binary_expr],
     [$.parenthesized_binary_expr, $.binary_expr],
     [$.parenthesized_unary_expr, $.unary_expr],
   ],
@@ -106,34 +118,50 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
+      $.paren_expression,
       field('binary_expression', prec(PREC.TOP, $.binary_expr)),
       field('paren_binary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_binary_expr)),
       field('unary_expression', prec(PREC.TOP, $.unary_expr)),
       field('paren_unary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_unary_expr)),
     ),
 
-    _paren_expression: $ => seq(
+    paren_expression: $ => seq(
       '(',
       $._expression,
       ')',
     ),
 
     binary_expr: $ => seq(
+      // optional('('),
       $.operands,
       $.binary_operator,
+      // $.operands,
+      repeat1(choice(prec(PREC.TOP, $._multi_expr), prec(PREC.PARENTHETICAL, $._paren_multi_expr))),
+      optional($.binary_operator),
+      optional(choice($._expression, $.paren_expression)),
+    ),
+
+    parenthesized_binary_expr: $ => seq(
+      '(',
       $.operands,
-      repeat(choice($._multi_expr, $._paren_multi_expr)),
+      $.binary_operator,
+      // $.operands,
+      repeat1(choice(prec(PREC.TOP, $._multi_expr), prec(PREC.PARENTHETICAL, $._paren_multi_expr))),
+      ')',
+      optional($.binary_operator),
+      optional(choice($._expression, $.paren_expression)),
     ),
 
     _multi_expr: $ => seq(
-      $.binary_operator,
+      // optional('('),
       $.operands,
+      optional($.binary_operator),
+      // optional(')'),
     ),
     _paren_multi_expr: $ => seq(
-      '(',
-      $.binary_operator,
+      // '(',
       $.operands,
-      ')',
+      optional($.binary_operator),
     ),
 
     operands: $ => choice(
@@ -142,15 +170,6 @@ module.exports = grammar({
       field('literal', prec(PREC.LITERAL, $.literal)),
       field('array_var', prec(PREC.ARRAY, $.array_variable)),
       field('dot', prec(PREC.DOT, $.dot_object)),
-    ),
-
-    parenthesized_binary_expr: $ => seq(
-      '(',
-      $.operands,
-      $.binary_operator,
-      $.operands,
-      repeat(choice($._multi_expr, $._paren_multi_expr)),
-      ')',
     ),
 
     binary_operator: $ => choice(
@@ -202,12 +221,13 @@ module.exports = grammar({
 
     eval: $ => seq(
       caseInsensitive('eval'),
-      choice(prec(PREC.PLAIN, $._expression), prec(PREC.PARENTHETICAL, $._paren_expression)),
+      // repeat1(choice(prec(PREC.TOP, $._expression), prec(PREC.PARENTHETICAL, $._paren_expression))),
+      repeat1($._expression),
     ),
 
     testexpr: $ => seq(
       caseInsensitive('testexpr'),
-      choice(prec(PREC.PLAIN, $._expression), prec(PREC.PARENTHETICAL, $._paren_expression)),
+      choice(prec(PREC.TOP, $._expression), prec(PREC.PARENTHETICAL, $.paren_expression)),
     ),
 
     set_statement: $ => seq(

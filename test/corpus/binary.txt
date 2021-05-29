@@ -87,7 +87,7 @@ Parenthesized multiple expressions
 ==================================
 scn scriptname
 begin block
-  eval (x > 2 || (array[1] < dot.object) + func argu)
+  eval (x > 2) || array[1] < dot.object + func argu
 end
 ---
 (script_file
@@ -97,7 +97,7 @@ end
     block_mode: (block
       block_type: (identifier)
       eval: (eval
-      binary_expression: (binary_expr
+      paren_binary_expression: (parenthesized_binary_expr
         (operands
           plain: (identifier))
         (binary_operator)
