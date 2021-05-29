@@ -356,25 +356,25 @@
         },
         {
           "type": "FIELD",
-          "name": "urnary_expression",
+          "name": "unary_expression",
           "content": {
             "type": "PREC",
             "value": 20,
             "content": {
               "type": "SYMBOL",
-              "name": "urnary_expr"
+              "name": "unary_expr"
             }
           }
         },
         {
           "type": "FIELD",
-          "name": "paren_urnary_expression",
+          "name": "paren_unary_expression",
           "content": {
             "type": "PREC",
             "value": 1,
             "content": {
               "type": "SYMBOL",
-              "name": "parenthesized_urnary_expr"
+              "name": "parenthesized_unary_expr"
             }
           }
         }
@@ -743,7 +743,7 @@
         }
       ]
     },
-    "urnary_expr": {
+    "unary_expr": {
       "type": "SEQ",
       "members": [
         {
@@ -752,7 +752,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "urnary_operator"
+          "name": "unary_operator"
         },
         {
           "type": "SYMBOL",
@@ -760,7 +760,7 @@
         }
       ]
     },
-    "parenthesized_urnary_expr": {
+    "parenthesized_unary_expr": {
       "type": "SEQ",
       "members": [
         {
@@ -773,7 +773,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "urnary_operator"
+          "name": "unary_operator"
         },
         {
           "type": "SYMBOL",
@@ -785,7 +785,7 @@
         }
       ]
     },
-    "urnary_operator": {
+    "unary_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -1570,8 +1570,8 @@
       "binary_expr"
     ],
     [
-      "parenthesized_urnary_expr",
-      "urnary_expr"
+      "parenthesized_unary_expr",
+      "unary_expr"
     ]
   ],
   "precedences": [],

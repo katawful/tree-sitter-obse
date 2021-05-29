@@ -42,7 +42,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.parenthesized_binary_expr, $.binary_expr],
-    [$.parenthesized_urnary_expr, $.urnary_expr],
+    [$.parenthesized_unary_expr, $.unary_expr],
   ],
 
   rules: {
@@ -108,8 +108,8 @@ module.exports = grammar({
     _expression: $ => choice(
       field('binary_expression', prec(PREC.TOP, $.binary_expr)),
       field('paren_binary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_binary_expr)),
-      field('urnary_expression', prec(PREC.TOP, $.urnary_expr)),
-      field('paren_urnary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_urnary_expr)),
+      field('unary_expression', prec(PREC.TOP, $.unary_expr)),
+      field('paren_unary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_unary_expr)),
     ),
 
     _paren_expression: $ => seq(
@@ -177,21 +177,21 @@ module.exports = grammar({
       prec(PREC.MEMBER_ACCESS, '->'),
     ),
 
-    urnary_expr: $ => seq(
+    unary_expr: $ => seq(
       $.operands,
-      $.urnary_operator,
+      $.unary_operator,
       $.operands,
     ),
  
-    parenthesized_urnary_expr: $ => seq(
+    parenthesized_unary_expr: $ => seq(
       '(',
       $.operands,
-      $.urnary_operator,
+      $.unary_operator,
       $.operands,
       ')',
     ),
 
-    urnary_operator: $ => choice(
+    unary_operator: $ => choice(
       prec(PREC.NEGATION, '-'),
       prec(PREC.STRINGIZE, '$'),
       prec(PREC.NUMERICIZE, '#'),

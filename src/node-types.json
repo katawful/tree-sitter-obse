@@ -542,22 +542,22 @@
           }
         ]
       },
-      "paren_urnary_expression": {
+      "paren_unary_expression": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "parenthesized_urnary_expr",
+            "type": "parenthesized_unary_expr",
             "named": true
           }
         ]
       },
-      "urnary_expression": {
+      "unary_expression": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "urnary_expr",
+            "type": "unary_expr",
             "named": true
           }
         ]
@@ -773,7 +773,7 @@
     }
   },
   {
-    "type": "parenthesized_urnary_expr",
+    "type": "parenthesized_unary_expr",
     "named": true,
     "fields": {},
     "children": {
@@ -785,7 +785,7 @@
           "named": true
         },
         {
-          "type": "urnary_operator",
+          "type": "unary_operator",
           "named": true
         }
       ]
@@ -1000,22 +1000,22 @@
           }
         ]
       },
-      "paren_urnary_expression": {
+      "paren_unary_expression": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "parenthesized_urnary_expr",
+            "type": "parenthesized_unary_expr",
             "named": true
           }
         ]
       },
-      "urnary_expression": {
+      "unary_expression": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "urnary_expr",
+            "type": "unary_expr",
             "named": true
           }
         ]
@@ -1023,7 +1023,7 @@
     }
   },
   {
-    "type": "urnary_expr",
+    "type": "unary_expr",
     "named": true,
     "fields": {},
     "children": {
@@ -1035,14 +1035,14 @@
           "named": true
         },
         {
-          "type": "urnary_operator",
+          "type": "unary_operator",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "urnary_operator",
+    "type": "unary_operator",
     "named": true,
     "fields": {}
   },
