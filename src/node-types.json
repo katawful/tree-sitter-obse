@@ -5,6 +5,36 @@
     "fields": {}
   },
   {
+    "type": "argumentative",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "array",
     "named": true,
     "fields": {}
@@ -53,11 +83,7 @@
           "named": true
         },
         {
-          "type": "left_operand",
-          "named": true
-        },
-        {
-          "type": "right_operand",
+          "type": "operands",
           "named": true
         }
       ]
@@ -452,6 +478,32 @@
     }
   },
   {
+    "type": "dot_object",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "equality",
     "named": true,
     "fields": {},
@@ -587,7 +639,7 @@
         "required": false,
         "types": [
           {
-            "type": "quest_variable",
+            "type": "dot_object",
             "named": true
           }
         ]
@@ -646,6 +698,62 @@
     "fields": {}
   },
   {
+    "type": "operands",
+    "named": true,
+    "fields": {
+      "argumentative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "argumentative",
+            "named": true
+          }
+        ]
+      },
+      "array_var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_variable",
+            "named": true
+          }
+        ]
+      },
+      "dot": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "dot_object",
+            "named": true
+          }
+        ]
+      },
+      "literal": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      },
+      "plain": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "parenthesized_binary_expr",
     "named": true,
     "fields": {},
@@ -658,11 +766,7 @@
           "named": true
         },
         {
-          "type": "left_operand",
-          "named": true
-        },
-        {
-          "type": "right_operand",
+          "type": "operands",
           "named": true
         }
       ]
@@ -677,11 +781,7 @@
       "required": true,
       "types": [
         {
-          "type": "left_operand",
-          "named": true
-        },
-        {
-          "type": "right_operand",
+          "type": "operands",
           "named": true
         },
         {
@@ -712,32 +812,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "quest_variable",
-    "named": true,
-    "fields": {
-      "quest": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "variable": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -957,11 +1031,7 @@
       "required": true,
       "types": [
         {
-          "type": "left_operand",
-          "named": true
-        },
-        {
-          "type": "right_operand",
+          "type": "operands",
           "named": true
         },
         {

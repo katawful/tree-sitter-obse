@@ -1,5 +1,6 @@
 // for expressions
 const PREC = {
+  TOP: 20,
   ASSIGNMENT: 15,
   LOGICAL_AND: 14,
   LOGICAL_OR: 13,
@@ -22,6 +23,10 @@ const PREC = {
   PARENTHETICAL: 1,
   SUBSCRIPT: 0,
   MEMBER_ACCESS: 0,
+  ARRAY: 0,
+  PLAIN: -5, //stuff like GetFPS
+  DOT: -10, // stuff like quest.variable
+  ARGUMENTATIVE: -15, // stuff like GetName object
   LITERAL: -20,
 };
 
@@ -37,7 +42,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.left_operand, $.interpreted],
-    [$.quest_reference, $.quest_variable],
+    [$.quest_reference, $.dot_object],
     [$.conditional, $.identifier],
     [$.contained, $.equality],
   ],
@@ -103,23 +108,44 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
-      field('binary_expression', $.binary_expr),
-      field('paren_binary_expression',$.parenthesized_binary_expr),
-      field('urnary_expression', $.urnary_expr),
-      field('paren_urnary_expression', $.parenthesized_urnary_expr),
+      field('binary_expression', prec(PREC.TOP, $.binary_expr)),
+      field('paren_binary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_binary_expr)),
+      field('urnary_expression', prec(PREC.TOP, $.urnary_expr)),
+      field('paren_urnary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_urnary_expr)),
     ),
 
     binary_expr: $ => seq(
-      $.left_operand,
+      $.operands,
       $.binary_operator,
-      $.right_operand,
+      $.operands,
+      repeat(choice($._multi_expr, $._paren_multi_expr)),
+    ),
+
+    _multi_expr: $ => seq(
+      $.binary_operator,
+      $.operands,
+    ),
+    _paren_multi_expr: $ => seq(
+      '(',
+      $.binary_operator,
+      $.operands,
+      ')',
+    ),
+
+    operands: $ => choice(
+      field('plain', prec(PREC.PLAIN, $.identifier)),
+      field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
+      field('literal', prec(PREC.LITERAL, $.literal)),
+      field('array_var', prec(PREC.ARRAY, $.array_variable)),
+      field('dot', prec(PREC.DOT, $.dot_object)),
     ),
 
     parenthesized_binary_expr: $ => seq(
       '(',
-      $.left_operand,
+      $.operands,
       $.binary_operator,
-      $.right_operand,
+      $.operands,
+      repeat(choice($._multi_expr, $._paren_multi_expr)),
       ')',
     ),
 
@@ -148,16 +174,16 @@ module.exports = grammar({
     ),
 
     urnary_expr: $ => seq(
-      $.left_operand,
+      $.operands,
       $.urnary_operator,
-      $.right_operand,
+      $.operands,
     ),
  
     parenthesized_urnary_expr: $ => seq(
       '(',
-      $.left_operand,
+      $.operands,
       $.urnary_operator,
-      $.right_operand,
+      $.operands,
       ')',
     ),
 
@@ -206,17 +232,23 @@ module.exports = grammar({
       '^=',
     ),
 
+    // left operands
     left_operand: $ => choice(
       field('plain_var', prec(20, $.identifier)),
       field('array_var', prec(0, $.array_variable)),
-      field('quest_var', prec(10, $.quest_variable)),
+      field('quest_var', prec(10, $.dot_object)),
     ),
 
-    // Quest variables
-    quest_variable: $ => seq(
-      field('quest', $.identifier),
+    // dot objects
+    dot_object: $ => seq(
+      field('left', $.identifier),
       token.immediate('.'),
-      field('variable', $.identifier),
+      field('right', $.identifier),
+    ),
+
+    argumentative: $ => seq(
+      field('function', $.identifier),
+      repeat1(field('argument', choice($.literal, $.identifier))),
     ),
 
     // Array variables

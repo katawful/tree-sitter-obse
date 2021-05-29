@@ -37,9 +37,9 @@ end
       block_type: (identifier)
       set: (set_statement
         left_operand: (left_operand
-          quest_var: (quest_variable
-            quest: (identifier)
-            variable: (identifier)))
+          quest_var: (dot_object
+            left: (identifier)
+            right: (identifier)))
         (right_operand
           (contained
             (declarator
