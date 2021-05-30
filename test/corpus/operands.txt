@@ -13,13 +13,10 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        left_operand: (left_operand
-          plain_var: (identifier))
-        (right_operand
-          (contained
-            (declarator
-              variable: (left_operand
-                plain_var: (identifier))))))))
+        left: (operands
+          plain: (identifier))
+        right: (operands
+          plain: (identifier)))))
 
 ===================
 Left quest variable
@@ -36,15 +33,12 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        left_operand: (left_operand
-          quest_var: (dot_object
+        left: (operands
+          dot: (dot_object
             left: (identifier)
             right: (identifier)))
-        (right_operand
-          (contained
-            (declarator
-              variable: (left_operand
-                plain_var: (identifier))))))))
+        right: (operands
+          plain: (identifier)))))
 
 ===================
 Left array variable
@@ -62,26 +56,20 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        left_operand: (left_operand
+        left: (operands
           array_var: (array_variable
             array: (identifier)
             index: (subscript
               key: (literal))))
-        (right_operand
-          (contained
-            (declarator
-              variable: (left_operand
-                plain_var: (identifier))))))
+        right: (operands
+          plain: (identifier)))
       set: (set_statement
-        left_operand: (left_operand
+        left: (operands
           array_var: (array_variable
             array: (identifier)
             index: (subscript
               key: (literal))
             index: (subscript
               key: (literal))))
-        (right_operand
-          (contained
-            (declarator
-              variable: (left_operand
-                plain_var: (identifier))))))))
+        right: (operands
+          plain: (identifier)))))

@@ -24,9 +24,9 @@ const PREC = {
   SUBSCRIPT: 0,
   MEMBER_ACCESS: 0,
   ARRAY: 0,
-  PLAIN: -5, //stuff like GetFPS
+  PLAIN: -15, //stuff like GetFPS
   DOT: -10, // stuff like quest.variable
-  ARGUMENTATIVE: -15, // stuff like GetName object
+  ARGUMENTATIVE: -5, // stuff like GetName object
   LITERAL: -20,
 };
 
@@ -46,15 +46,7 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
-    [$.binary_expr],
-    [$.parenthesized_binary_expr],
     [$.argumentative],
-    [$._paren_multi_expr, $._multi_expr],
-    [$._multi_expr],
-    [$._expression, $.binary_expr],
-    [$._expression, $.parenthesized_binary_expr],
-    [$.parenthesized_binary_expr, $.binary_expr],
-    [$.parenthesized_unary_expr, $.unary_expr],
   ],
 
   rules: {
@@ -118,50 +110,15 @@ module.exports = grammar({
     ),
 
     _expression: $ => choice(
-      $.paren_expression,
-      field('binary_expression', prec(PREC.TOP, $.binary_expr)),
-      field('paren_binary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_binary_expr)),
-      field('unary_expression', prec(PREC.TOP, $.unary_expr)),
-      field('paren_unary_expression', prec(PREC.PARENTHETICAL, $.parenthesized_unary_expr)),
+      $.operands,
+      prec.left($.binary_operator),
+      $._paren_expression,
     ),
 
-    paren_expression: $ => seq(
+    _paren_expression: $ => seq(
       '(',
-      $._expression,
+      repeat($._expression),
       ')',
-    ),
-
-    binary_expr: $ => seq(
-      // optional('('),
-      $.operands,
-      $.binary_operator,
-      // $.operands,
-      repeat1(choice(prec(PREC.TOP, $._multi_expr), prec(PREC.PARENTHETICAL, $._paren_multi_expr))),
-      optional($.binary_operator),
-      optional(choice($._expression, $.paren_expression)),
-    ),
-
-    parenthesized_binary_expr: $ => seq(
-      '(',
-      $.operands,
-      $.binary_operator,
-      // $.operands,
-      repeat1(choice(prec(PREC.TOP, $._multi_expr), prec(PREC.PARENTHETICAL, $._paren_multi_expr))),
-      ')',
-      optional($.binary_operator),
-      optional(choice($._expression, $.paren_expression)),
-    ),
-
-    _multi_expr: $ => seq(
-      // optional('('),
-      $.operands,
-      optional($.binary_operator),
-      // optional(')'),
-    ),
-    _paren_multi_expr: $ => seq(
-      // '(',
-      $.operands,
-      optional($.binary_operator),
     ),
 
     operands: $ => choice(
@@ -196,20 +153,6 @@ module.exports = grammar({
       prec(PREC.MEMBER_ACCESS, '->'),
     ),
 
-    unary_expr: $ => seq(
-      $.operands,
-      $.unary_operator,
-      $.operands,
-    ),
- 
-    parenthesized_unary_expr: $ => seq(
-      '(',
-      $.operands,
-      $.unary_operator,
-      $.operands,
-      ')',
-    ),
-
     unary_operator: $ => choice(
       prec(PREC.NEGATION, '-'),
       prec(PREC.STRINGIZE, '$'),
@@ -221,26 +164,25 @@ module.exports = grammar({
 
     eval: $ => seq(
       caseInsensitive('eval'),
-      // repeat1(choice(prec(PREC.TOP, $._expression), prec(PREC.PARENTHETICAL, $._paren_expression))),
-      repeat1($._expression),
+      repeat($._expression),
     ),
 
     testexpr: $ => seq(
       caseInsensitive('testexpr'),
-      choice(prec(PREC.TOP, $._expression), prec(PREC.PARENTHETICAL, $.paren_expression)),
+      repeat($._expression),
     ),
 
     set_statement: $ => seq(
       caseInsensitive('set'),
-      field('left_operand', $.left_operand),
+      field('left', $.operands),
       caseInsensitive('to'),
-      $.right_operand,
+      field('right', $.operands),
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
-      field('left_operand', $.left_operand),
+      field('left', $.operands),
       $._let_assignment,
-      $.right_operand,
+      field('right', $.operands),
     ),
 
     _let_assignment: $ => choice(
@@ -270,9 +212,10 @@ module.exports = grammar({
       field('right', $.identifier),
     ),
 
+    // functions with arguments
     argumentative: $ => seq(
       field('function', $.identifier),
-      repeat1(field('argument', choice($.literal, $.identifier))),
+      repeat1(field('argument', choice(prec(PREC.LITERAL, $.literal), prec(PREC.ARGUMENTATIVE, $.identifier)))),
     ),
 
     // Array variables

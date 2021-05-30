@@ -71,70 +71,6 @@
     "fields": {}
   },
   {
-    "type": "binary_expr",
-    "named": true,
-    "fields": {
-      "binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_unary_expr",
-            "named": true
-          }
-        ]
-      },
-      "unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "unary_expr",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_operator",
-          "named": true
-        },
-        {
-          "type": "operands",
-          "named": true
-        },
-        {
-          "type": "paren_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "binary_operator",
     "named": true,
     "fields": {}
@@ -566,54 +502,17 @@
   {
     "type": "eval",
     "named": true,
-    "fields": {
-      "binary_expression": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_binary_expression": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_unary_expression": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_unary_expr",
-            "named": true
-          }
-        ]
-      },
-      "unary_expression": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "unary_expr",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "paren_expression",
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "operands",
           "named": true
         }
       ]
@@ -725,26 +624,26 @@
           }
         ]
       },
-      "left_operand": {
+      "left": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "left_operand",
+            "type": "operands",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operands",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "right_operand",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -809,145 +708,6 @@
     }
   },
   {
-    "type": "paren_expression",
-    "named": true,
-    "fields": {
-      "binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_unary_expr",
-            "named": true
-          }
-        ]
-      },
-      "unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "unary_expr",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "paren_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "parenthesized_binary_expr",
-    "named": true,
-    "fields": {
-      "binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_unary_expr",
-            "named": true
-          }
-        ]
-      },
-      "unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "unary_expr",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_operator",
-          "named": true
-        },
-        {
-          "type": "operands",
-          "named": true
-        },
-        {
-          "type": "paren_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "parenthesized_unary_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "operands",
-          "named": true
-        },
-        {
-          "type": "unary_operator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parenthetical",
     "named": true,
     "fields": {},
@@ -965,21 +725,6 @@
         },
         {
           "type": "equality",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "right_operand",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "contained",
           "named": true
         }
       ]
@@ -1070,26 +815,26 @@
     "type": "set_statement",
     "named": true,
     "fields": {
-      "left_operand": {
+      "left": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "left_operand",
+            "type": "operands",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operands",
             "named": true
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "right_operand",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1135,82 +880,21 @@
   {
     "type": "testexpr",
     "named": true,
-    "fields": {
-      "binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_binary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_binary_expr",
-            "named": true
-          }
-        ]
-      },
-      "paren_unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "parenthesized_unary_expr",
-            "named": true
-          }
-        ]
-      },
-      "unary_expression": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "unary_expr",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "paren_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "unary_expr",
-    "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "operands",
+          "type": "binary_operator",
           "named": true
         },
         {
-          "type": "unary_operator",
+          "type": "operands",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "unary_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "var_declare",

@@ -13,14 +13,11 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        left_operand: (left_operand
-          plain_var: (identifier))
+        left: (operands
+          plain: (identifier))
         assignment: (assignment)
-        (right_operand
-          (contained
-            (declarator
-              variable: (left_operand
-                plain_var: (identifier))))))))
+        right: (operands
+          plain: (identifier)))))
 
 ============
 Let compound
@@ -41,42 +38,32 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        left_operand: (left_operand
-          plain_var: (identifier))
+        left: (operands
+          plain: (identifier))
         compound: (compound_assignment)
-        (right_operand
-          (contained
-            (declarator
-                literal: (literal)))))
+        right: (operands
+          literal: (literal)))
       let: (let_statement
-        left_operand: (left_operand
-          plain_var: (identifier))
+        left: (operands
+          plain: (identifier))
         compound: (compound_assignment)
-        (right_operand
-          (contained
-            (declarator
-                literal: (literal)))))
+        right: (operands
+          literal: (literal)))
       let: (let_statement
-        left_operand: (left_operand
-          plain_var: (identifier))
+        left: (operands
+          plain: (identifier))
         compound: (compound_assignment)
-        (right_operand
-          (contained
-            (declarator
-                literal: (literal)))))
+        right: (operands
+          literal: (literal)))
       let: (let_statement
-        left_operand: (left_operand
-          plain_var: (identifier))
+        left: (operands
+              plain: (identifier))
         compound: (compound_assignment)
-        (right_operand
-          (contained
-            (declarator
-                literal: (literal)))))
+        right: (operands
+          literal: (literal)))
       let: (let_statement
-        left_operand: (left_operand
-          plain_var: (identifier))
+        left: (operands
+          plain: (identifier))
         compound: (compound_assignment)
-        (right_operand
-          (contained
-            (declarator
-                literal: (literal)))))))
+        right: (operands
+          literal: (literal)))))
