@@ -3,7 +3,7 @@ Unparenthesized
 ===============
 scn scriptname
 begin block
-  eval x || y
+  eval $string
 end
 ---
 (script_file
@@ -13,9 +13,71 @@ end
     block_mode: (block
       block_type: (identifier)
       eval: (eval
-        (operands
-          plain: (identifier))
-        (binary_operator)
+        (unary_operator)
         (operands
           plain: (identifier)))))
 
+=============
+Parenthesized
+=============
+scn scriptname
+begin block
+  eval ($string)
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      eval: (eval
+        (unary_operator)
+        (operands
+          plain: (identifier)))))
+
+====================
+Multiple expressions
+====================
+scn scriptname
+begin block
+  eval $string + $string2
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      eval: (eval
+        (unary_operator)
+        (operands
+          plain: (identifier))
+        (binary_operator)
+        (unary_operator)
+        (operands
+          plain: (identifier)))))
+
+==================================
+Parenthesized multiple expressions
+==================================
+scn scriptname
+begin block
+  eval (($string) + ($string2))
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      eval: (eval
+        (unary_operator)
+        (operands
+          plain: (identifier))
+        (binary_operator)
+        (unary_operator)
+        (operands
+          plain: (identifier)))))

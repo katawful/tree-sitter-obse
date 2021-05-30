@@ -41,7 +41,6 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   inline: $ => [
-    $._paren_multi_expr,
     $._multi_expr,
   ],
 
@@ -112,6 +111,7 @@ module.exports = grammar({
     _expression: $ => choice(
       $.operands,
       prec.left($.binary_operator),
+      $._unary_expr,
       $._paren_expression,
     ),
 
@@ -127,6 +127,11 @@ module.exports = grammar({
       field('literal', prec(PREC.LITERAL, $.literal)),
       field('array_var', prec(PREC.ARRAY, $.array_variable)),
       field('dot', prec(PREC.DOT, $.dot_object)),
+    ),
+
+    _unary_expr: $ => seq(
+      $.unary_operator,
+      $._expression,
     ),
 
     binary_operator: $ => choice(
@@ -198,13 +203,6 @@ module.exports = grammar({
       '^=',
     ),
 
-    // left operands
-    left_operand: $ => choice(
-      field('plain_var', prec(20, $.identifier)),
-      field('array_var', prec(0, $.array_variable)),
-      field('quest_var', prec(10, $.dot_object)),
-    ),
-
     // dot objects
     dot_object: $ => seq(
       field('left', $.identifier),
@@ -240,10 +238,7 @@ module.exports = grammar({
       ']',
     ),
 
-    right_operand: $ => seq(
-      $.contained,
-    ),
-
+    // literals are numbers and double quotes only
     literal: $ => choice(
       /\d+/,
       /\-\d+/,
@@ -252,82 +247,11 @@ module.exports = grammar({
       /"[a-zA-Z_]\w*"/,
     ),
 
-    // this contains all functions, all variables, and references
-    interpreted: $ => choice(
-      field('function_reference', $.identifier),
-      field('quest_reference', $.quest_reference),
-      field('function', $.functions),
-    ),
-
-    // functions that take an object
-    functions: $ => /[a-zA-Z_]\w* [a-zA-Z_]\w*/,
-
-    // quest variables and reference functions
-    quest_reference: $ => /[a-zA-Z_]\w*\.[a-zA-Z_]\w*/,
-
-
-    declarator: $ => choice(
-      field('interpreted', $.interpreted),
-      field('literal', $.literal),
-      field('variable', $.left_operand),
-    ),
-
-    parenthetical: $ => prec.dynamic(0, seq(
-      '(',
-      choice(
-        $.contained,
-        $.and_or,
-        $.equality,
-      ),
-      ')',
-    )),
-
-    equality: $ => seq(
-      $.declarator,
-      choice(
-        '==',
-        '>',
-        '<',
-        '!=',
-        '<=',
-        '>=',
-      ),
-      $.declarator,
-    ),
-
-    contained: $ => choice(
-      prec(20, $.parenthetical),
-      prec(10, $.declarator),
-    ),
-
     conditional: $ => seq(
       caseInsensitive('if'),
-      choice(
-        prec(10, $.contained),
-        prec(0, $.equality),
-      ),
-      // choice(
-      //   // prec(30, $.and_or),
-      //   prec(20, $.parenthetical),
-      //   prec(0, $.declarator),
-      //   prec(10, $.equality),
-      // ),
-      optional($.and_or),
-      // repeat($.body),
-      $._block_body,
-      optional($.con_else),
       caseInsensitive('endif'),
     ),
 
-    and_or: $ => choice(
-        '&&',
-        '||',
-      // choice(
-      //   $.equality,
-      //   $.parenthetical,
-      //   $.declarator,
-      // ),
-    ),
     con_else: $ => 'fjdkls',
     function_call: $ => 'tes',
     user_function: $ => 'ts',
