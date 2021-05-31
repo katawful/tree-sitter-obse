@@ -1,21 +1,40 @@
 =============
 Set statement
 =============
-
 scn scriptname
 begin blockmode
   set x to y
 end
-
 ---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      set: (set_statement
+        left: (operands
+          plain: (identifier))
+        right: (operands
+          plain: (identifier)))))
 
 =============
 Let statement
 =============
-
 scn scriptname
 begin blockmode
   let x := y
 end
-
 ---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      let: (let_statement
+        left: (operands
+          plain: (identifier))
+        assignment: (assignment)
+        right: (operands
+          plain: (identifier)))))

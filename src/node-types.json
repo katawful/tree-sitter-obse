@@ -122,16 +122,6 @@
           }
         ]
       },
-      "condition": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "conditional",
-            "named": true
-          }
-        ]
-      },
       "eval": {
         "multiple": true,
         "required": false,
@@ -148,6 +138,16 @@
         "types": [
           {
             "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
             "named": true
           }
         ]
@@ -255,7 +255,134 @@
   {
     "type": "conditional",
     "named": true,
-    "fields": {}
+    "fields": {
+      "condition": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "operands",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "else",
+            "named": true
+          }
+        ]
+      },
+      "elseif": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "else_if",
+            "named": true
+          }
+        ]
+      },
+      "eval": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "eval",
+            "named": true
+          }
+        ]
+      },
+      "function_call": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
+      "let": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
+      "loop": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "loop",
+            "named": true
+          }
+        ]
+      },
+      "set": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      },
+      "testexpr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "testexpr",
+            "named": true
+          }
+        ]
+      },
+      "user_function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "dot_object",
@@ -277,6 +404,204 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "else",
+    "named": true,
+    "fields": {
+      "eval": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "eval",
+            "named": true
+          }
+        ]
+      },
+      "function_call": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
+      "let": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
+      "loop": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "loop",
+            "named": true
+          }
+        ]
+      },
+      "set": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      },
+      "testexpr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "testexpr",
+            "named": true
+          }
+        ]
+      },
+      "user_function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "else_if",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "operands",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          }
+        ]
+      },
+      "eval": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "eval",
+            "named": true
+          }
+        ]
+      },
+      "function_call": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
+      "let": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
+      "loop": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "loop",
+            "named": true
+          }
+        ]
+      },
+      "set": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      },
+      "testexpr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "testexpr",
+            "named": true
+          }
+        ]
+      },
+      "user_function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -417,6 +742,16 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "user_function": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -677,6 +1012,10 @@
     }
   },
   {
+    "type": "\n",
+    "named": false
+  },
+  {
     "type": "!",
     "named": false
   },
@@ -818,6 +1157,14 @@
   },
   {
     "type": "begin",
+    "named": false
+  },
+  {
+    "type": "else",
+    "named": false
+  },
+  {
+    "type": "elseif",
     "named": false
   },
   {

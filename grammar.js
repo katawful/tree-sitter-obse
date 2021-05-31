@@ -24,9 +24,9 @@ const PREC = {
   SUBSCRIPT: 0,
   MEMBER_ACCESS: 0,
   ARRAY: 0,
-  PLAIN: -15, //stuff like GetFPS
+  PLAIN: -5, //stuff like GetFPS
   DOT: -10, // stuff like quest.variable
-  ARGUMENTATIVE: -5, // stuff like GetName object
+  ARGUMENTATIVE: -15, // stuff like GetName object
   LITERAL: -20,
 };
 
@@ -46,6 +46,8 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.argumentative],
+    [$.eval],
+    [$.testexpr],
   ],
 
   rules: {
@@ -100,12 +102,12 @@ module.exports = grammar({
     _statement: $ => choice(
       field('let', $.let_statement),
       field('set', $.set_statement),
-      field('condition', $.conditional),
+      field('if_block', $.conditional),
       field('loop', $.loop),
       field('function_call', $.function_call),
       field('user_function', $.user_function),
-      field('eval', $.eval),
-      field('testexpr', $.testexpr),
+      field('eval', prec.left($.eval)),
+      field('testexpr', prec.left($.testexpr)),
     ),
 
     _expression: $ => choice(
@@ -127,6 +129,7 @@ module.exports = grammar({
       field('literal', prec(PREC.LITERAL, $.literal)),
       field('array_var', prec(PREC.ARRAY, $.array_variable)),
       field('dot', prec(PREC.DOT, $.dot_object)),
+      field('user_function', $.user_function),
     ),
 
     _unary_expr: $ => seq(
@@ -165,42 +168,6 @@ module.exports = grammar({
       prec(PREC.DEREFERENCE, '*'),
       prec(PREC.BOX, '&'),
       prec(PREC.LOGICAL_NOT, '!'),
-    ),
-
-    eval: $ => seq(
-      caseInsensitive('eval'),
-      repeat($._expression),
-    ),
-
-    testexpr: $ => seq(
-      caseInsensitive('testexpr'),
-      repeat($._expression),
-    ),
-
-    set_statement: $ => seq(
-      caseInsensitive('set'),
-      field('left', $.operands),
-      caseInsensitive('to'),
-      field('right', $.operands),
-    ),
-    let_statement: $ => seq(
-      caseInsensitive('let'),
-      field('left', $.operands),
-      $._let_assignment,
-      field('right', $.operands),
-    ),
-
-    _let_assignment: $ => choice(
-      prec(PREC.ASSIGNMENT, field('assignment', $.assignment)),
-      prec(PREC.COMPOUND, field('compound', $.compound_assignment)),
-    ),
-    assignment: $ => ':=',
-    compound_assignment: $ => choice(
-      '+=',
-      '-=',
-      '*=',
-      '/=',
-      '^=',
     ),
 
     // dot objects
@@ -247,9 +214,62 @@ module.exports = grammar({
       /"[a-zA-Z_]\w*"/,
     ),
 
+    eval: $ => seq(
+      caseInsensitive('eval'),
+      repeat1($._expression),
+    ),
+
+    testexpr: $ => seq(
+      caseInsensitive('testexpr'),
+      repeat1($._expression),
+    ),
+
+    set_statement: $ => seq(
+      caseInsensitive('set'),
+      field('left', $.operands),
+      caseInsensitive('to'),
+      field('right', $.operands),
+    ),
+    let_statement: $ => seq(
+      caseInsensitive('let'),
+      field('left', $.operands),
+      $._let_assignment,
+      field('right', $.operands),
+    ),
+
+    _let_assignment: $ => choice(
+      prec(PREC.ASSIGNMENT, field('assignment', $.assignment)),
+      prec(PREC.COMPOUND, field('compound', $.compound_assignment)),
+    ),
+    assignment: $ => ':=',
+    compound_assignment: $ => choice(
+      '+=',
+      '-=',
+      '*=',
+      '/=',
+      '^=',
+    ),
+
     conditional: $ => seq(
       caseInsensitive('if'),
+      field('condition', repeat1($._expression)),
+      '\n',
+      repeat($._statement),
+      optional(field('elseif', $.else_if)),
+      optional(field('else', $.else)),
       caseInsensitive('endif'),
+    ),
+
+    else: $ => seq(
+      caseInsensitive('else'),
+      '\n',
+      repeat($._statement),
+    ),
+    else_if: $ => seq(
+      caseInsensitive('elseif'),
+      field('condition', repeat1($._expression)),
+      '\n',
+      repeat($._statement),
     ),
 
     con_else: $ => 'fjdkls',
