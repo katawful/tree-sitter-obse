@@ -87,15 +87,15 @@
             "named": true
           },
           {
+            "type": "foreach_loop",
+            "named": true
+          },
+          {
             "type": "function_call",
             "named": true
           },
           {
             "type": "let_statement",
-            "named": true
-          },
-          {
-            "type": "loop",
             "named": true
           },
           {
@@ -108,6 +108,10 @@
           },
           {
             "type": "user_function",
+            "named": true
+          },
+          {
+            "type": "while_loop",
             "named": true
           }
         ]
@@ -128,6 +132,16 @@
         "types": [
           {
             "type": "eval",
+            "named": true
+          }
+        ]
+      },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
             "named": true
           }
         ]
@@ -162,16 +176,6 @@
           }
         ]
       },
-      "loop": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "loop",
-            "named": true
-          }
-        ]
-      },
       "set": {
         "multiple": true,
         "required": false,
@@ -195,15 +199,15 @@
             "named": true
           },
           {
+            "type": "foreach_loop",
+            "named": true
+          },
+          {
             "type": "function_call",
             "named": true
           },
           {
             "type": "let_statement",
-            "named": true
-          },
-          {
-            "type": "loop",
             "named": true
           },
           {
@@ -216,6 +220,10 @@
           },
           {
             "type": "user_function",
+            "named": true
+          },
+          {
+            "type": "while_loop",
             "named": true
           }
         ]
@@ -236,6 +244,16 @@
         "types": [
           {
             "type": "user_function",
+            "named": true
+          }
+        ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
             "named": true
           }
         ]
@@ -312,6 +330,16 @@
           }
         ]
       },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
+            "named": true
+          }
+        ]
+      },
       "function_call": {
         "multiple": true,
         "required": false,
@@ -338,16 +366,6 @@
         "types": [
           {
             "type": "let_statement",
-            "named": true
-          }
-        ]
-      },
-      "loop": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "loop",
             "named": true
           }
         ]
@@ -381,7 +399,35 @@
             "named": true
           }
         ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
+            "named": true
+          }
+        ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "operands",
+          "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -424,6 +470,16 @@
           }
         ]
       },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
+            "named": true
+          }
+        ]
+      },
       "function_call": {
         "multiple": true,
         "required": false,
@@ -454,16 +510,6 @@
           }
         ]
       },
-      "loop": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "loop",
-            "named": true
-          }
-        ]
-      },
       "set": {
         "multiple": true,
         "required": false,
@@ -490,6 +536,16 @@
         "types": [
           {
             "type": "user_function",
+            "named": true
+          }
+        ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
             "named": true
           }
         ]
@@ -536,6 +592,16 @@
           }
         ]
       },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
+            "named": true
+          }
+        ]
+      },
       "function_call": {
         "multiple": true,
         "required": false,
@@ -562,16 +628,6 @@
         "types": [
           {
             "type": "let_statement",
-            "named": true
-          }
-        ]
-      },
-      "loop": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "loop",
             "named": true
           }
         ]
@@ -605,6 +661,16 @@
             "named": true
           }
         ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -635,6 +701,122 @@
     "type": "float",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "foreach_loop",
+    "named": true,
+    "fields": {
+      "container": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operands",
+            "named": true
+          }
+        ]
+      },
+      "eval": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "eval",
+            "named": true
+          }
+        ]
+      },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
+            "named": true
+          }
+        ]
+      },
+      "function_call": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
+      "let": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
+      "set": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      },
+      "source": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operands",
+            "named": true
+          }
+        ]
+      },
+      "testexpr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "testexpr",
+            "named": true
+          }
+        ]
+      },
+      "user_function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "int",
@@ -1012,6 +1194,146 @@
     }
   },
   {
+    "type": "while_loop",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "operands",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          }
+        ]
+      },
+      "eval": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "eval",
+            "named": true
+          }
+        ]
+      },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
+            "named": true
+          }
+        ]
+      },
+      "function_call": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
+      "let": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
+      "set": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      },
+      "testexpr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "testexpr",
+            "named": true
+          }
+        ]
+      },
+      "user_function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "operands",
+          "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\n",
     "named": false
   },
@@ -1184,6 +1506,10 @@
     "named": false
   },
   {
+    "type": "foreach",
+    "named": false
+  },
+  {
     "type": "function_call",
     "named": true
   },
@@ -1209,7 +1535,7 @@
   },
   {
     "type": "loop",
-    "named": true
+    "named": false
   },
   {
     "type": "scn",
@@ -1242,6 +1568,10 @@
   {
     "type": "user_function",
     "named": true
+  },
+  {
+    "type": "while",
+    "named": false
   },
   {
     "type": "|",

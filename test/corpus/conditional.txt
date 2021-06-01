@@ -17,6 +17,12 @@ end
       if_block: (conditional
         condition: (operands
           plain: (identifier))
+        (binary_operator)
+        (operands
+          literal: (literal))
+        (binary_operator)
+        (operands
+          literal: (literal))
         eval: (eval
           (operands
             plain: (identifier))))))

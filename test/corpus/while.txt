@@ -1,0 +1,29 @@
+============
+Simple block
+============
+scn scriptname
+begin blockmode
+  while x > (1 || 2)
+    eval x
+  loop
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      while: (while_loop
+        condition: (operands
+          plain: (identifier))
+        (binary_operator)
+        (operands
+          literal: (literal))
+        (binary_operator)
+        (operands
+          literal: (literal))
+        eval: (eval
+          (operands
+            plain: (identifier))))))
+

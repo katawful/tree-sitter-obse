@@ -1,0 +1,28 @@
+============
+Simple block
+============
+scn scriptname
+begin blockmode
+  foreach item -> container[x]
+    eval x
+  loop
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      foreach: (foreach_loop
+        container: (operands
+          plain: (identifier))
+        source: (operands
+          literal: (literal))
+        (binary_operator)
+        (operands
+          literal: (literal))
+        eval: (eval
+          (operands
+            plain: (identifier))))))
+

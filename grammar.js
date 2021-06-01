@@ -45,9 +45,13 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
+    [$.array_variable, $.argumentative],
+    [$.dot_object, $.argumentative],
     [$.argumentative],
     [$.eval],
     [$.testexpr],
+    [$.while_loop],
+    [$.foreach_loop],
   ],
 
   rules: {
@@ -103,7 +107,8 @@ module.exports = grammar({
       field('let', $.let_statement),
       field('set', $.set_statement),
       field('if_block', $.conditional),
-      field('loop', $.loop),
+      field('while', $.while_loop),
+      field('foreach', $.foreach_loop),
       field('function_call', $.function_call),
       field('user_function', $.user_function),
       field('eval', prec.left($.eval)),
@@ -125,11 +130,11 @@ module.exports = grammar({
 
     operands: $ => choice(
       field('plain', prec(PREC.PLAIN, $.identifier)),
-      field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
       field('literal', prec(PREC.LITERAL, $.literal)),
       field('array_var', prec(PREC.ARRAY, $.array_variable)),
       field('dot', prec(PREC.DOT, $.dot_object)),
       field('user_function', $.user_function),
+      field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
     ),
 
     _unary_expr: $ => seq(
@@ -252,7 +257,10 @@ module.exports = grammar({
 
     conditional: $ => seq(
       caseInsensitive('if'),
-      field('condition', repeat1($._expression)),
+      seq(
+        field('condition', $._expression),
+        repeat($._expression),
+      ),
       '\n',
       repeat($._statement),
       optional(field('elseif', $.else_if)),
@@ -272,10 +280,29 @@ module.exports = grammar({
       repeat($._statement),
     ),
 
-    con_else: $ => 'fjdkls',
+    while_loop: $ => seq(
+      caseInsensitive('while'),
+      seq(
+        field('condition', $._expression),
+        repeat($._expression),
+      ),
+      '\n',
+      repeat($._statement),
+      caseInsensitive('loop'),
+    ),
+
+    foreach_loop: $ => seq(
+      caseInsensitive('foreach'),
+      field('container', $.operands),
+      '->',
+      field('source', $.operands),
+      '\n',
+      repeat($._statement),
+      caseInsensitive('loop'),
+    ),
+
     function_call: $ => 'tes',
     user_function: $ => 'ts',
-    loop: $ => 'test',
 
     identifier: $ => /[a-zA-Z_]\w*/,
     comment: $ => seq(

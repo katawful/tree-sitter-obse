@@ -287,10 +287,18 @@
         },
         {
           "type": "FIELD",
-          "name": "loop",
+          "name": "while",
           "content": {
             "type": "SYMBOL",
-            "name": "loop"
+            "name": "while_loop"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "foreach",
+          "content": {
+            "type": "SYMBOL",
+            "name": "foreach_loop"
           }
         },
         {
@@ -397,18 +405,6 @@
         },
         {
           "type": "FIELD",
-          "name": "argumentative",
-          "content": {
-            "type": "PREC",
-            "value": -15,
-            "content": {
-              "type": "SYMBOL",
-              "name": "argumentative"
-            }
-          }
-        },
-        {
-          "type": "FIELD",
           "name": "literal",
           "content": {
             "type": "PREC",
@@ -449,6 +445,18 @@
           "content": {
             "type": "SYMBOL",
             "name": "user_function"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "argumentative",
+          "content": {
+            "type": "PREC",
+            "value": -15,
+            "content": {
+              "type": "SYMBOL",
+              "name": "argumentative"
+            }
           }
         }
       ]
@@ -1077,15 +1085,24 @@
           "value": "if"
         },
         {
-          "type": "FIELD",
-          "name": "condition",
-          "content": {
-            "type": "REPEAT1",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "condition",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
             }
-          }
+          ]
         },
         {
           "type": "STRING",
@@ -1202,9 +1219,113 @@
         }
       ]
     },
-    "con_else": {
-      "type": "STRING",
-      "value": "fjdkls"
+    "while_loop": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[wW][hH][iI][lL][eE]"
+          },
+          "named": false,
+          "value": "while"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "condition",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[lL][oO][oO][pP]"
+          },
+          "named": false,
+          "value": "loop"
+        }
+      ]
+    },
+    "foreach_loop": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[fF][oO][rR][eE][aA][cC][hH]"
+          },
+          "named": false,
+          "value": "foreach"
+        },
+        {
+          "type": "FIELD",
+          "name": "container",
+          "content": {
+            "type": "SYMBOL",
+            "name": "operands"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "->"
+        },
+        {
+          "type": "FIELD",
+          "name": "source",
+          "content": {
+            "type": "SYMBOL",
+            "name": "operands"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_statement"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[lL][oO][oO][pP]"
+          },
+          "named": false,
+          "value": "loop"
+        }
+      ]
     },
     "function_call": {
       "type": "STRING",
@@ -1213,10 +1334,6 @@
     "user_function": {
       "type": "STRING",
       "value": "ts"
-    },
-    "loop": {
-      "type": "STRING",
-      "value": "test"
     },
     "identifier": {
       "type": "PATTERN",
@@ -1248,6 +1365,14 @@
   ],
   "conflicts": [
     [
+      "array_variable",
+      "argumentative"
+    ],
+    [
+      "dot_object",
+      "argumentative"
+    ],
+    [
       "argumentative"
     ],
     [
@@ -1255,6 +1380,12 @@
     ],
     [
       "testexpr"
+    ],
+    [
+      "while_loop"
+    ],
+    [
+      "foreach_loop"
     ]
   ],
   "precedences": [],
