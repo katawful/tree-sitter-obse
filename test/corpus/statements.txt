@@ -38,4 +38,10 @@ end
           plain: (identifier))
         assignment: (assignment)
         right: (operands
+          plain: (identifier)))
+      let: (let_statement
+        left: (operands
+          plain: (identifier))
+        assignment: (assignment)
+        right: (operands
           plain: (identifier)))))

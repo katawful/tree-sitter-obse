@@ -45,6 +45,8 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
+    [$._paren_expression, $._paren_operands],
+    [$._paren_operands, $._expression],
     [$.user_function],
     [$.operands, $._array_key],
     [$.array_variable, $.argumentative],
@@ -136,6 +138,7 @@ module.exports = grammar({
 
     _expression: $ => choice(
       $.operands,
+      $._paren_operands,
       prec.left($.binary_operator),
       $._unary_expr,
       $._paren_expression,
@@ -154,6 +157,11 @@ module.exports = grammar({
       field('dot', prec(PREC.DOT, $.dot_object)),
       field('user_function', $.user_function),
       field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
+    ),
+    _paren_operands: $ => seq(
+      '(',
+      repeat($.operands),
+      ')',
     ),
 
     _unary_expr: $ => seq(
@@ -264,14 +272,14 @@ module.exports = grammar({
       caseInsensitive('set'),
       field('left', $.operands),
       caseInsensitive('to'),
-      field('right', $.operands),
+      field('right', choice($.operands, $._paren_operands)),
       '\n',
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
       field('left', $.operands),
       $._let_assignment,
-      field('right', $.operands),
+      field('right', choice($.operands, $._paren_operands)),
       '\n',
     ),
 

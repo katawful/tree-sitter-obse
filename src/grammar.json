@@ -418,6 +418,10 @@
           "name": "operands"
         },
         {
+          "type": "SYMBOL",
+          "name": "_paren_operands"
+        },
+        {
           "type": "PREC_LEFT",
           "value": 0,
           "content": {
@@ -525,6 +529,26 @@
               "name": "argumentative"
             }
           }
+        }
+      ]
+    },
+    "_paren_operands": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "operands"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -1082,8 +1106,17 @@
           "type": "FIELD",
           "name": "right",
           "content": {
-            "type": "SYMBOL",
-            "name": "operands"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "operands"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_paren_operands"
+              }
+            ]
           }
         },
         {
@@ -1120,8 +1153,17 @@
           "type": "FIELD",
           "name": "right",
           "content": {
-            "type": "SYMBOL",
-            "name": "operands"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "operands"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_paren_operands"
+              }
+            ]
           }
         },
         {
@@ -1585,6 +1627,14 @@
     }
   ],
   "conflicts": [
+    [
+      "_paren_expression",
+      "_paren_operands"
+    ],
+    [
+      "_paren_operands",
+      "_expression"
+    ],
     [
       "user_function"
     ],
