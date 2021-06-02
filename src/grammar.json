@@ -311,7 +311,7 @@
         },
         {
           "type": "FIELD",
-          "name": "user_function",
+          "name": "user",
           "content": {
             "type": "SYMBOL",
             "name": "user_function"
@@ -1416,8 +1416,45 @@
       ]
     },
     "user_function": {
-      "type": "STRING",
-      "value": "ts"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "C[aA][lL][lL]"
+          },
+          "named": false,
+          "value": "Call"
+        },
+        {
+          "type": "FIELD",
+          "name": "function",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "FIELD",
+                "name": "arguments",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_arguments"
+                }
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "identifier": {
       "type": "PATTERN",
@@ -1448,6 +1485,9 @@
     }
   ],
   "conflicts": [
+    [
+      "user_function"
+    ],
     [
       "operands",
       "_array_key"

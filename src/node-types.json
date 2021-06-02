@@ -246,7 +246,7 @@
           }
         ]
       },
-      "user_function": {
+      "user": {
         "multiple": true,
         "required": false,
         "types": [
@@ -405,7 +405,7 @@
           }
         ]
       },
-      "user_function": {
+      "user": {
         "multiple": true,
         "required": false,
         "types": [
@@ -527,7 +527,7 @@
           }
         ]
       },
-      "user_function": {
+      "user": {
         "multiple": true,
         "required": false,
         "types": [
@@ -633,7 +633,7 @@
           }
         ]
       },
-      "user_function": {
+      "user": {
         "multiple": true,
         "required": false,
         "types": [
@@ -785,7 +785,7 @@
           }
         ]
       },
-      "user_function": {
+      "user": {
         "multiple": true,
         "required": false,
         "types": [
@@ -1151,6 +1151,44 @@
     "fields": {}
   },
   {
+    "type": "user_function",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "var_declare",
     "named": true,
     "fields": {
@@ -1312,7 +1350,7 @@
           }
         ]
       },
-      "user_function": {
+      "user": {
         "multiple": true,
         "required": false,
         "types": [
@@ -1459,6 +1497,10 @@
     "named": false
   },
   {
+    "type": "Call",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -1561,10 +1603,6 @@
   {
     "type": "to",
     "named": false
-  },
-  {
-    "type": "user_function",
-    "named": true
   },
   {
     "type": "while",

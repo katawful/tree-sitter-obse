@@ -45,6 +45,7 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
+    [$.user_function],
     [$.operands, $._array_key],
     [$.array_variable, $.argumentative],
     [$.subscript, $.argumentative],
@@ -113,7 +114,7 @@ module.exports = grammar({
       field('while', $.while_loop),
       field('foreach', $.foreach_loop),
       field('function_call', $.function_call),
-      field('user_function', $.user_function),
+      field('user', $.user_function),
       field('eval', prec.left($.eval)),
       field('testexpr', prec.left($.testexpr)),
     ),
@@ -324,7 +325,13 @@ module.exports = grammar({
       ),
       '\n',
     ),
-    user_function: $ => 'ts',
+    user_function: $ => seq(
+      caseInsensitive('Call'),
+      field('function', $.identifier),
+      optional(repeat(field('arguments', $._arguments))),
+    ),
+    // _arguments: $ => repeat1($._expression),
+    // _arguments: $ => 'test',
 
     identifier: $ => /[a-zA-Z_]\w*/,
     comment: $ => seq(
