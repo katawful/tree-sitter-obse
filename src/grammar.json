@@ -1110,11 +1110,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "operands"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_paren_operands"
+                "name": "_expression"
               }
             ]
           }
@@ -1150,25 +1146,35 @@
           "name": "_let_assignment"
         },
         {
-          "type": "FIELD",
-          "name": "right",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "operands"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_paren_operands"
-              }
-            ]
-          }
+          "type": "SYMBOL",
+          "name": "_pre_operands"
         },
         {
           "type": "STRING",
           "value": "\n"
+        }
+      ]
+    },
+    "_pre_operands": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "right",
+          "content": {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SYMBOL",
+              "name": "operands"
+            }
+          }
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
         }
       ]
     },
@@ -1627,6 +1633,18 @@
     }
   ],
   "conflicts": [
+    [
+      "_expression",
+      "set_statement"
+    ],
+    [
+      "_expression",
+      "let_statement"
+    ],
+    [
+      "_expression",
+      "_pre_operands"
+    ],
     [
       "_paren_expression",
       "_paren_operands"

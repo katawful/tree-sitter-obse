@@ -24,7 +24,7 @@ Let statement
 scn scriptname
 begin blockmode
   let x := y
-  let x := (y)
+  let iRand := (Rand 0 20)
 end
 ---
 (script_file
@@ -43,5 +43,8 @@ end
         left: (operands
           plain: (identifier))
         assignment: (assignment)
-        right: (operands
-          plain: (identifier)))))
+        (operands
+          argumentative: (argumentative
+            function: (identifier)
+            argument: (literal)
+            argument: (literal))))))

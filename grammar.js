@@ -45,6 +45,9 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
+    [$._expression, $.set_statement],
+    [$._expression, $.let_statement],
+    [$._expression, $._pre_operands],
     [$._paren_expression, $._paren_operands],
     [$._paren_operands, $._expression],
     [$.user_function],
@@ -272,15 +275,19 @@ module.exports = grammar({
       caseInsensitive('set'),
       field('left', $.operands),
       caseInsensitive('to'),
-      field('right', choice($.operands, $._paren_operands)),
+      field('right', choice($._expression)),
       '\n',
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
       field('left', $.operands),
       $._let_assignment,
-      field('right', choice($.operands, $._paren_operands)),
+      $._pre_operands,
       '\n',
+    ),
+    _pre_operands: $ => choice(
+      field('right', repeat1($.operands)),
+      repeat1($._expression),
     ),
 
     _let_assignment: $ => choice(

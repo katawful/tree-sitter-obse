@@ -904,22 +904,32 @@
       },
       "right": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
           {
             "type": "operands",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "operands",
+          "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1106,7 +1116,15 @@
             "named": false
           },
           {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
             "type": "operands",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
             "named": true
           }
         ]

@@ -19,6 +19,43 @@ end
         right: (operands
           plain: (identifier)))))
 
+==============
+Let expression
+==============
+scn scriptname
+begin block
+  let iTemp := ((iSpellSize) - (Rand 0 iSpellSize))
+  let x := y + x
+end
+---
+(script_file
+  script_name: (script_name
+    declaration: (script_declarator)
+    script_name: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      let: (let_statement
+        left: (operands
+          plain: (identifier))
+        assignment: (assignment)
+        (operands
+          plain: (identifier))
+          (binary_operator)
+          (operands
+            argumentative: (argumentative
+              function: (identifier)
+              argument: (literal)
+              argument: (identifier))))
+      let: (let_statement
+        left: (operands
+          plain: (identifier))
+        assignment: (assignment)
+        (operands
+          plain: (identifier))
+          (binary_operator)
+          (operands
+            plain: (identifier)))))
+
 ============
 Let compound
 ============
