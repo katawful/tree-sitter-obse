@@ -8,6 +8,14 @@
         "required": true,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -800,6 +808,32 @@
     }
   },
   {
+    "type": "function_call",
+    "named": true,
+    "fields": {
+      "argumentative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "argumentative",
+            "named": true
+          }
+        ]
+      },
+      "plain_function": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "int",
     "named": true,
     "fields": {}
@@ -1475,10 +1509,6 @@
   {
     "type": "foreach",
     "named": false
-  },
-  {
-    "type": "function_call",
-    "named": true
   },
   {
     "type": "identifier",

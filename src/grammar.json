@@ -745,27 +745,47 @@
             "type": "FIELD",
             "name": "argument",
             "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PREC",
-                  "value": -20,
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "literal"
-                  }
-                },
-                {
-                  "type": "PREC",
-                  "value": -15,
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  }
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_arguments"
             }
           }
+        }
+      ]
+    },
+    "_arguments": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_paren_arguments"
+        }
+      ]
+    },
+    "_paren_arguments": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_arguments"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -1358,8 +1378,42 @@
       ]
     },
     "function_call": {
-      "type": "STRING",
-      "value": "tes"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "plain_function",
+              "content": {
+                "type": "PREC",
+                "value": -5,
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                }
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "argumentative",
+              "content": {
+                "type": "PREC",
+                "value": -15,
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "argumentative"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
     },
     "user_function": {
       "type": "STRING",

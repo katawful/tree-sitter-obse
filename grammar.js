@@ -188,7 +188,17 @@ module.exports = grammar({
     // functions with arguments
     argumentative: $ => seq(
       field('function', $.identifier),
-      repeat1(field('argument', choice(prec(PREC.LITERAL, $.literal), prec(PREC.ARGUMENTATIVE, $.identifier)))),
+      repeat1(field('argument', $._arguments)),
+    ),
+    _arguments: $ => choice(
+      $.identifier,
+      $.literal,
+      $._paren_arguments,
+    ),
+    _paren_arguments: $ => seq(
+      '(',
+      repeat($._arguments),
+      ')',
     ),
 
     // Array variables
@@ -307,7 +317,13 @@ module.exports = grammar({
       caseInsensitive('loop'),
     ),
 
-    function_call: $ => 'tes',
+    function_call: $ => seq(
+      choice(
+        field('plain_function', prec(PREC.PLAIN, $.identifier)),
+        field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
+      ),
+      '\n',
+    ),
     user_function: $ => 'ts',
 
     identifier: $ => /[a-zA-Z_]\w*/,
