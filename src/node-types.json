@@ -852,6 +852,10 @@
         "required": false,
         "types": [
           {
+            "type": "dot_object",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           }

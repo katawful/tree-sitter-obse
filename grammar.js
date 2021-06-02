@@ -340,7 +340,7 @@ module.exports = grammar({
 
     function_call: $ => seq(
       choice(
-        field('plain_function', prec(PREC.PLAIN, $.identifier)),
+        field('plain_function', choice(prec(PREC.PLAIN, $.identifier), $.dot_object)),
         field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
       ),
       '\n',

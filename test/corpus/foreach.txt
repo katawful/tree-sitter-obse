@@ -6,6 +6,15 @@ begin blockmode
   foreach item <- container[1]
     eval x
   loop
+  foreach item <- container["string"]
+    eval x
+  loop
+  foreach item <- container[plain]
+    eval x
+  loop
+  foreach item <- container[dot.object]
+    eval x
+  loop
 end
 ---
 (script_file
@@ -22,5 +31,35 @@ end
             key: (literal)))
         eval: (eval
           (operands
+            plain: (identifier))))
+      foreach: (foreach_loop
+        container: (identifier)
+        source: (array_variable
+          array: (identifier)
+          index: (subscript
+            key: (literal)))
+        eval: (eval
+          (operands
+            plain: (identifier))))
+      foreach: (foreach_loop
+        container: (identifier)
+        source: (array_variable
+          array: (identifier)
+          index: (subscript
+            key: (operands
+              plain: (identifier))))
+        eval: (eval
+          (operands
+            plain: (identifier))))
+      foreach: (foreach_loop
+        container: (identifier)
+        source: (array_variable
+          array: (identifier)
+          index: (subscript
+            key: (operands
+              dot: (dot_object
+                left: (identifier)
+                right: (identifier)))))
+        eval: (eval
+          (operands
             plain: (identifier))))))
-

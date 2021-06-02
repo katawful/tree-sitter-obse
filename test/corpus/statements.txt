@@ -24,6 +24,7 @@ Let statement
 scn scriptname
 begin blockmode
   let x := y
+  let x := (y)
 end
 ---
 (script_file

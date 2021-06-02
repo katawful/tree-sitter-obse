@@ -1478,12 +1478,21 @@
               "type": "FIELD",
               "name": "plain_function",
               "content": {
-                "type": "PREC",
-                "value": -5,
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                }
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PREC",
+                    "value": -5,
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    }
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "dot_object"
+                  }
+                ]
               }
             },
             {

@@ -3,7 +3,7 @@ Simple block
 ============
 scn scriptname
 begin blockmode
-  if x > (1 || 2)
+  if (x > (1 || 2))
     eval x
   endif
 end
