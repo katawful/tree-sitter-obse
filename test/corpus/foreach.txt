@@ -3,7 +3,7 @@ Simple block
 ============
 scn scriptname
 begin blockmode
-  foreach item -> container[1]
+  foreach item <- container[1]
     eval x
   loop
 end

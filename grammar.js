@@ -203,7 +203,7 @@ module.exports = grammar({
 
     // functions with arguments
     argumentative: $ => seq(
-      field('function', $.identifier),
+      field('function', choice($.identifier, $.dot_object)),
       repeat1(field('argument', $._arguments)),
     ),
     _arguments: $ => choice(
@@ -265,12 +265,14 @@ module.exports = grammar({
       field('left', $.operands),
       caseInsensitive('to'),
       field('right', $.operands),
+      '\n',
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
       field('left', $.operands),
       $._let_assignment,
       field('right', $.operands),
+      '\n',
     ),
 
     _let_assignment: $ => choice(
@@ -293,9 +295,10 @@ module.exports = grammar({
       field('condition', $.condition),
       '\n',
       repeat($._statement),
-      optional(field('elseif', $.else_if)),
+      repeat(field('elseif', $.else_if)),
       optional(field('else', $.else)),
       caseInsensitive('endif'),
+      '\n',
     ),
 
     else: $ => seq(
@@ -324,13 +327,15 @@ module.exports = grammar({
         field('container', prec(PREC.ARRAY, $.array_variable)),
         field('container', prec(PREC.PLAIN, $.identifier)),
       ),
-      '->',
+      '<-',
       choice(
         field('source', prec(PREC.ARRAY, $.array_variable)),
         field('source', prec(PREC.PLAIN, $.identifier)),
       ),
+      '\n',
       repeat($._statement),
       caseInsensitive('loop'),
+      '\n',
     ),
 
     function_call: $ => seq(
