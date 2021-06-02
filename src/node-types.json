@@ -271,31 +271,38 @@
     "fields": {}
   },
   {
+    "type": "condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "operands",
+          "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "conditional",
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "binary_operator",
-            "named": true
-          },
-          {
-            "type": "operands",
-            "named": true
-          },
-          {
-            "type": "unary_operator",
+            "type": "condition",
             "named": true
           }
         ]
@@ -410,24 +417,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "binary_operator",
-          "named": true
-        },
-        {
-          "type": "operands",
-          "named": true
-        },
-        {
-          "type": "unary_operator",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -557,27 +546,11 @@
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "binary_operator",
-            "named": true
-          },
-          {
-            "type": "operands",
-            "named": true
-          },
-          {
-            "type": "unary_operator",
+            "type": "condition",
             "named": true
           }
         ]
@@ -711,7 +684,11 @@
         "required": true,
         "types": [
           {
-            "type": "operands",
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -781,7 +758,11 @@
         "required": true,
         "types": [
           {
-            "type": "operands",
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -1062,15 +1043,35 @@
     "named": true,
     "fields": {
       "key": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
           {
             "type": "literal",
             "named": true
           },
           {
+            "type": "operands",
+            "named": true
+          },
+          {
             "type": "slice",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
             "named": true
           }
         ]
@@ -1198,27 +1199,11 @@
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "binary_operator",
-            "named": true
-          },
-          {
-            "type": "operands",
-            "named": true
-          },
-          {
-            "type": "unary_operator",
+            "type": "condition",
             "named": true
           }
         ]
@@ -1313,24 +1298,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "binary_operator",
-          "named": true
-        },
-        {
-          "type": "operands",
-          "named": true
-        },
-        {
-          "type": "unary_operator",
-          "named": true
-        }
-      ]
     }
   },
   {

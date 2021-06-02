@@ -15,14 +15,15 @@ end
     block_mode: (block
       block_type: (identifier)
       while: (while_loop
-        condition: (operands
-          plain: (identifier))
-        (binary_operator)
-        (operands
-          literal: (literal))
-        (binary_operator)
-        (operands
-          literal: (literal))
+        condition: (condition
+          (operands
+            plain: (identifier))
+          (binary_operator)
+          (operands
+            literal: (literal))
+          (binary_operator)
+          (operands
+            literal: (literal)))
         eval: (eval
           (operands
             plain: (identifier))))))

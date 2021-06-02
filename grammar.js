@@ -45,8 +45,11 @@ module.exports = grammar({
   ],
 
   conflicts: $ => [
+    [$.operands, $._array_key],
     [$.array_variable, $.argumentative],
+    [$.subscript, $.argumentative],
     [$.dot_object, $.argumentative],
+    [$.array_variable, $.identifier],
     [$.argumentative],
     [$.eval],
     [$.testexpr],
@@ -190,11 +193,13 @@ module.exports = grammar({
 
     // Array variables
     array_variable: $ => seq(
-      field('array', $.identifier),
+      field('array', $._array),
       repeat1(field('index', $.subscript)),
     ),
+    _array: $ => $.identifier,
     _array_key: $ => choice(
       prec(PREC.LITERAL, $.literal),
+      prec(PREC.PLAIN, $._expression),
       prec(PREC.SLICE_PAIR, field( 'slice', $.slice)),
     ),
     slice: $ => seq(
@@ -255,12 +260,11 @@ module.exports = grammar({
       '^=',
     ),
 
+    condition: $ => repeat1($._expression),
+
     conditional: $ => seq(
       caseInsensitive('if'),
-      seq(
-        field('condition', $._expression),
-        repeat($._expression),
-      ),
+      field('condition', $.condition),
       '\n',
       repeat($._statement),
       optional(field('elseif', $.else_if)),
@@ -275,17 +279,14 @@ module.exports = grammar({
     ),
     else_if: $ => seq(
       caseInsensitive('elseif'),
-      field('condition', repeat1($._expression)),
+      field('condition', $.condition),
       '\n',
       repeat($._statement),
     ),
 
     while_loop: $ => seq(
       caseInsensitive('while'),
-      seq(
-        field('condition', $._expression),
-        repeat($._expression),
-      ),
+      field('condition', $.condition),
       '\n',
       repeat($._statement),
       caseInsensitive('loop'),
@@ -293,10 +294,15 @@ module.exports = grammar({
 
     foreach_loop: $ => seq(
       caseInsensitive('foreach'),
-      field('container', $.operands),
+      choice(
+        field('container', prec(PREC.ARRAY, $.array_variable)),
+        field('container', prec(PREC.PLAIN, $.identifier)),
+      ),
       '->',
-      field('source', $.operands),
-      '\n',
+      choice(
+        field('source', prec(PREC.ARRAY, $.array_variable)),
+        field('source', prec(PREC.PLAIN, $.identifier)),
+      ),
       repeat($._statement),
       caseInsensitive('loop'),
     ),

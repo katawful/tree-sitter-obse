@@ -3,7 +3,7 @@ Simple block
 ============
 scn scriptname
 begin blockmode
-  foreach item -> container[x]
+  foreach item -> container[1]
     eval x
   loop
 end
@@ -15,13 +15,11 @@ end
     block_mode: (block
       block_type: (identifier)
       foreach: (foreach_loop
-        container: (operands
-          plain: (identifier))
-        source: (operands
-          literal: (literal))
-        (binary_operator)
-        (operands
-          literal: (literal))
+        container: (identifier)
+        source: (array_variable
+          array: (identifier)
+          index: (subscript
+            key: (literal)))
         eval: (eval
           (operands
             plain: (identifier))))))
