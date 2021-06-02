@@ -88,21 +88,36 @@ module.exports = grammar({
       field('type_float', $.float),
       field('type_string', $.string),
       field('type_array', $.array),
+      field('type_ref', $.ref),
     ),
     int: $ => choice(
       caseInsensitive('int'),
       caseInsensitive('short'),
       caseInsensitive('long'),
     ),
+    ref: $ => caseInsensitive('ref'),
     float: $ => caseInsensitive('float'),
     string: $ => caseInsensitive('string_var'),
     array: $ => caseInsensitive('array_var'),
 
     block: $ => seq(
       caseInsensitive('begin'),
-      field('block_type', $.identifier),
+      field('block_type', $._block_type),
       repeat(field('block_body', $._block_body)),
       caseInsensitive('end'),
+    ),
+    _block_type: $ => choice(
+      $._block_func,
+      $.identifier,
+    ),
+    _block_func: $ => seq(
+      $.identifier,
+      '{',
+      repeat(choice(
+        field('argument', $.identifier),
+        ',',
+      )),
+      '}',
     ),
 
     _block_body: $ => field('statement', $._statement),

@@ -18,6 +18,7 @@ long var
 float var
 string_var var
 array_var var
+ref var
 ---
 (script_file
   script_name: (script_name
@@ -40,13 +41,20 @@ array_var var
       variable: (identifier))
     var_declaration: (var_declare
       type_array: (array)
+      variable: (identifier))
+    var_declaration: (var_declare
+      type_ref: (ref)
       variable: (identifier)))
 
 ==========
 Block mode
 ==========
 scn scriptname
-begin blockmode
+begin blockmode {}
+end
+begin blockmode {arg}
+end
+begin blockmode {arg, arg}
 end
 ---
 (script_file
@@ -54,4 +62,11 @@ end
     declaration: (script_declarator)
     script_name: (identifier))
     block_mode: (block
-      block_type: (identifier)))
+      block_type: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      argument: (identifier))
+    block_mode: (block
+      block_type: (identifier)
+      argument: (identifier)
+      argument: (identifier)))
