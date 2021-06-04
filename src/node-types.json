@@ -837,19 +837,31 @@
     "type": "function_call",
     "named": true,
     "fields": {
-      "argumentative": {
-        "multiple": false,
+      "argument": {
+        "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "argumentative",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
             "named": true
           }
         ]
       },
-      "plain_function": {
+      "function": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "dot_object",
@@ -1223,7 +1235,7 @@
     "type": "user_function",
     "named": true,
     "fields": {
-      "arguments": {
+      "argument": {
         "multiple": true,
         "required": false,
         "types": [

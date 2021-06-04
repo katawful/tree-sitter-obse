@@ -1413,6 +1413,10 @@
           },
           "named": false,
           "value": "loop"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
         }
       ]
     },
@@ -1520,46 +1524,36 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "plain_function",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "PREC",
-                    "value": -5,
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "identifier"
-                    }
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "dot_object"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "argumentative",
-              "content": {
+          "type": "FIELD",
+          "name": "function",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
                 "type": "PREC",
-                "value": -15,
+                "value": -5,
                 "content": {
                   "type": "SYMBOL",
-                  "name": "argumentative"
+                  "name": "identifier"
                 }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "dot_object"
               }
-            }
-          ]
+            ]
+          }
         },
         {
-          "type": "STRING",
-          "value": "\n"
+          "type": "REPEAT",
+          "content": {
+            "type": "FIELD",
+            "name": "argument",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_arguments"
+            }
+          }
         }
       ]
     },
@@ -1590,7 +1584,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "FIELD",
-                "name": "arguments",
+                "name": "argument",
                 "content": {
                   "type": "SYMBOL",
                   "name": "_arguments"
@@ -1655,6 +1649,9 @@
     ],
     [
       "user_function"
+    ],
+    [
+      "function_call"
     ],
     [
       "operands",

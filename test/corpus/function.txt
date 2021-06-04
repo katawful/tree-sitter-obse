@@ -13,7 +13,7 @@ end
     block_mode: (block
       block_type: (identifier)
       function_call: (function_call
-        plain_function: (identifier))))
+        function: (identifier))))
 
 =======================
 Function with arguments
@@ -22,6 +22,8 @@ scn scriptname
 begin blockmode
   func argu 1
   func (argu 1)
+  func "literal", opt
+  func array->value
 end
 ---
 (script_file
@@ -31,12 +33,18 @@ end
     block_mode: (block
       block_type: (identifier)
       function_call: (function_call
-        argumentative: (argumentative
-          function: (identifier)
-          argument: (identifier)
-          argument: (literal)))
+        function: (identifier)
+        argument: (identifier)
+        argument: (literal))
       function_call: (function_call
-        argumentative: (argumentative
-          function: (identifier)
-          argument: (identifier)
-          argument: (literal)))))
+        function: (identifier)
+        argument: (identifier)
+        argument: (literal))
+      function_call: (function_call
+        function: (identifier)
+        argument: (string_manip
+         variable: (identifier)))
+      function_call: (function_call
+        function: (identifier)
+        argument: (string_manip
+         variable: (identifier)))

@@ -25,6 +25,7 @@ scn scriptname
 begin blockmode
   let x := y
   let iRand := (Rand 0 20)
+  let x := "Data\-*"
 end
 ---
 (script_file
@@ -47,4 +48,10 @@ end
           argumentative: (argumentative
             function: (identifier)
             argument: (literal)
-            argument: (literal))))))
+            argument: (literal))))
+      let: (let_statement
+        left: (operands
+          plain: (identifier))
+        assignment: (assignment)
+        right: (operands
+            literal: (literal)))))

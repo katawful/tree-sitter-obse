@@ -51,6 +51,7 @@ module.exports = grammar({
     [$._paren_expression, $._paren_operands],
     [$._paren_operands, $._expression],
     [$.user_function],
+    [$.function_call],
     [$.operands, $._array_key],
     [$.array_variable, $.argumentative],
     [$.subscript, $.argumentative],
@@ -334,6 +335,7 @@ module.exports = grammar({
       '\n',
       repeat($._statement),
       caseInsensitive('loop'),
+      '\n',
     ),
 
     foreach_loop: $ => seq(
@@ -354,16 +356,13 @@ module.exports = grammar({
     ),
 
     function_call: $ => seq(
-      choice(
-        field('plain_function', choice(prec(PREC.PLAIN, $.identifier), $.dot_object)),
-        field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
-      ),
-      '\n',
+      field('function', choice(prec(PREC.PLAIN, $.identifier), $.dot_object)),
+      repeat(field('argument', $._arguments)),
     ),
     user_function: $ => seq(
       caseInsensitive('Call'),
       field('function', $.identifier),
-      optional(repeat(field('arguments', $._arguments))),
+      optional(repeat(field('argument', $._arguments))),
     ),
     // _arguments: $ => repeat1($._expression),
     // _arguments: $ => 'test',
