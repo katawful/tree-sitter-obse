@@ -40,24 +40,18 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
-  inline: $ => [
-    $._multi_expr,
-  ],
-
   conflicts: $ => [
+    [$._function_call, $._single_function],
     [$._expression, $.set_statement],
     [$._expression, $.let_statement],
     [$._expression, $._pre_operands],
     [$._paren_expression, $._paren_operands],
     [$._paren_operands, $._expression],
     [$.user_function],
-    [$.function_call],
+    [$._function_call],
     [$.operands, $._array_key],
-    [$.array_variable, $.argumentative],
-    [$.subscript, $.argumentative],
-    [$.dot_object, $.argumentative],
     [$.array_variable, $.identifier],
-    [$.argumentative],
+    [$._pre_operands],
     [$.eval],
     [$.testexpr],
     [$.while_loop],
@@ -134,7 +128,8 @@ module.exports = grammar({
       field('if_block', $.conditional),
       field('while', $.while_loop),
       field('foreach', $.foreach_loop),
-      field('function_call', $.function_call),
+      prec.right($._function_call),
+      prec.right($._single_function),
       field('user', $.user_function),
       field('eval', prec.left($.eval)),
       field('testexpr', prec.left($.testexpr)),
@@ -160,7 +155,7 @@ module.exports = grammar({
       field('array_var', prec(PREC.ARRAY, $.array_variable)),
       field('dot', prec(PREC.DOT, $.dot_object)),
       field('user_function', $.user_function),
-      field('argumentative', prec(PREC.ARGUMENTATIVE, $.argumentative)),
+      prec.left($._function_call),
     ),
     _paren_operands: $ => seq(
       '(',
@@ -213,15 +208,20 @@ module.exports = grammar({
       field('right', $.identifier),
     ),
 
-    // functions with arguments
-    argumentative: $ => seq(
-      field('function', choice($.identifier, $.dot_object)),
-      repeat1(field('argument', $._arguments)),
+    opt: $ => seq(
+      ',',
+      field('option', prec.right($.operands)),
     ),
+
     _arguments: $ => choice(
+      $.opt,
       $.identifier,
       $.literal,
       $._paren_arguments,
+    ),
+    _binary_expr: $ => seq(
+      $.binary_operator,
+      $._arguments,
     ),
     _paren_arguments: $ => seq(
       '(',
@@ -259,17 +259,19 @@ module.exports = grammar({
       /\-\d+/,
       /\-\d+\.\d*/,
       /\d+\.\d*/,
-      /"[a-zA-Z_]\w*"/,
+      /".*"/,
     ),
 
     eval: $ => seq(
       caseInsensitive('eval'),
       repeat1($._expression),
+      optional($._eol),
     ),
 
     testexpr: $ => seq(
       caseInsensitive('testexpr'),
       repeat1($._expression),
+      optional($._eol),
     ),
 
     set_statement: $ => seq(
@@ -277,14 +279,14 @@ module.exports = grammar({
       field('left', $.operands),
       caseInsensitive('to'),
       field('right', choice($._expression)),
-      '\n',
+      $._eol,
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
       field('left', $.operands),
       $._let_assignment,
       $._pre_operands,
-      '\n',
+      $._eol,
     ),
     _pre_operands: $ => choice(
       field('right', repeat1($.operands)),
@@ -309,33 +311,33 @@ module.exports = grammar({
     conditional: $ => seq(
       caseInsensitive('if'),
       field('condition', $.condition),
-      '\n',
+      $._eol,
       repeat($._statement),
       repeat(field('elseif', $.else_if)),
       optional(field('else', $.else)),
       caseInsensitive('endif'),
-      '\n',
+      $._eol,
     ),
 
     else: $ => seq(
       caseInsensitive('else'),
-      '\n',
+      $._eol,
       repeat($._statement),
     ),
     else_if: $ => seq(
       caseInsensitive('elseif'),
       field('condition', $.condition),
-      '\n',
+      $._eol,
       repeat($._statement),
     ),
 
     while_loop: $ => seq(
       caseInsensitive('while'),
       field('condition', $.condition),
-      '\n',
+      $._eol,
       repeat($._statement),
       caseInsensitive('loop'),
-      '\n',
+      $._eol,
     ),
 
     foreach_loop: $ => seq(
@@ -349,29 +351,34 @@ module.exports = grammar({
         field('source', prec(PREC.ARRAY, $.array_variable)),
         field('source', prec(PREC.PLAIN, $.identifier)),
       ),
-      '\n',
+      $._eol,
       repeat($._statement),
       caseInsensitive('loop'),
-      '\n',
+      $._eol,
     ),
 
-    function_call: $ => seq(
-      field('function', choice(prec(PREC.PLAIN, $.identifier), $.dot_object)),
-      repeat(field('argument', $._arguments)),
+    _single_function: $ => seq(
+      field('function', choice(prec.left(PREC.PLAIN, $.identifier), $.dot_object)),
+      optional($._eol),
+    ),
+    _function_call: $ => seq(
+      field('function', choice(prec.left(PREC.PLAIN, $.identifier), $.dot_object)),
+      repeat1(field('argument', prec.right($._arguments))),
+      optional($._eol),
     ),
     user_function: $ => seq(
       caseInsensitive('Call'),
       field('function', $.identifier),
-      optional(repeat(field('argument', $._arguments))),
+      repeat(field('argument', $._arguments)),
+      optional($._eol),
     ),
-    // _arguments: $ => repeat1($._expression),
-    // _arguments: $ => 'test',
 
     identifier: $ => /[a-zA-Z_]\w*/,
     comment: $ => seq(
       ';',
       /(\\(.|\r?\n)|[^\\\n])*/
     ),
+    _eol: $ => '\n',
   }
 });
 module.exports.PREC = PREC

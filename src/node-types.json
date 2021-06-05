@@ -1,47 +1,5 @@
 [
   {
-    "type": "argumentative",
-    "named": true,
-    "fields": {
-      "argument": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "literal",
-            "named": true
-          }
-        ]
-      },
-      "function": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "dot_object",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "array",
     "named": true,
     "fields": {}
@@ -91,7 +49,23 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
             "named": true
           }
         ]
@@ -101,7 +75,19 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
             "type": "conditional",
+            "named": true
+          },
+          {
+            "type": "dot_object",
             "named": true
           },
           {
@@ -113,11 +99,19 @@
             "named": true
           },
           {
-            "type": "function_call",
+            "type": "identifier",
             "named": true
           },
           {
             "type": "let_statement",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
             "named": true
           },
           {
@@ -180,12 +174,16 @@
           }
         ]
       },
-      "function_call": {
+      "function": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "function_call",
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -225,7 +223,19 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
             "type": "conditional",
+            "named": true
+          },
+          {
+            "type": "dot_object",
             "named": true
           },
           {
@@ -237,11 +247,19 @@
             "named": true
           },
           {
-            "type": "function_call",
+            "type": "identifier",
             "named": true
           },
           {
             "type": "let_statement",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
             "named": true
           },
           {
@@ -331,6 +349,32 @@
     "type": "conditional",
     "named": true,
     "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          }
+        ]
+      },
       "condition": {
         "multiple": false,
         "required": true,
@@ -381,12 +425,16 @@
           }
         ]
       },
-      "function_call": {
+      "function": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "function_call",
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -483,6 +531,32 @@
     "type": "else",
     "named": true,
     "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          }
+        ]
+      },
       "eval": {
         "multiple": true,
         "required": false,
@@ -503,12 +577,16 @@
           }
         ]
       },
-      "function_call": {
+      "function": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "function_call",
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -579,6 +657,32 @@
     "type": "else_if",
     "named": true,
     "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          }
+        ]
+      },
       "condition": {
         "multiple": false,
         "required": true,
@@ -609,12 +713,16 @@
           }
         ]
       },
-      "function_call": {
+      "function": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "function_call",
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -713,6 +821,32 @@
     "type": "foreach_loop",
     "named": true,
     "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          }
+        ]
+      },
       "container": {
         "multiple": false,
         "required": true,
@@ -747,12 +881,16 @@
           }
         ]
       },
-      "function_call": {
+      "function": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "function_call",
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -827,48 +965,6 @@
         "types": [
           {
             "type": "while_loop",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "function_call",
-    "named": true,
-    "fields": {
-      "argument": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "literal",
-            "named": true
-          }
-        ]
-      },
-      "function": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "dot_object",
-            "named": true
-          },
-          {
-            "type": "identifier",
             "named": true
           }
         ]
@@ -953,12 +1049,28 @@
     "type": "operands",
     "named": true,
     "fields": {
-      "argumentative": {
-        "multiple": false,
+      "argument": {
+        "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "argumentative",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
             "named": true
           }
         ]
@@ -979,6 +1091,20 @@
         "types": [
           {
             "type": "dot_object",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -1009,6 +1135,22 @@
         "types": [
           {
             "type": "user_function",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "opt",
+    "named": true,
+    "fields": {
+      "option": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operands",
             "named": true
           }
         ]
@@ -1254,6 +1396,10 @@
           {
             "type": "literal",
             "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
           }
         ]
       },
@@ -1365,6 +1511,32 @@
     "type": "while_loop",
     "named": true,
     "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          }
+        ]
+      },
       "condition": {
         "multiple": false,
         "required": true,
@@ -1395,12 +1567,16 @@
           }
         ]
       },
-      "function_call": {
+      "function": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "function_call",
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "identifier",
             "named": true
           }
         ]
@@ -1466,10 +1642,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "\n",
-    "named": false
   },
   {
     "type": "!",

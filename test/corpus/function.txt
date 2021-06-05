@@ -12,8 +12,7 @@ end
     script_name: (identifier))
     block_mode: (block
       block_type: (identifier)
-      function_call: (function_call
-        function: (identifier))))
+      function: (identifier)))
 
 =======================
 Function with arguments
@@ -32,18 +31,15 @@ end
     script_name: (identifier))
     block_mode: (block
       block_type: (identifier)
-      function_call: (function_call
-        function: (identifier)
-        argument: (identifier)
-        argument: (literal))
-      function_call: (function_call
-        function: (identifier)
-        argument: (identifier)
-        argument: (literal))
-      function_call: (function_call
-        function: (identifier)
-        argument: (string_manip
-         variable: (identifier)))
+      function: (identifier)
+      argument: (identifier)
+      argument: (literal)
+      function: (identifier)
+      argument: (identifier)
+      argument: (literal)
+      function: (identifier)
+      argument: (opt
+       option: (operands)))
       function_call: (function_call
         function: (identifier)
         argument: (string_manip

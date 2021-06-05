@@ -75,9 +75,8 @@ end
             right: (identifier)))
         (binary_operator)
         (operands
-          argumentative: (argumentative
-            function: (identifier)
-            argument: (identifier))))))
+          function: (identifier)
+          argument: (identifier)))))
 
 ==================================
 Parenthesized multiple expressions
@@ -110,9 +109,8 @@ end
             literal: (literal))
           (binary_operator)
           (operands
-            argumentative: (argumentative
-              function: (identifier)
-              argument: (identifier)))
+            function: (identifier)
+            argument: (identifier))
           (binary_operator)
             (operands
               dot: (dot_object
