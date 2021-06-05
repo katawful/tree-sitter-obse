@@ -42,10 +42,9 @@ end
           plain: (identifier))
           (binary_operator)
           (operands
-            argumentative: (argumentative
-              function: (identifier)
-              argument: (literal)
-              argument: (identifier))))
+            function: (identifier)
+            argument: (literal)
+            argument: (identifier)))
       let: (let_statement
         left: (operands
           plain: (identifier))

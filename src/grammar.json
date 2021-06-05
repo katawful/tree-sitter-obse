@@ -499,7 +499,7 @@
           "name": "array_var",
           "content": {
             "type": "PREC",
-            "value": 0,
+            "value": 1,
             "content": {
               "type": "SYMBOL",
               "name": "array_variable"
@@ -731,14 +731,6 @@
             "type": "STRING",
             "value": "^"
           }
-        },
-        {
-          "type": "PREC",
-          "value": 0,
-          "content": {
-            "type": "STRING",
-            "value": "->"
-          }
         }
       ]
     },
@@ -915,8 +907,25 @@
             "type": "FIELD",
             "name": "index",
             "content": {
-              "type": "SYMBOL",
-              "name": "subscript"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "subscript"
+                },
+                {
+                  "type": "PREC",
+                  "value": 0,
+                  "content": {
+                    "type": "FIELD",
+                    "name": "member_access",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "mem_access"
+                    }
+                  }
+                }
+              ]
             }
           }
         }
@@ -956,6 +965,28 @@
               "name": "slice"
             }
           }
+        }
+      ]
+    },
+    "mem_access": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "->"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "literal"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          ]
         }
       ]
     },
@@ -1473,7 +1504,7 @@
               "name": "container",
               "content": {
                 "type": "PREC",
-                "value": 0,
+                "value": 1,
                 "content": {
                   "type": "SYMBOL",
                   "name": "array_variable"
@@ -1506,7 +1537,7 @@
               "name": "source",
               "content": {
                 "type": "PREC",
-                "value": 0,
+                "value": 1,
                 "content": {
                   "type": "SYMBOL",
                   "name": "array_variable"
@@ -1804,7 +1835,7 @@
     "PARENTHETICAL": 1,
     "SUBSCRIPT": 0,
     "MEMBER_ACCESS": 0,
-    "ARRAY": 0,
+    "ARRAY": 1,
     "PLAIN": -5,
     "DOT": -10,
     "ARGUMENTATIVE": -15,

@@ -23,7 +23,7 @@ const PREC = {
   PARENTHETICAL: 1,
   SUBSCRIPT: 0,
   MEMBER_ACCESS: 0,
-  ARRAY: 0,
+  ARRAY: 1,
   PLAIN: -5, //stuff like GetFPS
   DOT: -10, // stuff like quest.variable
   ARGUMENTATIVE: -15, // stuff like GetName object
@@ -189,7 +189,7 @@ module.exports = grammar({
       prec(PREC.MULT_DIV, '/'),
       prec(PREC.MULT_DIV, '%'),
       prec(PREC.EXPONENT, '^'),
-      prec(PREC.MEMBER_ACCESS, '->'),
+      // prec(PREC.MEMBER_ACCESS, '->'),
     ),
 
     unary_operator: $ => choice(
@@ -232,7 +232,7 @@ module.exports = grammar({
     // Array variables
     array_variable: $ => seq(
       field('array', $._array),
-      repeat1(field('index', $.subscript)),
+      repeat1(field('index', choice($.subscript, prec(PREC.SUBSCRIPT, field('member_access', $.mem_access))))),
     ),
     _array: $ => $.identifier,
     _array_key: $ => choice(
@@ -240,6 +240,14 @@ module.exports = grammar({
       prec(PREC.PLAIN, $._expression),
       prec(PREC.SLICE_PAIR, field( 'slice', $.slice)),
     ),
+    mem_access: $ => seq(
+      '->',
+      choice(
+        $.literal,
+        $.identifier,
+      ),
+    ),
+
     slice: $ => seq(
       choice(/\d+/, /\-\d+/,),
       ':',
@@ -361,6 +369,7 @@ module.exports = grammar({
       field('function', choice(prec.left(PREC.PLAIN, $.identifier), $.dot_object)),
       optional($._eol),
     ),
+
     _function_call: $ => seq(
       field('function', choice(prec.left(PREC.PLAIN, $.identifier), $.dot_object)),
       repeat1(field('argument', prec.right($._arguments))),

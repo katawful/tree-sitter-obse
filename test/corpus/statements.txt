@@ -26,6 +26,7 @@ begin blockmode
   let x := y
   let iRand := (Rand 0 20)
   let x := "Data\-*"
+  let x->y := "Data\-*"
 end
 ---
 (script_file
@@ -45,13 +46,21 @@ end
           plain: (identifier))
         assignment: (assignment)
         (operands
-          argumentative: (argumentative
-            function: (identifier)
-            argument: (literal)
-            argument: (literal))))
+          function: (identifier)
+          argument: (literal)
+          argument: (literal)))
       let: (let_statement
         left: (operands
           plain: (identifier))
         assignment: (assignment)
         right: (operands
-            literal: (literal)))))
+            literal: (literal)))
+      let: (let_statement
+        left: (operands
+          array_var: (array_variable
+            array: (identifier)
+            member_access: (mem_access
+              (identifier))))
+        assignment: (assignment)
+        right: (operands
+          literal: (literal)))))

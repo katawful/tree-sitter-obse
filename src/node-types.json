@@ -20,10 +20,20 @@
       },
       "index": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "subscript",
+            "named": true
+          }
+        ]
+      },
+      "member_access": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "mem_access",
             "named": true
           }
         ]
@@ -1044,6 +1054,25 @@
     "type": "literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "mem_access",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "operands",
