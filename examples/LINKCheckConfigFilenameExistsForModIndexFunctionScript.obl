@@ -1,0 +1,42 @@
+Scn LINKCheckConfigFilenameExistsForModIndexFunctionScript
+
+short modindex
+
+string_var filename
+string_var cfgfilename
+string_var cfgfilenamedata
+string_var cfgfilenamedataini
+string_var cfgfilenamedatacfg
+
+short found
+
+Begin Function { modindex }
+
+  let filename := GetNthModName modindex
+  set cfgfilename to Call LINKGetFilenameTypeForModFilenameFunctionScript filename "cfg"
+
+  let cfgfilenamedata := "Data\" + cfgfilename
+  let cfgfilenamedataini := "Data\ini\" + cfgfilename
+  let cfgfilenamedatacfg := "Data\cfg\" + cfgfilename
+
+  if FileExists $cfgfilenamedata
+    set found to 1
+  endif
+  if FileExists $cfgfilenamedataini
+    set found to 1
+  endif
+  if FileExists $cfgfilenamedatacfg
+    set found to 1
+  endif
+
+
+  SetFunctionValue found
+
+
+  sv_Destruct filename
+  sv_Destruct cfgfilename
+  sv_Destruct cfgfilenamedata
+  sv_Destruct cfgfilenamedataini
+  sv_Destruct cfgfilenamedatacfg
+
+End

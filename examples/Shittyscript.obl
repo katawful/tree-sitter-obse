@@ -1,0 +1,635 @@
+scn lSortYourShitQuestScript
+
+float fQuestDelaytime
+;global lSYSActionKey = 48 B 44 = z https://cs.elderscrolls.com/index.php?title=IsKeyPressed3
+;ref lSYSEffectContainerRef
+;ref lSYSEffectContainerCompareRef
+;lSYSDummyCell
+;lSYSDummyItem
+
+ref container
+ref iter
+ref tempobj
+ref crosshairtarget
+ref takeitemlastobj
+ref tempbook
+ref tempowner
+
+short takeitemtype		; 1 ingred 2 potions 3 scrolls 4 sigil
+short takeitemactorvalue
+long takeitemeffect
+
+short showmenu
+short menuset
+short button
+short count
+short countTotal
+short diffstored
+short totalstored
+short currkey
+short tempi
+short tempo
+
+short ResetWeight
+short clearcontainer
+short resetFoodContainer
+short playeralchemylevel
+
+array_var books
+array_var arraydel
+short totalbooks
+short totaldel
+
+short iniscriptedbooks
+short iniscriptedkeys
+short iniscriptedgeneral
+short inibooksandnotes
+short ininoduplicatebooks
+short iniingredandfood
+short inipotionsandpoisons
+short inimenunumbers
+short iniunsafecontainers
+short iniownedcontainers
+
+Begin GameMode
+
+	If GetGameLoaded
+	
+		Set fQuestDelayTime to 0.1
+		
+		If FileExists "Data\ini\lSortYourStuff.ini" 
+			RunBatchScript "Data\ini\lSortYourStuff.ini" 
+			PrintToConsole "SYS: Settings loaded from ini."
+		ElseIf FileExists "Data\lSortYourStuff.ini" 
+			RunBatchScript "Data\lSortYourStuff.ini" 
+			PrintToConsole "SYS: Settings loaded from ini."
+		Else 
+			let iniscriptedbooks := 1
+			let	iniscriptedkeys := 1
+			;let iniscriptedgeneral := 1
+			let inibooksandnotes := 1
+			let ininoduplicatebooks := 0
+			let iniingredandfood := 1
+			let inipotionsandpoisons := 1
+			let inimenunumbers := 0 
+			let iniunsafecontainers := 0
+			let iniownedcontainers := 0
+			PrintToConsole "SYS: Ini not found, using default values."
+		EndIf
+	
+	EndIf
+	
+	if ResetWeight == 1
+		player.additemNS lSYSDummyItem 1
+		;printtoconsole "SYS: Item should be added"
+		let ResetWeight := 2
+		return
+	endif
+	
+	if ResetWeight == 2
+		player.removeitemNS lSYSDummyItem 1
+		;printtoconsole "SYS: Item should be removed"
+		let ResetWeight := 0
+		return
+	endif
+		
+	if ClearContainer == 1
+		let clearcontainer := 2 
+		return
+	endif 
+	
+	if ClearContainer == 2
+        player.removeitemNS takeitemlastobj 1
+        let takeitemlastobj := lSYSDummyItem
+		call lSYSResetContainerFunctionScript
+		let clearcontainer := 0	
+		return
+	endif
+	
+	if resetfoodcontainer == 1
+		lSYSFoodContainerRef.Removeallitems crosshairtarget
+		set resetFoodContainer to 0
+		return
+	endif
+
+	
+	; Check for Keypress, but only once per down
+	If IsKeyPressed3 lSYSActionKey  && CurrKey > 0
+		return
+	Else
+		Set CurrKey to 0
+	Endif
+
+	If IsKeyPressed3 lSYSActionKey  ; check if current crosshairref is a container that fulfills the conditions, if yes, fire menu
+		Set CurrKey to lSYSActionKey
+		let crosshairtarget := getCrosshairRef
+		
+		if crosshairtarget.IsContainer == 1
+			let tempo := crosshairtarget.IsOffLimits 7 ; Wiki says player is required, doc says it can be omitted, why not put it in there. 
+			let tempi := 0
+			let tempi := call lSYSGetExceptionsFromModsFunctionScript crosshairtarget
+			if tempi == 1
+				Message "Container is claimed by the gods."
+				return
+			endif
+			
+			if ( ( iniunsafecontainers == 1 ) || ( crosshairtarget.GetContainerRespawns == 0 ) )
+				if ( ( iniownedcontainers == 1 ) || ( tempo == 0 ) )
+					let showmenu := 1
+					;printtoconsole "SYS: crosshairtarget %n" crosshairtarget
+				else
+					Message "Container is owned by someone else."
+				endif
+			else 
+				Message "Container is not safe for storage."
+			endif
+			return
+		endif
+	EndIf
+	
+	
+	if showmenu == 0 && menuset == 0	
+		return
+	endif
+	
+	if showmenu == 1
+		set showmenu to 0
+		
+		;determin player alchemy level for ingredients
+		if player.GetBaseAV Alchemy >= GetGS iSkillExpertMin
+			let playeralchemylevel := 4
+	    elseif player.GetBaseAV Alchemy >= GetGS iSkillJourneymanMin
+			let playeralchemylevel := 3
+	    elseIf player.GetBaseAV Alchemy >= GetGS iSkillApprenticeMin
+			let playeralchemylevel := 2
+	    else
+			let playeralchemylevel := 1
+	    endIf
+		
+		If Player.IsSneaking == 0
+			set menuset to 1
+			if inimenunumbers
+				MessageBox "-= What do you want to do? =-" "1 -> Stack Stored Items" "2 Store Ingredients" "3 Store Food" "4 Store Potions" "5 Store Scrolls" "6 Store Books" "7 Store Keys" "8 Store Soul Gems" "9 Store Sigil Stones" "0 Nothing"
+			else
+				MessageBox "-= What do you want to do? =-" "-> Stack Stored Items" "Store Ingredients" "Store Food" "Store Potions" "Store Scrolls" "Store Books" "Store Keys" "Store Soul Gems" "Store Sigil Stones" "Nothing"
+			endif
+				
+		else
+			set menuset to 2
+			if inimenunumbers
+				MessageBox "-= What do you want to do? =-" "1 <- Take all Contents" "2 Display Food Items" "3 Take Ingredients by Effect" "4 Take Potions by Effect" "5 Take Scrolls by Effect" "6 Take Sigil Stones by Effect" "7 Nothing"
+			else
+				MessageBox "-= What do you want to do? =-" "<- Take all Contents" "Display Food Items" "Take Ingredients by Effect" "Take Potions by Effect" "Take Scrolls by Effect" "Take Sigil Stones by Effect" "Nothing"
+			endif
+		endif
+	endif
+	
+	
+	set button to GetButtonPressed
+	
+	if menuset == 1 && button > -1		
+		;printtoconsole "A BUTTON WAS PRESSED %g" button
+		let menuset := 0 
+		let ResetWeight := 1
+		
+	;Stack Stored
+		if button == 0 ;Stack Stored
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+			let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				if container.GetItemCount tempobj > 0  ; main condition
+					if iter.IsEquipped == 0	&& iter.IsQuestItem == 0 ; dont handle equipped & quest items, as well as some other exceptions
+						iter.RemoveMeIR container
+						let diffstored += 1
+						let totalstored += count
+						let arraydel[totaldel] := tempobj
+						let totaldel := totaldel + 1
+					endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+			
+			if totaldel > 0
+				call lSYSRemoveleftoverItemsFunctionScript
+			endif
+			
+			ar_erase arraydel
+				
+	; Stack all ingredients			
+		elseif button == 1 ; Store all ingredients
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+			let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsIngredient  ; main condition is ingredient
+					if iter.IsQuestItem == 0	; dont handle  quest items
+						if (( iniingredandfood == 1 ) || ( iter.IsFood == 0 )) ;don't store food unless ini allows
+							iter.RemoveMeIR container
+							let diffstored += 1
+							let totalstored += count
+							let arraydel[totaldel] := tempobj
+							let totaldel := totaldel + 1
+						endif
+					endif
+				endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+			
+			if totaldel > 0
+				call lSYSRemoveleftoverItemsFunctionScript
+			endif
+			
+			ar_erase arraydel
+
+	; Stack only food
+		elseif button == 2 ; Store only food
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+			let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsIngredient ; main condition is ingredient
+					if iter.IsQuestItem == 0	; dont handle quest items
+						if iter.IsFood == 1 ;only store food
+							iter.RemoveMeIR container
+							let diffstored += 1
+							let totalstored += count
+							let arraydel[totaldel] := tempobj
+							let totaldel := totaldel + 1
+						endif
+					endif
+				endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+				
+			if totaldel > 0
+				call lSYSRemoveleftoverItemsFunctionScript
+			endif
+			
+			ar_erase arraydel	
+				
+		elseif button == 3 ; Store Potions
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+			let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsAlchemyItem  ; main condition is potion
+					if iter.IsQuestItem == 0	; dont handle quest items
+						if iter.IsPoison == 0 || inipotionsandpoisons == 1 
+							iter.RemoveMeIR container
+							let diffstored += 1
+							let totalstored += count
+							let arraydel[totaldel] := tempobj
+							let totaldel := totaldel + 1
+						endif
+					endif
+				endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+			
+			if totaldel > 0
+				call lSYSRemoveleftoverItemsFunctionScript
+			endif
+			
+			ar_erase arraydel	
+			
+		; Store scrolls	
+		elseif button == 4 ; Store Scrolls
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+			let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsBook  ; main condition is Book, because scrolls are books
+					if iter.IsQuestItem == 0 ; dont handle quest items
+						if iter.GetBookIsScroll == 1
+							if iter.GetEnchantment 
+								iter.RemoveMeIR container
+								let diffstored += 1
+								let totalstored += count
+								let arraydel[totaldel] := tempobj
+								let totaldel := totaldel + 1
+							endif
+						endif
+					endif
+				endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+			
+			if totaldel > 0
+                call lSYSRemoveleftoverItemsFunctionScript
+            endif
+
+            ar_erase arraydel
+				
+		elseif button == 5 ; Store Books
+			set totalstored to 0 
+			set diffstored to 0
+			let totalbooks := 0
+			;let books := ar_Construct Array
+			let container := crosshairtarget
+			let totaldel := 0
+            let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let countTotal := player.GetItemCount tempobj
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsBook  ; main condition is Book, because scrolls are books
+					if iter.IsQuestItem == 0 && iter.GetEnchantment == 0 ; dont handle quest items or magic scrolls
+						if iniscriptedbooks == 1 || iter.IsScripted == 0 ; is not scripted or scripted is allowed
+							if iter.GetBookIsScroll == 0 || inibooksandnotes == 1 ; no scrolls this time, but allow notes if set in ini
+								if ininoduplicatebooks == 1 && container.getItemcount tempobj == 0 ; no duplicates allowed & doesnt exist in container 	
+									;printc "we have arrived at %n with amount %g/%g" tempobj count countTotal
+									if count > 1 || countTotal > 1 ; is a stack or player has many
+										let tempowner := iter.GetOwner
+										if IsFormValid tempowner
+											let tempbook := CreateTempRef tempobj
+											tempbook.SetOwnership tempowner
+											tempbook.SetRefCount 1
+											tempbook.CopyIR container
+										else
+											container.AddItemNS tempobj 1
+										endif										
+										let arraydel[totaldel] := tempobj
+										let totaldel := totaldel + 1										
+										let diffstored += 1
+										let totalstored += 1											
+									else ; is a single book
+										iter.RemoveMeIR container
+										let diffstored += 1
+										let totalstored += count
+										let arraydel[totaldel] := tempobj
+										let totaldel := totaldel + 1
+									endif
+								elseif ininoduplicatebooks == 1 && container.getItemcount tempobj > 0 ; no duplicates allowed but the book already exists
+									continue
+								elseif ininoduplicatebooks == 0 
+									iter.RemoveMeIR container
+									let diffstored += 1
+									let totalstored += count
+									let arraydel[totaldel] := tempobj
+									let totaldel := totaldel + 1
+								endif 
+							endif
+						endif
+					endif
+				endif
+				endif
+			loop	; 
+			
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+			
+			;printc "arraydel"
+			;ar_dump arraydel
+			;printc "books"
+			;ar_dump books
+			
+			;if totalbooks > 0
+			;	call lSYSRemoveDuplicateBooksFunctionScript
+			;endif
+			
+			;ar_erase books
+			
+			if totaldel > 0
+                call lSYSRemoveleftoverItemsFunctionScript
+            endif
+
+            ar_erase arraydel
+			
+			;printc "arraydel"
+			;ar_dump arraydel
+			;printc "books"
+			;ar_dump books
+					
+				
+		elseif button == 6 ; Store Keys
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+            let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsKey  ; main condition is Key
+					if iter.IsQuestItem == 0 ; dont handle quest  items
+						if iniscriptedkeys == 1 || iter.IsScripted == 0 ; is not scripted or scripted is allowed
+							iter.RemoveMeIR container
+							let diffstored += 1
+							let totalstored += count
+							let arraydel[totaldel] := tempobj
+                            let totaldel := totaldel + 1
+						endif
+					endif
+				endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+			
+			if totaldel > 0
+                call lSYSRemoveleftoverItemsFunctionScript
+            endif
+
+            ar_erase arraydel
+			
+		elseif button == 7 ; Store Soul Gems
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+            let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsSoulGem  ; main condition is Soul Gem
+					if iter.IsQuestItem == 0 ; dont handle quest items
+						iter.RemoveMeIR container
+						let diffstored += 1
+						let totalstored += count
+						let arraydel[totaldel] := tempobj
+						let totaldel := totaldel + 1
+					endif
+				endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif
+			
+			if totaldel > 0
+                call lSYSRemoveleftoverItemsFunctionScript
+            endif
+
+            ar_erase arraydel
+			
+		elseif button == 8 ; Store Sigil Stones
+			set totalstored to 0 
+			set diffstored to 0
+			let container := crosshairtarget
+			let totaldel := 0
+            let arraydel := ar_Construct Array
+			foreach iter <- player 
+				let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				let tempi := call lSYSGetExceptionsFromModsFunctionScript tempobj
+				if tempi == 0
+				if iter.IsSigilStone  ; main condition is SigilStone
+					if iter.IsQuestItem == 0 ; dont handle questitems
+						iter.RemoveMeIR container
+						let diffstored += 1
+						let totalstored += count
+						let arraydel[totaldel] := tempobj
+                        let totaldel := totaldel + 1
+					endif
+				endif
+				endif
+			loop	; 
+			if totalstored > 0
+				Message "%g different items stored, %g total" diffstored totalstored
+			else
+				Message "No matching items found"
+			endif	
+			
+			if totaldel > 0
+                call lSYSRemoveleftoverItemsFunctionScript
+            endif
+
+            ar_erase arraydel
+
+		else ; Do Nothing
+			
+			endif
+			
+	endif
+	
+	if menuset == 2 && button > -1		; grab shit
+		;printtoconsole "A BUTTON WAS PRESSED %g" button
+		let menuset := 0 
+		
+		if button == 0 ; take all  1 ingred 2 potions 3 scrolls 4 sigil 
+			crosshairtarget.removeallitems player
+			
+		elseif button == 1 ;Display food	
+			let container := lSYSFoodContainerRef
+			foreach iter <- crosshairtarget 
+			let count := iter.GetRefCount
+				set tempobj to iter.GetBaseObject
+				if iter.IsIngredient ; main condition is ingredient
+					if iter.IsQuestItem == 0	; dont handle quest items
+						if iter.IsFood == 1 ;only store food
+							iter.RemoveMeIR container
+						endif
+					endif
+				endif
+			loop	
+			set resetfoodcontainer to 1
+			lSYSFoodContainerRef.activate player
+		
+		elseif button == 2 ; Take ingredients
+			let takeitemtype := 1
+			let takeitemeffect := 0 
+			let takeitemactorvalue := 0
+			let takeitemlastobj := lSYSDummyItem 
+			call lSYSInitSorterOptionsFunctionScript
+			lSYSEffectContainerRef.activate player
+		
+		elseif button == 3 ; Take Potions
+			let takeitemtype := 2
+			let takeitemeffect := 0 
+			let takeitemactorvalue := 0
+			let takeitemlastobj := lSYSDummyItem 
+			call lSYSInitSorterOptionsFunctionScript
+			lSYSEffectContainerRef.activate player
+		
+		elseif button == 4 ; Take scrolls
+			let takeitemtype := 3
+			let takeitemeffect := 0 
+			let takeitemactorvalue := 0
+			let takeitemlastobj := lSYSDummyItem
+			call lSYSInitSorterOptionsFunctionScript
+			lSYSEffectContainerRef.activate player
+		
+		elseif button == 5 ; Take Sigil Stones
+			let takeitemtype := 4
+			let takeitemeffect := 0 
+			let takeitemactorvalue := 0
+			let takeitemlastobj := lSYSDummyItem
+			call lSYSInitSorterOptionsFunctionScript
+			lSYSEffectContainerRef.activate player
+		
+		else ; nothing
+			return
+		
+		endif
+		
+	
+	endif
+		
+End
