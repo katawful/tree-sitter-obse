@@ -1,0 +1,15 @@
+scn scriptname
+begin blockmode
+  foreach item <- container[1]
+    eval x
+  loop
+  foreach item <- container["string"]
+    eval x
+  loop
+  foreach item <- container[plain]
+    eval x
+  loop
+  foreach item <- container[dot.object]
+    eval x
+  loop
+end
