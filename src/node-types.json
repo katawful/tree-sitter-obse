@@ -2008,28 +2008,22 @@
     "type": "user_function",
     "named": true,
     "fields": {
-      "argument": {
+      "array_var": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
-            "type": "identifier",
+            "type": "array_variable",
             "named": true
-          },
+          }
+        ]
+      },
+      "dot": {
+        "multiple": true,
+        "required": false,
+        "types": [
           {
-            "type": "literal",
-            "named": true
-          },
-          {
-            "type": "opt",
+            "type": "dot_object",
             "named": true
           }
         ]
@@ -2043,7 +2037,61 @@
             "named": true
           }
         ]
+      },
+      "literal": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "literal",
+            "named": true
+          }
+        ]
+      },
+      "option": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "opt",
+            "named": true
+          }
+        ]
+      },
+      "plain": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "user_function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
+        }
+      ]
     }
   },
   {

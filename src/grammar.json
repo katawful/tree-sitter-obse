@@ -828,60 +828,6 @@
         }
       ]
     },
-    "_arguments": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "opt"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_paren_arguments"
-        }
-      ]
-    },
-    "_binary_expr": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "binary_operator"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_arguments"
-        }
-      ]
-    },
-    "_paren_arguments": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_arguments"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
     "array_variable": {
       "type": "SEQ",
       "members": [
@@ -1579,68 +1525,6 @@
         }
       ]
     },
-    "_single_function": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "function",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PREC_LEFT",
-                "value": -5,
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "dot_object"
-              }
-            ]
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_eol"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "_function_call": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_eol"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
     "user_function": {
       "type": "SEQ",
       "members": [
@@ -1664,12 +1548,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "FIELD",
-            "name": "argument",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_arguments"
-            }
+            "type": "SYMBOL",
+            "name": "_expression"
           }
         },
         {
@@ -1724,22 +1604,6 @@
       "_operands"
     ],
     [
-      "_function_call",
-      "_paren_expression"
-    ],
-    [
-      "eval",
-      "_function_call"
-    ],
-    [
-      "testexpr",
-      "_function_call"
-    ],
-    [
-      "condition",
-      "_function_call"
-    ],
-    [
       "_expression",
       "set_statement"
     ],
@@ -1761,9 +1625,6 @@
     ],
     [
       "user_function"
-    ],
-    [
-      "_function_call"
     ],
     [
       "_operands",

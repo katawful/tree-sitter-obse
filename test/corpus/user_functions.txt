@@ -32,9 +32,9 @@ end
       block_type: (identifier)
       user: (user_function
         function: (identifier)
-        argument: (identifier)
-        argument: (literal))
+        plain: (identifier)
+        literal: (literal))
       user: (user_function
         function: (identifier)
-        argument: (identifier)
-        argument: (literal))))
+        plain: (identifier)
+        literal: (literal))))

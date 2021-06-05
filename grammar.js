@@ -42,17 +42,12 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$._statement, $._operands],
-    [$._function_call, $._paren_expression],
-    [$.eval, $._function_call],
-    [$.testexpr, $._function_call],
-    [$.condition, $._function_call],
     [$._expression, $.set_statement],
     [$._expression, $.let_statement],
     [$._expression, $._pre_operands],
     [$._paren_expression, $._paren_operands],
     [$._paren_operands, $._expression],
     [$.user_function],
-    [$._function_call],
     [$._operands, $._array_key],
     [$.array_variable, $.identifier],
     [$._pre_operands],
@@ -133,7 +128,6 @@ module.exports = grammar({
       field('while', $.while_loop),
       field('foreach', $.foreach_loop),
       prec.right($._expression),
-      // prec.right($._single_function),
       field('user', $.user_function),
       field('eval', prec.left($.eval)),
       field('testexpr', prec.left($.testexpr)),
@@ -160,7 +154,6 @@ module.exports = grammar({
       field('dot', prec(PREC.DOT, $.dot_object)),
       field('user_function', $.user_function),
       field('option', $.opt),
-      // prec.left($._function_call),
     ),
     _paren_operands: $ => seq(
       '(',
@@ -218,22 +211,6 @@ module.exports = grammar({
       field('option', prec.right($._operands)),
     ),
 
-    _arguments: $ => choice(
-      $.opt,
-      $.identifier,
-      $.literal,
-      $._paren_arguments,
-    ),
-    _binary_expr: $ => seq(
-      $.binary_operator,
-      $._arguments,
-    ),
-    _paren_arguments: $ => seq(
-      '(',
-      repeat($._arguments),
-      ')',
-    ),
-
     // Array variables
     array_variable: $ => seq(
       field('array', $._array),
@@ -252,13 +229,11 @@ module.exports = grammar({
         field('key', $.identifier),
       ),
     ),
-
     slice: $ => seq(
       choice(/\d+/, /\-\d+/,),
       ':',
       choice(/\d+/, /\-\d+/,),
     ),
-
     // arrays and strings use this
     subscript: $ => seq(
       '[',
@@ -370,21 +345,10 @@ module.exports = grammar({
       $._eol,
     ),
 
-    _single_function: $ => seq(
-      field('function', choice(prec.left(PREC.PLAIN, $.identifier), $.dot_object)),
-      optional($._eol),
-    ),
-
-    _function_call: $ => seq(
-      // field('function', choice(prec.left(PREC.PLAIN, $.identifier), $.dot_object)),
-      // repeat1(field('argument', prec.right($._arguments))),
-      repeat1($._expression),
-      optional($._eol),
-    ),
     user_function: $ => seq(
       caseInsensitive('Call'),
       field('function', $.identifier),
-      repeat(field('argument', $._arguments)),
+      repeat($._expression),
       optional($._eol),
     ),
 
