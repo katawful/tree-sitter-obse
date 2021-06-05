@@ -27,39 +27,33 @@ end
         container: (identifier)
         source: (array_variable
           array: (identifier)
-          index: (subscript
-            key: (literal)))
+          key: (subscript
+            index: (literal)))
         eval: (eval
-          (operands
-            plain: (identifier))))
+          plain: (identifier)))
       foreach: (foreach_loop
         container: (identifier)
         source: (array_variable
           array: (identifier)
-          index: (subscript
-            key: (literal)))
+          key: (subscript
+            index: (literal)))
         eval: (eval
-          (operands
-            plain: (identifier))))
+          plain: (identifier)))
       foreach: (foreach_loop
         container: (identifier)
         source: (array_variable
           array: (identifier)
-          index: (subscript
-            key: (operands
-              plain: (identifier))))
+          key: (subscript
+            plain: (identifier)))
         eval: (eval
-          (operands
-            plain: (identifier))))
+          plain: (identifier)))
       foreach: (foreach_loop
         container: (identifier)
         source: (array_variable
           array: (identifier)
-          index: (subscript
-            key: (operands
-              dot: (dot_object
-                left: (identifier)
-                right: (identifier)))))
+          key: (subscript
+            dot: (dot_object
+              left: (identifier)
+              right: (identifier))))
         eval: (eval
-          (operands
-            plain: (identifier))))))
+          plain: (identifier)))))

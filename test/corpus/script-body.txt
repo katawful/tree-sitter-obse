@@ -45,7 +45,6 @@ ref var
     var_declaration: (var_declare
       type_ref: (ref)
       variable: (identifier)))
-
 ==========
 Block mode
 ==========

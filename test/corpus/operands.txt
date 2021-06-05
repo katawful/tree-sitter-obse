@@ -13,10 +13,8 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        left: (operands
-          plain: (identifier))
-        right: (operands
-          plain: (identifier)))))
+        plain: (identifier)
+        plain: (identifier))))
 
 ===================
 Left quest variable
@@ -33,12 +31,10 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        left: (operands
-          dot: (dot_object
-            left: (identifier)
-            right: (identifier)))
-        right: (operands
-          plain: (identifier)))))
+        dot: (dot_object
+          left: (identifier)
+          right: (identifier))
+        plain: (identifier))))
 
 ===================
 Left array variable
@@ -56,20 +52,16 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        left: (operands
-          array_var: (array_variable
-            array: (identifier)
-            index: (subscript
-              key: (literal))))
-        right: (operands
-          plain: (identifier)))
+        array_var: (array_variable
+          array: (identifier)
+          key: (subscript
+            index: (literal)))
+        plain: (identifier))
       set: (set_statement
-        left: (operands
-          array_var: (array_variable
-            array: (identifier)
-            index: (subscript
-              key: (literal))
-            index: (subscript
-              key: (literal))))
-        right: (operands
-          plain: (identifier)))))
+        array_var: (array_variable
+          array: (identifier)
+          key: (subscript
+            index: (literal))
+          key: (subscript
+            index: (literal)))
+        plain: (identifier))))

@@ -13,11 +13,9 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        left: (operands
-          plain: (identifier))
+        plain: (identifier)
         assignment: (assignment)
-        right: (operands
-          plain: (identifier)))))
+        plain: (identifier))))
 
 ==============
 Let expression
@@ -35,25 +33,19 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        left: (operands
-          plain: (identifier))
+        plain: (identifier)
         assignment: (assignment)
-        (operands
-          plain: (identifier))
-          (binary_operator)
-          (operands
-            function: (identifier)
-            argument: (literal)
-            argument: (identifier)))
+        plain: (identifier)
+        (binary_operator)
+        plain: (identifier)
+        literal: (literal)
+        plain: (identifier))
       let: (let_statement
-        left: (operands
-          plain: (identifier))
+        plain: (identifier)
         assignment: (assignment)
-        (operands
-          plain: (identifier))
+          plain: (identifier)
           (binary_operator)
-          (operands
-            plain: (identifier)))))
+          plain: (identifier))))
 
 ============
 Let compound
@@ -74,32 +66,22 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        left: (operands
-          plain: (identifier))
+        plain: (identifier)
         compound: (compound_assignment)
-        right: (operands
-          literal: (literal)))
+        literal: (literal))
       let: (let_statement
-        left: (operands
-          plain: (identifier))
+        plain: (identifier)
         compound: (compound_assignment)
-        right: (operands
-          literal: (literal)))
+        literal: (literal))
       let: (let_statement
-        left: (operands
-          plain: (identifier))
+        plain: (identifier)
         compound: (compound_assignment)
-        right: (operands
-          literal: (literal)))
+        literal: (literal))
       let: (let_statement
-        left: (operands
-              plain: (identifier))
+        plain: (identifier)
         compound: (compound_assignment)
-        right: (operands
-          literal: (literal)))
+        literal: (literal))
       let: (let_statement
-        left: (operands
-          plain: (identifier))
+        plain: (identifier)
         compound: (compound_assignment)
-        right: (operands
-          literal: (literal)))))
+        literal: (literal))))

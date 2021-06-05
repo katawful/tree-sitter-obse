@@ -373,15 +373,7 @@
           "value": 0,
           "content": {
             "type": "SYMBOL",
-            "name": "_function_call"
-          }
-        },
-        {
-          "type": "PREC_RIGHT",
-          "value": 0,
-          "content": {
-            "type": "SYMBOL",
-            "name": "_single_function"
+            "name": "_expression"
           }
         },
         {
@@ -423,7 +415,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "operands"
+          "name": "_operands"
         },
         {
           "type": "SYMBOL",
@@ -467,7 +459,7 @@
         }
       ]
     },
-    "operands": {
+    "_operands": {
       "type": "CHOICE",
       "members": [
         {
@@ -527,11 +519,11 @@
           }
         },
         {
-          "type": "PREC_LEFT",
-          "value": 0,
+          "type": "FIELD",
+          "name": "option",
           "content": {
             "type": "SYMBOL",
-            "name": "_function_call"
+            "name": "opt"
           }
         }
       ]
@@ -547,7 +539,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "operands"
+            "name": "_operands"
           }
         },
         {
@@ -830,7 +822,7 @@
             "value": 0,
             "content": {
               "type": "SYMBOL",
-              "name": "operands"
+              "name": "_operands"
             }
           }
         }
@@ -905,7 +897,7 @@
           "type": "REPEAT1",
           "content": {
             "type": "FIELD",
-            "name": "index",
+            "name": "key",
             "content": {
               "type": "CHOICE",
               "members": [
@@ -939,19 +931,27 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PREC",
-          "value": -20,
+          "type": "FIELD",
+          "name": "index",
           "content": {
-            "type": "SYMBOL",
-            "name": "literal"
+            "type": "PREC",
+            "value": -20,
+            "content": {
+              "type": "SYMBOL",
+              "name": "literal"
+            }
           }
         },
         {
-          "type": "PREC",
-          "value": -5,
+          "type": "FIELD",
+          "name": "index",
           "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "PREC",
+            "value": -5,
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
           }
         },
         {
@@ -979,12 +979,20 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "literal"
+              "type": "FIELD",
+              "name": "key",
+              "content": {
+                "type": "SYMBOL",
+                "name": "literal"
+              }
             },
             {
-              "type": "SYMBOL",
-              "name": "identifier"
+              "type": "FIELD",
+              "name": "key",
+              "content": {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
             }
           ]
         }
@@ -1033,12 +1041,8 @@
           "value": "["
         },
         {
-          "type": "FIELD",
-          "name": "key",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_array_key"
-          }
+          "type": "SYMBOL",
+          "name": "_array_key"
         },
         {
           "type": "STRING",
@@ -1154,7 +1158,7 @@
           "name": "left",
           "content": {
             "type": "SYMBOL",
-            "name": "operands"
+            "name": "_operands"
           }
         },
         {
@@ -1167,17 +1171,8 @@
           "value": "to"
         },
         {
-          "type": "FIELD",
-          "name": "right",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_expression"
-              }
-            ]
-          }
+          "type": "SYMBOL",
+          "name": "_pre_operands"
         },
         {
           "type": "SYMBOL",
@@ -1202,7 +1197,7 @@
           "name": "left",
           "content": {
             "type": "SYMBOL",
-            "name": "operands"
+            "name": "_operands"
           }
         },
         {
@@ -1229,7 +1224,7 @@
             "type": "REPEAT1",
             "content": {
               "type": "SYMBOL",
-              "name": "operands"
+              "name": "_operands"
             }
           }
         },
@@ -1626,39 +1621,10 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "FIELD",
-          "name": "function",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PREC_LEFT",
-                "value": -5,
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "identifier"
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "dot_object"
-              }
-            ]
-          }
-        },
-        {
           "type": "REPEAT1",
           "content": {
-            "type": "FIELD",
-            "name": "argument",
-            "content": {
-              "type": "PREC_RIGHT",
-              "value": 0,
-              "content": {
-                "type": "SYMBOL",
-                "name": "_arguments"
-              }
-            }
+            "type": "SYMBOL",
+            "name": "_expression"
           }
         },
         {
@@ -1754,8 +1720,24 @@
   ],
   "conflicts": [
     [
+      "_statement",
+      "_operands"
+    ],
+    [
       "_function_call",
-      "_single_function"
+      "_paren_expression"
+    ],
+    [
+      "eval",
+      "_function_call"
+    ],
+    [
+      "testexpr",
+      "_function_call"
+    ],
+    [
+      "condition",
+      "_function_call"
     ],
     [
       "_expression",
@@ -1784,7 +1766,7 @@
       "_function_call"
     ],
     [
-      "operands",
+      "_operands",
       "_array_key"
     ],
     [

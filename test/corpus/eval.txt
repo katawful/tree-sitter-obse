@@ -13,14 +13,12 @@ end
     block_mode: (block
       block_type: (identifier)
       eval: (eval
-        (operands
-          array_var: (array_variable
-            array: (identifier)
-            index: (subscript
-              key: (literal))))
+        array_var: (array_variable
+          array: (identifier)
+          key: (subscript
+            index: (literal)))
         (binary_operator)
-        (operands
-          plain: (identifier)))))
+        plain: (identifier))))
 
 ========
 testexpr
@@ -37,11 +35,9 @@ end
     block_mode: (block
       block_type: (identifier)
       testexpr: (testexpr
-        (operands
-          array_var: (array_variable
-            array: (identifier)
-            index: (subscript
-              key: (literal))))
+        array_var: (array_variable
+          array: (identifier)
+          key: (subscript
+            index: (literal)))
         (binary_operator)
-        (operands
-          plain: (identifier)))))
+        plain: (identifier))))

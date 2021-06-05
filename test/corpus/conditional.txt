@@ -16,17 +16,13 @@ end
       block_type: (identifier)
       if_block: (conditional
         condition: (condition
-          (operands
-            plain: (identifier))
+          plain: (identifier)
           (binary_operator)
-          (operands
-            literal: (literal))
+          literal: (literal)
           (binary_operator)
-          (operands
-            literal: (literal)))
+          literal: (literal))
         eval: (eval
-          (operands
-            plain: (identifier))))))
+          plain: (identifier)))))
 
 ====
 Else
@@ -48,15 +44,12 @@ end
       block_type: (identifier)
       if_block: (conditional
         condition: (condition
-          (operands
-            plain: (identifier)))
+          plain: (identifier))
           eval: (eval
-            (operands
-              plain: (identifier)))
+            plain: (identifier))
        else: (else
         eval: (eval
-          (operands
-            plain: (identifier)))))))
+          plain: (identifier))))))
 
 ======
 Elseif
@@ -78,15 +71,11 @@ end
       block_type: (identifier)
       if_block: (conditional
         condition: (condition
-          (operands
-            plain: (identifier)))
+          plain: (identifier))
         eval: (eval
-          (operands
-            plain: (identifier)))
+          plain: (identifier))
        elseif: (else_if
         condition: (condition
-          (operands
-            plain: (identifier)))
+          plain: (identifier))
         eval: (eval
-          (operands
-            plain: (identifier)))))))
+          plain: (identifier))))))
