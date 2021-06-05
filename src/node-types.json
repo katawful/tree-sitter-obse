@@ -410,6 +410,46 @@
           }
         ]
       },
+      "eval": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "eval",
+            "named": true
+          }
+        ]
+      },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
+            "named": true
+          }
+        ]
+      },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
+      "let": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
+            "named": true
+          }
+        ]
+      },
       "literal": {
         "multiple": true,
         "required": false,
@@ -440,12 +480,52 @@
           }
         ]
       },
+      "set": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      },
+      "testexpr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "testexpr",
+            "named": true
+          }
+        ]
+      },
+      "user": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
       "user_function": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "user_function",
+            "named": true
+          }
+        ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
             "named": true
           }
         ]

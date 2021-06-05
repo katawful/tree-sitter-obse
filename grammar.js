@@ -294,7 +294,7 @@ module.exports = grammar({
       '^=',
     ),
 
-    condition: $ => repeat1($._expression),
+    condition: $ => repeat1($._statement),
 
     conditional: $ => seq(
       caseInsensitive('if'),

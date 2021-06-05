@@ -1245,7 +1245,7 @@
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
-        "name": "_expression"
+        "name": "_statement"
       }
     },
     "conditional": {
