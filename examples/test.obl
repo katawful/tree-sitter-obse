@@ -1,7 +1,16 @@
 scn scriptname
 begin blockmode
-  foreach item <- container[1]
+  if x
     eval x
+  elseif x
+    eval x
+  else
+    eval x
+  endif
+  Foreach item <- container[1]
+    eval x
+    break
+    continue
   loop
   foreach item <- container["string"]
     eval x
