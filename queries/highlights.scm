@@ -1,18 +1,20 @@
-"break" @keyword
-"continue" @keyword
+[
+  "break"
+  "continue"
+] @function
 ; script control keywords
 [
- "scn"
- "scriptname"
- "begin"
- "end"
- "if"
- "elseif"
- "else"
- "endif"
- "while"
- "foreach"
- "loop"
+  "scn"
+  "scriptname"
+  "begin"
+  "end"
+  "if"
+  "elseif"
+  "else"
+  "endif"
+  "while"
+  "foreach"
+  "loop"
 ] @keyword
 
 container: (identifier) @attribute
