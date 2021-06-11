@@ -15,42 +15,6 @@ ref takeitemlastobj
 ref tempbook
 ref tempowner
 
-short takeitemtype		; 1 ingred 2 potions 3 scrolls 4 sigil
-short takeitemactorvalue
-long takeitemeffect
-
-short showmenu
-short menuset
-short button
-short count
-short countTotal
-short diffstored
-short totalstored
-short currkey
-short tempi
-short tempo
-
-short ResetWeight
-short clearcontainer
-short resetFoodContainer
-short playeralchemylevel
-
-array_var books
-array_var arraydel
-short totalbooks
-short totaldel
-
-short iniscriptedbooks
-short iniscriptedkeys
-short iniscriptedgeneral
-short inibooksandnotes
-short ininoduplicatebooks
-short iniingredandfood
-short inipotionsandpoisons
-short inimenunumbers
-short iniunsafecontainers
-short iniownedcontainers
-
 Begin GameMode
 
 	If GetGameLoaded

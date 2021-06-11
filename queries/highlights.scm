@@ -1,7 +1,8 @@
-[
-  "break"
-  "continue"
-] @function
+; [
+;   "break"
+;   "continue"
+; ] @function
+function: (function) @function
 ; script control keywords
 [
   "scn"
