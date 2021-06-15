@@ -1322,11 +1322,17 @@
       ]
     },
     "condition": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_statement"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_eol"
+        }
+      ]
     },
     "conditional": {
       "type": "SEQ",
@@ -1349,42 +1355,32 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_eol"
-        },
-        {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "_statement"
-          }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "FIELD",
-            "name": "elseif",
-            "content": {
-              "type": "SYMBOL",
-              "name": "else_if"
-            }
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "else",
-              "content": {
+            "type": "CHOICE",
+            "members": [
+              {
                 "type": "SYMBOL",
-                "name": "else"
+                "name": "_statement"
+              },
+              {
+                "type": "FIELD",
+                "name": "elseif",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "else_if"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "else",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "else"
+                }
               }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+            ]
+          }
         },
         {
           "type": "ALIAS",
@@ -1445,10 +1441,6 @@
             "type": "SYMBOL",
             "name": "condition"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_eol"
         },
         {
           "type": "REPEAT",
@@ -1682,14 +1674,10 @@
           ]
         },
         {
-          "type": "FIELD",
-          "name": "argument",
+          "type": "REPEAT",
           "content": {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_operands"
-            }
+            "type": "SYMBOL",
+            "name": "_operands"
           }
         },
         {
@@ -1797,6 +1785,12 @@
     ],
     [
       "eval"
+    ],
+    [
+      "else"
+    ],
+    [
+      "else_if"
     ],
     [
       "testexpr"

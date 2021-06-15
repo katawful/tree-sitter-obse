@@ -491,7 +491,7 @@
         ]
       },
       "eval": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -511,7 +511,7 @@
         ]
       },
       "foreach": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -531,7 +531,7 @@
         ]
       },
       "if_block": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -551,7 +551,7 @@
         ]
       },
       "let": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -619,7 +619,7 @@
         ]
       },
       "set": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -639,7 +639,7 @@
         ]
       },
       "testexpr": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -649,7 +649,7 @@
         ]
       },
       "user": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -669,7 +669,7 @@
         ]
       },
       "while": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -719,7 +719,7 @@
         ]
       },
       "else": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -1786,52 +1786,6 @@
     "type": "function",
     "named": true,
     "fields": {
-      "argument": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "array_variable",
-            "named": true
-          },
-          {
-            "type": "float_num",
-            "named": true
-          },
-          {
-            "type": "function",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "user_function",
-            "named": true
-          }
-        ]
-      },
       "array_var": {
         "multiple": true,
         "required": false,

@@ -57,6 +57,8 @@ module.exports = grammar({
     [$.array_variable, $.identifier],
     [$._pre_operands],
     [$.eval],
+    [$.else],
+    [$.else_if],
     [$.testexpr],
     [$.while_loop],
     [$.foreach_loop],
@@ -325,15 +327,16 @@ module.exports = grammar({
       '^=',
     ),
 
-    condition: $ => repeat1($._statement),
+    condition: $ => seq($._statement, $._eol),
 
     conditional: $ => seq(
       caseInsensitive('if'),
       field('condition', $.condition),
-      $._eol,
-      repeat($._statement),
-      repeat(field('elseif', $.else_if)),
-      optional(field('else', $.else)),
+      repeat(choice(
+        $._statement,
+        field('elseif', $.else_if),
+        field('else', $.else),
+      )),
       caseInsensitive('endif'),
       $._eol,
     ),
@@ -346,7 +349,7 @@ module.exports = grammar({
     else_if: $ => seq(
       caseInsensitive('elseif'),
       field('condition', $.condition),
-      $._eol,
+      // $._eol,
       repeat($._statement),
     ),
 
@@ -2514,7 +2517,7 @@ module.exports = grammar({
         // caseInsensitive("TriggerPlayerSkillUseF"),
         // caseInsensitive("UpdateLocalMap"),
       ),
-      field("argument", repeat($._operands)),
+      repeat($._operands),
       optional($._eol),
     ),
 
