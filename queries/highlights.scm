@@ -21,4 +21,6 @@ function: (function) @function
 container: (identifier) @attribute
 source: (identifier) @attribute
 array: (identifier) @attribute
-
+string: (string) @string
+float: (float_num) @number
+integer: (integer) @number

@@ -340,7 +340,6 @@ module.exports = grammar({
       caseInsensitive('endif'),
       $._eol,
     ),
-
     else: $ => seq(
       caseInsensitive('else'),
       $._eol,
