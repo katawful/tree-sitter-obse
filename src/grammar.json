@@ -333,6 +333,10 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "_loop_ctrl"
+        },
+        {
           "type": "FIELD",
           "name": "function",
           "content": {
@@ -423,13 +427,17 @@
       ]
     },
     "_statement2": {
-      "type": "REPEAT1",
+      "type": "PREC_LEFT",
+      "value": 0,
       "content": {
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "_statement"
+            "type": "REPEAT1",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_statement"
+            }
           },
           {
             "type": "CHOICE",
@@ -1006,8 +1014,11 @@
             "type": "PREC",
             "value": -5,
             "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
+              "type": "REPEAT1",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_expression"
+              }
             }
           }
         },
@@ -1712,6 +1723,29 @@
         }
       ]
     },
+    "_loop_ctrl": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[bB][rR][eE][aA][kK]"
+          },
+          "named": false,
+          "value": "break"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[cC][oO][nN][tT][iI][nN][uU][eE]"
+          },
+          "named": false,
+          "value": "continue"
+        }
+      ]
+    },
     "user_function": {
       "type": "SEQ",
       "members": [
@@ -1785,15 +1819,29 @@
               },
               "named": false,
               "value": "RunBatchScript"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[sS][vV][__][DD][eE][sS][tT][rR][uU][cC][tT]"
+              },
+              "named": false,
+              "value": "sv_Destruct"
             }
           ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_operands"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_statement2"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },

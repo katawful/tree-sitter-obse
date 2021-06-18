@@ -1,12 +1,6 @@
 scn lSortYourShitQuestScript
 
 float fQuestDelaytime
-;global lSYSActionKey = 48 B 44 = z https://cs.elderscrolls.com/index.php?title=IsKeyPressed3
-;ref lSYSEffectContainerRef
-;ref lSYSEffectContainerCompareRef
-;lSYSDummyCell
-;lSYSDummyItem
-
 ref container
 ref iter
 ref tempobj

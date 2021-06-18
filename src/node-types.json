@@ -95,8 +95,16 @@
             "named": true
           },
           {
+            "type": "break",
+            "named": false
+          },
+          {
             "type": "conditional",
             "named": true
+          },
+          {
+            "type": "continue",
+            "named": false
           },
           {
             "type": "eval",
@@ -345,8 +353,16 @@
             "named": true
           },
           {
+            "type": "break",
+            "named": false
+          },
+          {
             "type": "conditional",
             "named": true
+          },
+          {
+            "type": "continue",
+            "named": false
           },
           {
             "type": "eval",
@@ -1746,12 +1762,32 @@
           }
         ]
       },
+      "eval": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "eval",
+            "named": true
+          }
+        ]
+      },
       "float": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "float_num",
+            "named": true
+          }
+        ]
+      },
+      "foreach": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "foreach_loop",
             "named": true
           }
         ]
@@ -1766,12 +1802,32 @@
           }
         ]
       },
+      "if_block": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "conditional",
+            "named": true
+          }
+        ]
+      },
       "integer": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "integer",
+            "named": true
+          }
+        ]
+      },
+      "let": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "let_statement",
             "named": true
           }
         ]
@@ -1834,12 +1890,42 @@
           }
         ]
       },
+      "set": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "set_statement",
+            "named": true
+          }
+        ]
+      },
       "string": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "testexpr": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "testexpr",
+            "named": true
+          }
+        ]
+      },
+      "user": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -1853,7 +1939,31 @@
             "named": true
           }
         ]
+      },
+      "while": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "while_loop",
+            "named": true
+          }
+        ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "unary_operator",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3682,6 +3792,14 @@
     "named": false
   },
   {
+    "type": "break",
+    "named": false
+  },
+  {
+    "type": "continue",
+    "named": false
+  },
+  {
     "type": "else",
     "named": false
   },
@@ -3759,6 +3877,10 @@
   },
   {
     "type": "string_var",
+    "named": false
+  },
+  {
+    "type": "sv_Destruct",
     "named": false
   },
   {

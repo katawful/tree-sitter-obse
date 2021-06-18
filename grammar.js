@@ -134,6 +134,7 @@ module.exports = grammar({
     _block_body: $ => field('statement', $._statement),
 
     _statement: $ => choice(
+      $._loop_ctrl,
       field('function', $.function),
       field('let', $.let_statement),
       field('set', $.set_statement),
@@ -145,10 +146,11 @@ module.exports = grammar({
       field('eval', prec.left($.eval)),
       field('testexpr', prec.left($.testexpr)),
     ),
-    _statement2: $ => repeat1(seq(
-      $._statement,
-      optional($._eol),
-    )),
+    _statement2: $ => prec.left(seq(
+      repeat1(
+        $._statement,
+      ),
+      optional($._eol))),
 
     _expression: $ => choice(
       $._operands,
@@ -250,7 +252,7 @@ module.exports = grammar({
     _array: $ => $.identifier,
     _array_key: $ => choice(
       field('index', prec(PREC.LITERAL, $._literal)),
-      field('index', prec(PREC.PLAIN, $._expression)),
+      field('index', prec(PREC.PLAIN, repeat1($._expression))),
       prec(PREC.SLICE_PAIR, field( 'slice', $.slice)),
     ),
     mem_access: $ => seq(
@@ -386,6 +388,11 @@ module.exports = grammar({
       repeat($._statement),
       caseInsensitive('loop'),
       $._eol,
+    ),
+
+    _loop_ctrl: $ => choice(
+      caseInsensitive("break"),
+      caseInsensitive("continue"),
     ),
 
     user_function: $ => seq(
@@ -2424,7 +2431,7 @@ module.exports = grammar({
         // caseInsensitive("sv_Compare"),
         // caseInsensitive("sv_Construct"),
         // caseInsensitive("sv_Count"),
-        // caseInsensitive("sv_Destruct"),
+        caseInsensitive("sv_Destruct"),
         // caseInsensitive("sv_Erase"),
         // caseInsensitive("sv_Find"),
         // caseInsensitive("sv_Insert"),
@@ -2526,7 +2533,7 @@ module.exports = grammar({
         // caseInsensitive("TriggerPlayerSkillUseF"),
         // caseInsensitive("UpdateLocalMap"),
       ),
-      repeat($._operands),
+      optional($._statement2),
       // optional($._eol),
     ),
 
