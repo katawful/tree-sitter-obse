@@ -1,8 +1,3 @@
-; [
-;   "break"
-;   "continue"
-; ] @function
-function: (function) @function
 ; script control keywords
 [
   "begin"
@@ -17,6 +12,8 @@ function: (function) @function
   "break"
   "continue"
 ] @keyword
+
+; statement
 [
  "set"
  "to"
@@ -28,6 +25,16 @@ function: (function) @function
  "^="
  "let"
 ] @constructor
+
+; punctuation
+[
+ ")"
+ "("
+ "["
+ "]"
+ "{"
+ "}"
+] @punctuation.bracket
 
 ; scriptname
 script_name: (script_name
@@ -46,6 +53,9 @@ script_name: (script_name
 ] @type
 variable: (identifier) @label
 
+; comment
+(comment) @comment
+
 ; block type
 block_type: (identifier) @label
 argument: (identifier) @parameter
@@ -61,3 +71,12 @@ array: (identifier) @attribute
 string: (string) @string
 float: (float_num) @number
 integer: (integer) @number
+
+; operators
+[
+ (binary_operator)
+ (unary_operator)
+ "."
+ "->"
+ "<-"
+] @operator

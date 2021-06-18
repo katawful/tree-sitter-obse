@@ -32,9 +32,9 @@ Begin function {test, test}
       let inibooksandnotes := 1
       let ininoduplicatebooks := 0
       let iniingredandfood := 1
-      let iter := 1
-      let inimenunumbers := 0 
-      let iniunsafecontainers := 0
+      let quest.iter := 1
+      let inimenunumbers := iter
+      let iniunsafecontainers := 0 + j
       let iniownedcontainers := 0
       PrintToConsole "SYS: Ini not found, using default values."
       let x := 1

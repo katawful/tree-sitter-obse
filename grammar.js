@@ -48,6 +48,7 @@ module.exports = grammar({
     [$._paren_expression, $._paren_operands],
     [$._paren_operands, $._expression],
     [$.user_function],
+    [$._plain],
     [$.function],
     [$.condition],
     [$.user_function, $.function],
@@ -166,8 +167,13 @@ module.exports = grammar({
       ')',
     ),
 
+    _plain: $ => choice(
+      field('plain', $.identifier),
+      field('variable', $.identifier),
+    ),
+
     _operands: $ => choice(
-      field('plain', prec(PREC.PLAIN, $.identifier)),
+      field('plain', prec(PREC.PLAIN, $._plain)),
       field('literal', prec(PREC.LITERAL, $._literal)),
       field('array_var', prec(PREC.ARRAY, $.array_variable)),
       prec(PREC.DOT, $._dot_object),
@@ -176,6 +182,20 @@ module.exports = grammar({
       field('option', $.opt),
     ),
     _paren_operands: $ => seq(
+      '(',
+      repeat($._operands),
+      ')',
+    ),
+    _operands2: $ => choice(
+      field('variable', prec(PREC.PLAIN, $.identifier)),
+      field('literal', prec(PREC.LITERAL, $._literal)),
+      field('array_var', prec(PREC.ARRAY, $.array_variable)),
+      prec(PREC.DOT, $._dot_object),
+      field('function', $.function),
+      field('user_function', $.user_function),
+      field('option', $.opt),
+    ),
+    _paren_operands2: $ => seq(
       '(',
       repeat($._operands),
       ')',
@@ -305,14 +325,14 @@ module.exports = grammar({
 
     set_statement: $ => seq(
       caseInsensitive('set'),
-      field('left', $._operands),
+      field('left', $._operands2),
       caseInsensitive('to'),
       $._pre_operands,
       $._eol,
     ),
     let_statement: $ => seq(
       caseInsensitive('let'),
-      field('left', $._operands),
+      field('left', $._operands2),
       $._let_assignment,
       $._pre_operands,
       $._eol,
