@@ -491,7 +491,7 @@
         ]
       },
       "eval": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -510,16 +510,6 @@
           }
         ]
       },
-      "foreach": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "foreach_loop",
-            "named": true
-          }
-        ]
-      },
       "function": {
         "multiple": true,
         "required": false,
@@ -530,32 +520,12 @@
           }
         ]
       },
-      "if_block": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "conditional",
-            "named": true
-          }
-        ]
-      },
       "integer": {
         "multiple": true,
         "required": false,
         "types": [
           {
             "type": "integer",
-            "named": true
-          }
-        ]
-      },
-      "let": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "let_statement",
             "named": true
           }
         ]
@@ -618,16 +588,6 @@
           }
         ]
       },
-      "set": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "set_statement",
-            "named": true
-          }
-        ]
-      },
       "string": {
         "multiple": true,
         "required": false,
@@ -639,7 +599,7 @@
         ]
       },
       "testexpr": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -649,7 +609,7 @@
         ]
       },
       "user": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -664,16 +624,6 @@
         "types": [
           {
             "type": "user_function",
-            "named": true
-          }
-        ]
-      },
-      "while": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "while_loop",
             "named": true
           }
         ]
@@ -719,7 +669,7 @@
         ]
       },
       "else": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -2758,6 +2708,11 @@
     "fields": {}
   },
   {
+    "type": "str_var",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "subscript",
     "named": true,
     "fields": {
@@ -3263,7 +3218,7 @@
             "named": true
           },
           {
-            "type": "string",
+            "type": "str_var",
             "named": true
           }
         ]
@@ -3313,7 +3268,7 @@
         "required": false,
         "types": [
           {
-            "type": "string",
+            "type": "str_var",
             "named": true
           }
         ]
@@ -3801,6 +3756,10 @@
   {
     "type": "string",
     "named": true
+  },
+  {
+    "type": "string_var",
+    "named": false
   },
   {
     "type": "testexpr",

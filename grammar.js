@@ -54,8 +54,12 @@ module.exports = grammar({
     [$.function, $._statement],
     [$._operands, $.user_function],
     [$._operands, $._array_key],
+    [$.condition, $._operands],
     [$.array_variable, $.identifier],
     [$._pre_operands],
+    [$.conditional],
+    [$.quest_var],
+    [$.reference_func],
     [$.eval],
     [$.else],
     [$.else_if],
@@ -92,7 +96,7 @@ module.exports = grammar({
     _type: $ => choice(
       field('type_int', $.int),
       field('type_float', $.float),
-      field('type_string', $.string),
+      field('type_string', $.str_var),
       field('type_array', $.array),
       field('type_ref', $.ref),
     ),
@@ -103,12 +107,13 @@ module.exports = grammar({
     ),
     ref: $ => caseInsensitive('ref'),
     float: $ => caseInsensitive('float'),
-    string: $ => caseInsensitive('string_var'),
+    str_var: $ => caseInsensitive('string_var'),
     array: $ => caseInsensitive('array_var'),
 
     block: $ => seq(
       caseInsensitive('begin'),
       field('block_type', $._block_type),
+      $._eol,
       repeat(field('block_body', $._block_body)),
       caseInsensitive('end'),
     ),
@@ -140,6 +145,10 @@ module.exports = grammar({
       field('eval', prec.left($.eval)),
       field('testexpr', prec.left($.testexpr)),
     ),
+    _statement2: $ => repeat1(seq(
+      $._statement,
+      optional($._eol),
+    )),
 
     _expression: $ => choice(
       $._operands,
@@ -208,12 +217,6 @@ module.exports = grammar({
       prec(PREC.LOGICAL_NOT, '!'),
     ),
 
-    // dot objects
-    // dot_object: $ => seq(
-    //   field('left', $.identifier),
-    //   token.immediate('.'),
-    //   field('right', $.identifier),
-    // ),
     _dot_object: $ => choice(
       field('quest_var', $.quest_var),
       field('ref_func', $.reference_func),
@@ -223,17 +226,20 @@ module.exports = grammar({
       field('quest', $.identifier),
       '.',
       field('variable', $.identifier),
+      optional($._eol),
     ),
 
     reference_func: $ => seq(
       field('reference', $.identifier),
       '.',
       field('function', $.function),
+      optional($._eol),
     ),
 
     opt: $ => seq(
       ',',
       field('option', prec.right($._operands)),
+      $._eol,
     ),
 
     // Array variables
@@ -327,35 +333,39 @@ module.exports = grammar({
       '^=',
     ),
 
-    condition: $ => seq($._statement, $._eol),
+    condition: $ => seq(repeat1(choice(
+      field('function', $.function),
+      prec.right($._expression),
+      field('user', $.user_function),
+      field('eval', prec.left($.eval)),
+      field('testexpr', prec.left($.testexpr)),
+    )),
+      $._eol,
+    ),
 
     conditional: $ => seq(
       caseInsensitive('if'),
       field('condition', $.condition),
-      repeat(choice(
-        $._statement,
-        field('elseif', $.else_if),
-        field('else', $.else),
-      )),
+      repeat($._statement2),
+      repeat(field('elseif', $.else_if)),
+      optional(field('else', $.else)),
       caseInsensitive('endif'),
-      $._eol,
+      // $._eol,
     ),
     else: $ => seq(
       caseInsensitive('else'),
       $._eol,
-      repeat($._statement),
+      repeat($._statement2),
     ),
     else_if: $ => seq(
       caseInsensitive('elseif'),
       field('condition', $.condition),
-      // $._eol,
-      repeat($._statement),
+      repeat1($._statement2),
     ),
 
     while_loop: $ => seq(
       caseInsensitive('while'),
       field('condition', $.condition),
-      $._eol,
       repeat($._statement),
       caseInsensitive('loop'),
       $._eol,
@@ -382,7 +392,7 @@ module.exports = grammar({
       caseInsensitive('Call'),
       field('user_function', $.identifier),
       repeat($._expression),
-      optional($._eol),
+      // optional($._eol),
     ),
 
     function: $ => seq(
@@ -2517,7 +2527,7 @@ module.exports = grammar({
         // caseInsensitive("UpdateLocalMap"),
       ),
       repeat($._operands),
-      optional($._eol),
+      // optional($._eol),
     ),
 
     identifier: $ => /[a-zA-Z_]\w*/,
