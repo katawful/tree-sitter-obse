@@ -44,6 +44,11 @@ script_name: (script_name
  "ref"
  "array_var"
 ] @type
+variable: (identifier) @label
+
+; block type
+block_type: (identifier) @label
+argument: (identifier) @parameter
 
 ; foreach
 container: (identifier) @attribute

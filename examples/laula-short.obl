@@ -9,7 +9,7 @@ ref takeitemlastobj
 ref tempbook
 ref tempowner
 
-Begin GameMode
+Begin function {test, test}
 
   If GetGameLoaded
 
@@ -32,7 +32,7 @@ Begin GameMode
       let inibooksandnotes := 1
       let ininoduplicatebooks := 0
       let iniingredandfood := 1
-      let inipotionsandpoisons := 1
+      let iter := 1
       let inimenunumbers := 0 
       let iniunsafecontainers := 0
       let iniownedcontainers := 0
