@@ -13,7 +13,7 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        plain: (identifier)
+        variable: (identifier)
         plain: (identifier))))
 
 ===================

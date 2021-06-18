@@ -35,6 +35,7 @@
  "{"
  "}"
 ] @punctuation.bracket
+"," @punctuation.delimiter
 
 ; scriptname
 script_name: (script_name

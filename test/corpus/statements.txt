@@ -13,7 +13,7 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        plain: (identifier)
+        variable: (identifier)
         plain: (identifier))))
 
 =============
@@ -34,17 +34,17 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         assignment: (assignment)
         plain: (identifier))
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         assignment: (assignment)
         plain: (identifier)
         integer: (integer)
         integer: (integer))
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         assignment: (assignment)
         string: (string))
       let: (let_statement

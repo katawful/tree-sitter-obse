@@ -13,7 +13,7 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         assignment: (assignment)
         plain: (identifier))))
 
@@ -33,7 +33,7 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         assignment: (assignment)
         plain: (identifier)
         (binary_operator)
@@ -41,7 +41,7 @@ end
         integer: (integer)
         plain: (identifier))
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         assignment: (assignment)
           plain: (identifier)
           (binary_operator)
@@ -66,22 +66,22 @@ end
     block_mode: (block
       block_type: (identifier)
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         compound: (compound_assignment)
         integer: (integer))
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         compound: (compound_assignment)
         integer: (integer))
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         compound: (compound_assignment)
         integer: (integer))
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         compound: (compound_assignment)
         integer: (integer))
       let: (let_statement
-        plain: (identifier)
+        variable: (identifier)
         compound: (compound_assignment)
         integer: (integer))))
