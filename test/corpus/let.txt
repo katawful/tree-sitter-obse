@@ -38,7 +38,7 @@ end
         plain: (identifier)
         (binary_operator)
         plain: (identifier)
-        literal: (literal)
+        integer: (integer)
         plain: (identifier))
       let: (let_statement
         plain: (identifier)
@@ -68,20 +68,20 @@ end
       let: (let_statement
         plain: (identifier)
         compound: (compound_assignment)
-        literal: (literal))
+        integer: (integer))
       let: (let_statement
         plain: (identifier)
         compound: (compound_assignment)
-        literal: (literal))
+        integer: (integer))
       let: (let_statement
         plain: (identifier)
         compound: (compound_assignment)
-        literal: (literal))
+        integer: (integer))
       let: (let_statement
         plain: (identifier)
         compound: (compound_assignment)
-        literal: (literal))
+        integer: (integer))
       let: (let_statement
         plain: (identifier)
         compound: (compound_assignment)
-        literal: (literal))))
+        integer: (integer))))

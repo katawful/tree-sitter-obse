@@ -18,9 +18,9 @@ end
         condition: (condition
           plain: (identifier)
           (binary_operator)
-          literal: (literal)
+          integer: (integer)
           (binary_operator)
-          literal: (literal))
+          integer: (integer))
         eval: (eval
           plain: (identifier)))))
 

@@ -55,16 +55,16 @@ end
       eval: (eval
         plain: (identifier)
         (binary_operator)
-        literal: (literal)
+        integer: (integer)
         (binary_operator)
         array_var: (array_variable
           array: (identifier)
           key: (subscript
-            index: (literal)))
+            integer: (integer)))
         (binary_operator)
-        dot: (dot_object
-          left: (identifier)
-          right: (identifier))
+        quest_var: (quest_var
+          quest: (identifier)
+          variable: (identifier))
         (binary_operator)
         plain: (identifier)
         plain: (identifier))))
@@ -86,18 +86,18 @@ end
       eval: (eval
           plain: (identifier)
           (binary_operator)
-          literal: (literal)
+          integer: (integer)
           (binary_operator)
           array_var: (array_variable
             array: (identifier)
             key: (subscript
-              index: (literal)))
+              integer: (integer)))
           (binary_operator)
-          literal: (literal)
+          integer: (integer)
           (binary_operator)
           plain: (identifier)
           plain: (identifier)
           (binary_operator)
-            dot: (dot_object
-              left: (identifier)
-              right: (identifier)))))
+            quest_var: (quest_var
+              quest: (identifier)
+              variable: (identifier)))))

@@ -31,9 +31,9 @@ end
     block_mode: (block
       block_type: (identifier)
       set: (set_statement
-        dot: (dot_object
-          left: (identifier)
-          right: (identifier))
+        quest_var: (quest_var
+          quest: (identifier)
+          variable: (identifier))
         plain: (identifier))))
 
 ===================
@@ -55,13 +55,13 @@ end
         array_var: (array_variable
           array: (identifier)
           key: (subscript
-            index: (literal)))
+            integer: (integer)))
         plain: (identifier))
       set: (set_statement
         array_var: (array_variable
           array: (identifier)
           key: (subscript
-            index: (literal))
+            string: (string))
           key: (subscript
-            index: (literal)))
+            integer: (integer)))
         plain: (identifier))))

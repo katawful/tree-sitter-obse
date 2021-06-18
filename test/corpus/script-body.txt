@@ -37,7 +37,7 @@ ref var
       type_float: (float)
       variable: (identifier))
     var_declaration: (var_declare
-      type_string: (string)
+      type_string: (str_var)
       variable: (identifier))
     var_declaration: (var_declare
       type_array: (array)

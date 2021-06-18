@@ -43,6 +43,7 @@ Begin GameMode
       let iniunsafecontainers := 0
       let iniownedcontainers := 0
       PrintToConsole "SYS: Ini not found, using default values."
+      let x := 1
     EndIf
 
   EndIf

@@ -392,7 +392,7 @@ module.exports = grammar({
       caseInsensitive('Call'),
       field('user_function', $.identifier),
       repeat($._expression),
-      // optional($._eol),
+      optional($._eol),
     ),
 
     function: $ => seq(

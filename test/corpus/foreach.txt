@@ -28,7 +28,7 @@ end
         source: (array_variable
           array: (identifier)
           key: (subscript
-            index: (literal)))
+            integer: (integer)))
         eval: (eval
           plain: (identifier)))
       foreach: (foreach_loop
@@ -36,7 +36,7 @@ end
         source: (array_variable
           array: (identifier)
           key: (subscript
-            index: (literal)))
+            string: (string)))
         eval: (eval
           plain: (identifier)))
       foreach: (foreach_loop
@@ -52,8 +52,8 @@ end
         source: (array_variable
           array: (identifier)
           key: (subscript
-            dot: (dot_object
-              left: (identifier)
-              right: (identifier))))
+            quest_var: (quest_var
+              quest: (identifier)
+              variable: (identifier))))
         eval: (eval
           plain: (identifier)))))

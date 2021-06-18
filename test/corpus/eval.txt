@@ -16,7 +16,7 @@ end
         array_var: (array_variable
           array: (identifier)
           key: (subscript
-            index: (literal)))
+            integer: (integer)))
         (binary_operator)
         plain: (identifier))))
 
@@ -38,6 +38,6 @@ end
         array_var: (array_variable
           array: (identifier)
           key: (subscript
-            index: (literal)))
+            integer: (integer)))
         (binary_operator)
         plain: (identifier))))

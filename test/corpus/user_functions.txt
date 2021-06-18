@@ -13,7 +13,7 @@ end
     block_mode: (block
       block_type: (identifier)
       user: (user_function
-        function: (identifier))))
+        user_function: (identifier))))
 
 =======================
 User function with args
@@ -31,10 +31,10 @@ end
     block_mode: (block
       block_type: (identifier)
       user: (user_function
-        function: (identifier)
+        user_function: (identifier)
         plain: (identifier)
-        literal: (literal))
+        integer: (integer))
       user: (user_function
-        function: (identifier)
+        user_function: (identifier)
         plain: (identifier)
-        literal: (literal))))
+        integer: (integer))))

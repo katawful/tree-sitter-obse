@@ -41,16 +41,16 @@ end
         plain: (identifier)
         assignment: (assignment)
         plain: (identifier)
-        literal: (literal)
-        literal: (literal))
+        integer: (integer)
+        integer: (integer))
       let: (let_statement
         plain: (identifier)
         assignment: (assignment)
-        literal: (literal))
+        string: (string))
       let: (let_statement
         array_var: (array_variable
           array: (identifier)
           member_access: (mem_access
             key: (identifier)))
         assignment: (assignment)
-        literal: (literal))))
+        string: (string))))
