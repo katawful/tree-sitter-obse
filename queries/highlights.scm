@@ -70,9 +70,7 @@ source: (identifier) @attribute
 
 ; variable types
 array: (identifier) @variable
-quest_var: (quest_var
-  quest: (identifier) @namespace
-)
+key: (identifier) @label
 
 ; literals
 string: (string) @string
@@ -90,8 +88,9 @@ integer: (integer) @number
 ] @operator
 
 ; functions
-function: (function) @function.builtin
+function: (identifier) @function.builtin
 user_function: (identifier) @function
-ref_func: (reference_func
-  reference: (identifier) @label)
 option: (opt) @attribute
+
+; top level items
+plain: (identifier) @label

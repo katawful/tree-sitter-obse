@@ -107,6 +107,10 @@
             "named": false
           },
           {
+            "type": "dot_object",
+            "named": true
+          },
+          {
             "type": "eval",
             "named": true
           },
@@ -116,10 +120,6 @@
           },
           {
             "type": "foreach_loop",
-            "named": true
-          },
-          {
-            "type": "function",
             "named": true
           },
           {
@@ -136,14 +136,6 @@
           },
           {
             "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
             "named": true
           },
           {
@@ -229,7 +221,7 @@
         "required": false,
         "types": [
           {
-            "type": "function",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -302,26 +294,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "set": {
         "multiple": true,
         "required": false,
@@ -365,6 +337,10 @@
             "named": false
           },
           {
+            "type": "dot_object",
+            "named": true
+          },
+          {
             "type": "eval",
             "named": true
           },
@@ -374,10 +350,6 @@
           },
           {
             "type": "foreach_loop",
-            "named": true
-          },
-          {
-            "type": "function",
             "named": true
           },
           {
@@ -394,14 +366,6 @@
           },
           {
             "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
             "named": true
           },
           {
@@ -470,16 +434,6 @@
           }
         ]
       },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "while": {
         "multiple": true,
         "required": false,
@@ -541,7 +495,7 @@
         "required": false,
         "types": [
           {
-            "type": "function",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -594,26 +548,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "string": {
         "multiple": true,
         "required": false,
@@ -653,16 +587,6 @@
             "named": true
           }
         ]
-      },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -671,6 +595,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -759,7 +687,7 @@
         "required": false,
         "types": [
           {
-            "type": "function",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -832,26 +760,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "set": {
         "multiple": true,
         "required": false,
@@ -902,16 +810,6 @@
           }
         ]
       },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "while": {
         "multiple": true,
         "required": false,
@@ -932,10 +830,40 @@
           "named": true
         },
         {
+          "type": "dot_object",
+          "named": true
+        },
+        {
           "type": "unary_operator",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "dot_object",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -987,7 +915,7 @@
         "required": false,
         "types": [
           {
-            "type": "function",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -1060,26 +988,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "set": {
         "multiple": true,
         "required": false,
@@ -1130,16 +1038,6 @@
           }
         ]
       },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "while": {
         "multiple": true,
         "required": false,
@@ -1157,6 +1055,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -1225,7 +1127,7 @@
         "required": false,
         "types": [
           {
-            "type": "function",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -1298,26 +1200,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "set": {
         "multiple": true,
         "required": false,
@@ -1368,16 +1250,6 @@
           }
         ]
       },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "while": {
         "multiple": true,
         "required": false,
@@ -1395,6 +1267,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -1424,16 +1300,6 @@
         "types": [
           {
             "type": "float_num",
-            "named": true
-          }
-        ]
-      },
-      "function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
             "named": true
           }
         ]
@@ -1486,26 +1352,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "string": {
         "multiple": true,
         "required": false,
@@ -1525,16 +1371,6 @@
             "named": true
           }
         ]
-      },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -1543,6 +1379,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -1625,7 +1465,7 @@
         "required": false,
         "types": [
           {
-            "type": "function",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -1694,26 +1534,6 @@
         "types": [
           {
             "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
             "named": true
           }
         ]
@@ -1782,16 +1602,6 @@
           }
         ]
       },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "while": {
         "multiple": true,
         "required": false,
@@ -1812,231 +1622,7 @@
           "named": true
         },
         {
-          "type": "unary_operator",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function",
-    "named": true,
-    "fields": {
-      "array_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "array_variable",
-            "named": true
-          }
-        ]
-      },
-      "eval": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "eval",
-            "named": true
-          }
-        ]
-      },
-      "float": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "float_num",
-            "named": true
-          }
-        ]
-      },
-      "foreach": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "foreach_loop",
-            "named": true
-          }
-        ]
-      },
-      "function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
-            "named": true
-          }
-        ]
-      },
-      "if_block": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "conditional",
-            "named": true
-          }
-        ]
-      },
-      "integer": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "integer",
-            "named": true
-          }
-        ]
-      },
-      "let": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "let_statement",
-            "named": true
-          }
-        ]
-      },
-      "literal": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "float_num",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      },
-      "option": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "opt",
-            "named": true
-          }
-        ]
-      },
-      "plain": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
-      "set": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "set_statement",
-            "named": true
-          }
-        ]
-      },
-      "string": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      },
-      "testexpr": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "testexpr",
-            "named": true
-          }
-        ]
-      },
-      "user": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "user_function",
-            "named": true
-          }
-        ]
-      },
-      "user_function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "user_function",
-            "named": true
-          }
-        ]
-      },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "while": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "while_loop",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "binary_operator",
+          "type": "dot_object",
           "named": true
         },
         {
@@ -2060,6 +1646,16 @@
     "type": "let_statement",
     "named": true,
     "fields": {
+      "array": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_variable",
+            "named": true
+          }
+        ]
+      },
       "array_var": {
         "multiple": true,
         "required": false,
@@ -2100,16 +1696,6 @@
           }
         ]
       },
-      "function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
-            "named": true
-          }
-        ]
-      },
       "integer": {
         "multiple": true,
         "required": false,
@@ -2129,39 +1715,11 @@
             "named": true
           },
           {
-            "type": "float_num",
-            "named": true
-          },
-          {
-            "type": "function",
+            "type": "dot_object",
             "named": true
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "user_function",
             "named": true
           }
         ]
@@ -2204,26 +1762,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "right": {
         "multiple": true,
         "required": false,
@@ -2233,11 +1771,11 @@
             "named": true
           },
           {
-            "type": "float_num",
+            "type": "dot_object",
             "named": true
           },
           {
-            "type": "function",
+            "type": "float_num",
             "named": true
           },
           {
@@ -2250,14 +1788,6 @@
           },
           {
             "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
             "named": true
           },
           {
@@ -2291,7 +1821,7 @@
         ]
       },
       "variable": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -2307,6 +1837,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -2398,16 +1932,6 @@
           }
         ]
       },
-      "function": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
-            "named": true
-          }
-        ]
-      },
       "integer": {
         "multiple": false,
         "required": false,
@@ -2445,11 +1969,11 @@
             "named": true
           },
           {
-            "type": "float_num",
+            "type": "dot_object",
             "named": true
           },
           {
-            "type": "function",
+            "type": "float_num",
             "named": true
           },
           {
@@ -2465,14 +1989,6 @@
             "named": true
           },
           {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
-            "named": true
-          },
-          {
             "type": "string",
             "named": true
           },
@@ -2483,31 +1999,11 @@
         ]
       },
       "plain": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
             "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "quest_var": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
             "named": true
           }
         ]
@@ -2531,42 +2027,6 @@
             "named": true
           }
         ]
-      },
-      "variable": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "quest_var",
-    "named": true,
-    "fields": {
-      "quest": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "variable": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     }
   },
@@ -2574,32 +2034,6 @@
     "type": "ref",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "reference_func",
-    "named": true,
-    "fields": {
-      "function": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "function",
-            "named": true
-          }
-        ]
-      },
-      "reference": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
   },
   {
     "type": "script_declarator",
@@ -2686,6 +2120,16 @@
     "type": "set_statement",
     "named": true,
     "fields": {
+      "array": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "array_variable",
+            "named": true
+          }
+        ]
+      },
       "array_var": {
         "multiple": true,
         "required": false,
@@ -2702,16 +2146,6 @@
         "types": [
           {
             "type": "float_num",
-            "named": true
-          }
-        ]
-      },
-      "function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
             "named": true
           }
         ]
@@ -2735,39 +2169,11 @@
             "named": true
           },
           {
-            "type": "float_num",
-            "named": true
-          },
-          {
-            "type": "function",
+            "type": "dot_object",
             "named": true
           },
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          },
-          {
-            "type": "user_function",
             "named": true
           }
         ]
@@ -2810,26 +2216,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "right": {
         "multiple": true,
         "required": false,
@@ -2839,11 +2225,11 @@
             "named": true
           },
           {
-            "type": "float_num",
+            "type": "dot_object",
             "named": true
           },
           {
-            "type": "function",
+            "type": "float_num",
             "named": true
           },
           {
@@ -2856,14 +2242,6 @@
           },
           {
             "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
             "named": true
           },
           {
@@ -2897,7 +2275,7 @@
         ]
       },
       "variable": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
@@ -2913,6 +2291,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -2977,16 +2359,6 @@
           }
         ]
       },
-      "function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
-            "named": true
-          }
-        ]
-      },
       "index": {
         "multiple": true,
         "required": false,
@@ -3008,11 +2380,11 @@
             "named": true
           },
           {
-            "type": "float_num",
+            "type": "dot_object",
             "named": true
           },
           {
-            "type": "function",
+            "type": "float_num",
             "named": true
           },
           {
@@ -3025,14 +2397,6 @@
           },
           {
             "type": "opt",
-            "named": true
-          },
-          {
-            "type": "quest_var",
-            "named": true
-          },
-          {
-            "type": "reference_func",
             "named": true
           },
           {
@@ -3097,26 +2461,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "slice": {
         "multiple": false,
         "required": false,
@@ -3146,16 +2490,6 @@
             "named": true
           }
         ]
-      },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     }
   },
@@ -3179,16 +2513,6 @@
         "types": [
           {
             "type": "float_num",
-            "named": true
-          }
-        ]
-      },
-      "function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
             "named": true
           }
         ]
@@ -3241,26 +2565,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "string": {
         "multiple": true,
         "required": false,
@@ -3280,16 +2584,6 @@
             "named": true
           }
         ]
-      },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -3298,6 +2592,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -3336,16 +2634,6 @@
           }
         ]
       },
-      "function": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "function",
-            "named": true
-          }
-        ]
-      },
       "integer": {
         "multiple": true,
         "required": false,
@@ -3394,26 +2682,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "string": {
         "multiple": true,
         "required": false,
@@ -3437,16 +2705,6 @@
             "named": true
           }
         ]
-      },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -3455,6 +2713,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -3615,7 +2877,7 @@
         "required": false,
         "types": [
           {
-            "type": "function",
+            "type": "identifier",
             "named": true
           }
         ]
@@ -3688,26 +2950,6 @@
           }
         ]
       },
-      "quest_var": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "quest_var",
-            "named": true
-          }
-        ]
-      },
-      "ref_func": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "reference_func",
-            "named": true
-          }
-        ]
-      },
       "set": {
         "multiple": true,
         "required": false,
@@ -3758,16 +3000,6 @@
           }
         ]
       },
-      "variable": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
       "while": {
         "multiple": true,
         "required": false,
@@ -3785,6 +3017,10 @@
       "types": [
         {
           "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "dot_object",
           "named": true
         },
         {
@@ -3923,18 +3159,6 @@
     "named": false
   },
   {
-    "type": "FileExists",
-    "named": false
-  },
-  {
-    "type": "PrintToConsole",
-    "named": false
-  },
-  {
-    "type": "RunBatchScript",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -4048,10 +3272,6 @@
   },
   {
     "type": "string_var",
-    "named": false
-  },
-  {
-    "type": "sv_Destruct",
     "named": false
   },
   {
