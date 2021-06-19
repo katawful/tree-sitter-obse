@@ -87,6 +87,26 @@
             "named": false
           },
           {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
             "type": "array_variable",
             "named": true
           },
@@ -221,7 +241,71 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -314,6 +398,26 @@
           },
           {
             "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
             "named": false
           },
           {
@@ -495,7 +599,71 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -687,7 +855,71 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -915,7 +1147,71 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -1127,7 +1423,71 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -1304,6 +1664,80 @@
           }
         ]
       },
+      "function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
       "integer": {
         "multiple": true,
         "required": false,
@@ -1465,7 +1899,71 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -1696,6 +2194,80 @@
           }
         ]
       },
+      "function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
       "integer": {
         "multiple": true,
         "required": false,
@@ -1767,7 +2339,39 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
             "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
             "named": true
           },
           {
@@ -1792,6 +2396,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
             "named": true
           },
           {
@@ -1913,7 +2521,7 @@
     "named": true,
     "fields": {
       "array_var": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -1923,49 +2531,53 @@
         ]
       },
       "float": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "float_num",
-            "named": true
-          }
-        ]
-      },
-      "integer": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "integer",
-            "named": true
-          }
-        ]
-      },
-      "literal": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "float_num",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      },
-      "option": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
+          {
+            "type": "float_num",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
           {
             "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
             "named": true
           },
           {
@@ -1993,13 +2605,119 @@
             "named": true
           },
           {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
+      "integer": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "integer",
+            "named": true
+          }
+        ]
+      },
+      "literal": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "option": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
             "type": "user_function",
             "named": true
           }
         ]
       },
       "plain": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -2009,7 +2727,7 @@
         ]
       },
       "string": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -2019,7 +2737,7 @@
         ]
       },
       "user_function": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -2150,6 +2868,80 @@
           }
         ]
       },
+      "function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
       "integer": {
         "multiple": true,
         "required": false,
@@ -2221,7 +3013,39 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
             "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
             "named": true
           },
           {
@@ -2246,6 +3070,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
             "named": true
           },
           {
@@ -2359,6 +3187,80 @@
           }
         ]
       },
+      "function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
       "index": {
         "multiple": true,
         "required": false,
@@ -2369,6 +3271,26 @@
           },
           {
             "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
             "named": false
           },
           {
@@ -2517,6 +3439,80 @@
           }
         ]
       },
+      "function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
+            "named": true
+          }
+        ]
+      },
       "integer": {
         "multiple": true,
         "required": false,
@@ -2630,6 +3626,80 @@
         "types": [
           {
             "type": "float_num",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -2877,7 +3947,71 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "Activate",
+            "named": false
+          },
+          {
+            "type": "AddAchievement",
+            "named": false
+          },
+          {
+            "type": "AddFlames",
+            "named": false
+          },
+          {
+            "type": "AddItem",
+            "named": false
+          },
+          {
+            "type": "AddScriptPackage",
+            "named": false
+          },
+          {
+            "type": "array_variable",
+            "named": true
+          },
+          {
+            "type": "binary_operator",
+            "named": true
+          },
+          {
+            "type": "dot_object",
+            "named": true
+          },
+          {
+            "type": "float_num",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "opt",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "unary_operator",
+            "named": true
+          },
+          {
+            "type": "user_function",
             "named": true
           }
         ]
@@ -3156,6 +4290,26 @@
   },
   {
     "type": ">>",
+    "named": false
+  },
+  {
+    "type": "Activate",
+    "named": false
+  },
+  {
+    "type": "AddAchievement",
+    "named": false
+  },
+  {
+    "type": "AddFlames",
+    "named": false
+  },
+  {
+    "type": "AddItem",
+    "named": false
+  },
+  {
+    "type": "AddScriptPackage",
     "named": false
   },
   {
