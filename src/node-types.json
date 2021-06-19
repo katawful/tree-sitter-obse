@@ -2925,7 +2925,28 @@
   {
     "type": "slice",
     "named": true,
-    "fields": {}
+    "fields": {
+      "float": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "float_num",
+            "named": true
+          }
+        ]
+      },
+      "integer": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "integer",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "str_var",
@@ -3902,10 +3923,6 @@
     "named": false
   },
   {
-    "type": "Call",
-    "named": false
-  },
-  {
     "type": "FileExists",
     "named": false
   },
@@ -3943,6 +3960,10 @@
   },
   {
     "type": "break",
+    "named": false
+  },
+  {
+    "type": "call",
     "named": false
   },
   {

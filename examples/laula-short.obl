@@ -14,6 +14,7 @@ Begin function {test, test}
   If GetGameLoaded
 
     Set fQuestDelayTime to 0.1
+    Call func "string"
 
     If FileExists "Data\ini\lSortYourStuff.ini" 
       RunBatchScript "Data\ini\lSortYourStuff.ini" 
@@ -24,14 +25,16 @@ Begin function {test, test}
       PrintToConsole "SYS: Settings loaded from ini."
     ElseIf FileExists "Data\lSortYourStuff.ini" 
       RunBatchScript "Data\lSortYourStuff.ini" 
-      PrintToConsole "SYS: Settings loaded from ini."
+      PrintToConsole "SYS: Settings loaded from ini.", jklf
+      eval x + y
     Else
       let iniscriptedbooks := 1
-      let	iniscriptedkeys := 1
-      ;let iniscriptedgeneral := 1
-      let inibooksandnotes := 1
-      let ininoduplicatebooks := 0
-      let iniingredandfood := 1
+      ar_Append aResSpell StandardCurePoisonApprentice    ; Cure Poison
+      ar_Append aResSpell StandardFortifyAttribIntelligence2Apprentice ; Fortify Intelligence
+      ar_Append aResSpell StandardFortifyHealth2Apprentice        ; Fortify Apprentice
+      ar_Append aResSpell StandardRestoreFatigue1Novice   ; Restore Fatigue
+      ar_Append aResSpell StandardRestoreHealth2Apprentice        ; Restore Apprentice
+      let iniingredandfood := array[1:2]
       let quest.iter := 1
       let inimenunumbers := iter
       let iniunsafecontainers := 0 + j

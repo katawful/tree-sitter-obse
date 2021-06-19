@@ -1,5 +1,7 @@
 ; script control keywords
 [
+  "eval"
+  "testexpr"
   "begin"
   "end"
   "if"
@@ -11,6 +13,7 @@
   "loop"
   "break"
   "continue"
+  "call"
 ] @keyword
 
 ; statement
@@ -52,7 +55,7 @@ script_name: (script_name
  "ref"
  "array_var"
 ] @type
-variable: (identifier) @label
+variable: (identifier) @variable
 
 ; comment
 (comment) @comment
@@ -66,11 +69,14 @@ container: (identifier) @attribute
 source: (identifier) @attribute
 
 ; variable types
-array: (identifier) @attribute
+array: (identifier) @variable
+quest_var: (quest_var
+  quest: (identifier) @namespace
+)
 
 ; literals
 string: (string) @string
-float: (float_num) @number
+float: (float_num) @float
 integer: (integer) @number
 
 ; operators
@@ -80,4 +86,12 @@ integer: (integer) @number
  "."
  "->"
  "<-"
+ ":"
 ] @operator
+
+; functions
+function: (function) @function.builtin
+user_function: (identifier) @function
+ref_func: (reference_func
+  reference: (identifier) @label)
+option: (opt) @attribute

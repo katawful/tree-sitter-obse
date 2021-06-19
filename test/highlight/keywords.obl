@@ -1,3 +1,34 @@
 scn scriptname
 ; ^ keyword
 
+float fQuestDelaytime
+; ^ type
+;      ^ variable
+
+Begin function {test, test}
+; ^ keyword
+;      ^ label
+;              ^ punctuation.bracket
+;                ^ parameter
+;                   ^ punctuation.delimiter
+;                       ^ parameter
+;                         ^ punctuation.bracket
+
+  If GetGameLoaded
+; ^ keyword
+    Set fQuestDelayTime to 0.1
+    ; <- constructor
+    ;    ^ variable
+    ;                   ^ constructor
+    ;                      ^ float
+    If FileExists "string" 
+    ;^ keyword
+       ^
+      RunBatchScript "string" 
+    Else
+      let var := 1
+    EndIf
+
+  EndIf
+
+End
