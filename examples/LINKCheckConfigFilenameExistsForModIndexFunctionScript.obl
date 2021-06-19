@@ -12,7 +12,7 @@ short found
 
 Begin Function { modindex }
 
-  let filename := GetNthModName modindex
+  let filename := Activate modindex
   set cfgfilename to Call LINKGetFilenameTypeForModFilenameFunctionScript filename "cfg"
 
   let cfgfilenamedata := "Data\" + cfgfilename

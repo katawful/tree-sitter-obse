@@ -13,53 +13,57 @@ array_var aMenuDef
 array_var aButtonItem
 
 begin Function { aThisFO, aParam }
-	let aActiveEffect := aThisFO->ActiveEffect
-	let aMenuDef := ar_Construct StringMap
+  let aActiveEffect := aThisFO->ActiveEffect
+  let aMenuDef := ar_Construct StringMap
 
-	let aMenuDef->Text := Call rsFormatActiveEffectInfoFS aActiveEffect
-	let aMenuDef->LogEntry := aMenuDef->Text
+  let aMenuDef->Text := Call rsFormatActiveEffectInfoFS aActiveEffect
+  let aMenuDef->LogEntry := aMenuDef->Text
 
-	let aMenuDef->Buttons := ar_Construct Array
+  let aMenuDef->Buttons := ar_Construct Array
 
-	; If this active effect is the result of a spell cast on the target by someone else,
-	; provide a link to the actor who cast it.
-	if eval ( aActiveEffect->CasterRef != aActiveEffect->TargetRef )
-		let aButtonItem := ar_Construct StringMap
-		let aButtonItem->Label := "Caster >"
-		let aButtonItem->HandlerFO := ar_Map "FOS"::rsRefInfoMenuOpenButtonHandlerFOS
-		let aButtonItem->HandlerFO->TargetRef := aActiveEffect->CasterRef
-		ar_Append aMenuDef->Buttons, aButtonItem
-	endif
+  ; If this active effect is the result of a spell cast on the target by someone else,
+  ; provide a link to the actor who cast it.
+  if eval ( aActiveEffect->CasterRef != aActiveEffect->TargetRef )
+    let aButtonItem := ar_Construct StringMap
+    let aButtonItem->Label := "Caster >"
+    let aButtonItem->HandlerFO := ar_Map "FOS"::rsRefInfoMenuOpenButtonHandlerFOS
+    let aButtonItem->HandlerFO->TargetRef := aActiveEffect->CasterRef
+    ar_Append aMenuDef->Buttons, aButtonItem
+  endif
 
-	; If this active effect is caused by equipping an enchanted object, provide a link to the object
-	if eval ( aActiveEffect->EnchantObject )
-		let aButtonItem := ar_Construct StringMap
-		let aButtonItem->Label := "Enchanted Object >"
-		let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
-		let aButtonItem->HandlerFO->TargetBase := aActiveEffect->EnchantObject
-		ar_Append aMenuDef->Buttons, aButtonItem
-	endif
+  ; If this active effect is caused by equipping an enchanted object, provide a link to the object
+  if eval ( aActiveEffect->EnchantObject )
+    let aButtonItem := ar_Construct StringMap
+    let aButtonItem->Label := "Enchanted Object >"
+    let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
+    let aButtonItem->HandlerFO->TargetBase := aActiveEffect->EnchantObject
+    ar_Append aMenuDef->Buttons, aButtonItem
+  endif
 
-	; If this active effect summons bound equipment or a creature, provide a link to it
-	if eval ( ar_HasKey aActiveEffect, "BoundWeapon" )
-		let aButtonItem := ar_Construct StringMap
-		let aButtonItem->Label := "Bound Weapon >"
-		let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
-		let aButtonItem->HandlerFO->TargetBase := aActiveEffect->BoundWeapon
-		ar_Append aMenuDef->Buttons, aButtonItem
-	elseif eval ( ar_HasKey aActiveEffect, "BoundArmor" )
-		let aButtonItem := ar_Construct StringMap
-		let aButtonItem->Label := "Bound Armor >"
-		let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
-		let aButtonItem->HandlerFO->TargetBase := aActiveEffect->BoundArmor
-		ar_Append aMenuDef->Buttons, aButtonItem
-	elseif eval ( ar_HasKey aActiveEffect, "SummonedCreature" )
-		let aButtonItem := ar_Construct StringMap
-		let aButtonItem->Label := "Summoned Creature >"
-		let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
-		let aButtonItem->HandlerFO->TargetBase := aActiveEffect->SummonedCreature
-		ar_Append aMenuDef->Buttons, aButtonItem
-	endif
+  ; If this active effect summons bound equipment or a creature, provide a link to it
+  if eval ( ar_HasKey aActiveEffect, "BoundWeapon" )
+    let aButtonItem := ar_Construct StringMap
+    let aButtonItem->Label := "Bound Weapon >"
+    let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
+    let aButtonItem->HandlerFO->TargetBase := aActiveEffect->BoundWeapon
+    ar_Append aMenuDef->Buttons, aButtonItem
+  elseif eval ( ar_HasKey aActiveEffect, "BoundArmor" )
+    let aButtonItem := ar_Construct StringMap
+    let aButtonItem->Label := "Bound Armor >"
+    let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
+    let aButtonItem->HandlerFO->TargetBase := aActiveEffect->BoundArmor
+    ar_Append aMenuDef->Buttons, aButtonItem
+  elseif eval ( ar_HasKey aActiveEffect, "SummonedCreature" )
+    let aButtonItem := ar_Construct StringMap
+    let aButtonItem->Label := "Summoned Creature >"
+    let aButtonItem->HandlerFO := ar_Map "FOS"::rsBaseInfoMenuOpenButtonHandlerFOS
+    let aButtonItem->HandlerFO->TargetBase := aActiveEffect->SummonedCreature
+    ar_append aMenuDef->Buttons, aButtonItem
+  endif
+  ;comm
+  let array[1] := array->2
+  let x := "test"::jlk
+  let jkljfsd.jklfds := 3
 
-	SetFunctionValue aMenuDef
+  SetFunctionValue aMenuDef
 end
