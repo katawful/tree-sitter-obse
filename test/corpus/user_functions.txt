@@ -1,40 +1,37 @@
-=============
+================================================================================
 User function
-=============
+================================================================================
 scn scriptname
 begin blockmode
   Call func
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      user: (user_function
-        user_function: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)))
 
-=======================
+================================================================================
 User function with args
-=======================
+================================================================================
 scn scriptname
 begin blockmode
   Call func arg 1
   Call func (arg 1)
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      user: (user_function
-        user_function: (identifier)
-        plain: (identifier)
-        integer: (integer))
-      user: (user_function
-        user_function: (identifier)
-        plain: (identifier)
-        integer: (integer))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))

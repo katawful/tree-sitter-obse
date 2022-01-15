@@ -1,67 +1,58 @@
-===================
+================================================================================
 Left plain variable
-===================
+================================================================================
 scn scriptname
 begin blockmode
 set x to y
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      set: (set_statement
-        variable: (identifier)
-        plain: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)))
 
-===================
+================================================================================
 Left quest variable
-===================
+================================================================================
 scn scriptname
 begin blockmode
 set quest.x to y
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      set: (set_statement
-        quest_var: (quest_var
-          quest: (identifier)
-          variable: (identifier))
-        plain: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))
 
-===================
+================================================================================
 Left array variable
-===================
+================================================================================
 scn scriptname
 begin blockmode
 set array[1] to y
 set array["x"][1] to y
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      set: (set_statement
-        array_var: (array_variable
-          array: (identifier)
-          key: (subscript
-            integer: (integer)))
-        plain: (identifier))
-      set: (set_statement
-        array_var: (array_variable
-          array: (identifier)
-          key: (subscript
-            string: (string))
-          key: (subscript
-            integer: (integer)))
-        plain: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (string)
+    (identifier)))

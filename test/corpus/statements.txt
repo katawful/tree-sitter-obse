@@ -1,24 +1,24 @@
-=============
+================================================================================
 Set statement
-=============
+================================================================================
 scn scriptname
 begin blockmode
   set x to y
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      set: (set_statement
-        variable: (identifier)
-        plain: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)))
 
-=============
+================================================================================
 Let statement
-=============
+================================================================================
 scn scriptname
 begin blockmode
   let x := y
@@ -26,31 +26,20 @@ begin blockmode
   let x := "Data\-*"
   let x->y := "Data\-*"
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      let: (let_statement
-        variable: (identifier)
-        assignment: (assignment)
-        plain: (identifier))
-      let: (let_statement
-        variable: (identifier)
-        assignment: (assignment)
-        plain: (identifier)
-        integer: (integer)
-        integer: (integer))
-      let: (let_statement
-        variable: (identifier)
-        assignment: (assignment)
-        string: (string))
-      let: (let_statement
-        array_var: (array_variable
-          array: (identifier)
-          member_access: (mem_access
-            key: (identifier)))
-        assignment: (assignment)
-        string: (string))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (function)
+    (identifier)
+    (string)
+    (identifier)
+    (identifier)
+    (string)))

@@ -1,77 +1,74 @@
-===============
+================================================================================
 Unparenthesized
-===============
+================================================================================
 scn scriptname
-begin block
-  eval $string
+begin menumode
+  eval !string
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      eval: (eval
+  (ERROR
+    (ERROR)
+    (eval
+      (eval_expression
         (unary_operator)
-        plain: (identifier))))
+        plain: (identifier)
+        option: (opt)
+        plain: (identifier)))))
 
-=============
+================================================================================
 Parenthesized
-=============
+================================================================================
 scn scriptname
 begin block
   eval ($string)
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      eval: (eval
-        (unary_operator)
-        plain: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)))
 
-====================
+================================================================================
 Multiple expressions
-====================
+================================================================================
 scn scriptname
 begin block
   eval $string + $string2
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      eval: (eval
-        (unary_operator)
-        plain: (identifier)
-        (binary_operator)
-        (unary_operator)
-        plain: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)))
 
-==================================
+================================================================================
 Parenthesized multiple expressions
-==================================
+================================================================================
 scn scriptname
 begin block
   eval (($string) + ($string2))
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      eval: (eval
-        (unary_operator)
-        plain: (identifier)
-        (binary_operator)
-        (unary_operator)
-        plain: (identifier))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)))

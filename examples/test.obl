@@ -1,103 +1,11 @@
 scn scriptname
-begin blockmode
-  ref.GetName
-  ref.getname
-  ref.ACos
-      ref.ACos
-      ref.AHammerKey
-      ref.ASin
-      ref.ATan
-      ref.ATan2
-      ref.AVString
-      ref.Abs
-      ref.Activate2
-      ref.ActorValueToCode
-      ref.ActorValueToString
-      ref.ActorValueToStringC
-      ref.AddEffectItem
-      ref.AddEffectItemC
-      ref.AddFullEffectItem
-      ref.AddFullEffectItemC
-      ref.AddItemNS
-      ref.AddMagicEffectCounter
-      ref.AddMagicEffectCounterC
-      ref.AddSpellNS
-      ref.AddToLeveledList
-      ref.AnimPathIncludes
-      ref.AppendToName
-      ref.AsciiToChar
-      ref.CalcLevItemNR
-      ref.CalcLevItems
-      ref.CalcLeveledItem
-      ref.Call
-      ref.CanCastPower
-      ref.CanCorpseCheck
-      ref.CanFastTravelFromWorld
-      ref.CanTravelToMapMarker
-      ref.Ceil
-      ref.CharToAscii
-      ref.ClearActiveQuest
-      ref.ClearHotKey
-      ref.ClearLeveledList
-      ref.ClearOwnershipT
-      ref.ClearPlayersLastRiddenHorse
-      ref.ClickMenuButton
-      ref.CloneForm
-      ref.CloseAllMenus
-      ref.CloseTextInput
-      ref.ColVec
-      ref.CompareFemaleBipedPath
-      ref.CompareFemaleGroundPath
-      ref.CompareFemaleIconPath
-      ref.CompareIconPath
-      ref.CompareMaleBipedPath
-      ref.CompareMaleGroundPath
-      ref.CompareMaleIconPath
-      ref.CompareModelPath
-      ref.CompareName
-      ref.CompareNames
-      ref.CompareScripts
-      ref.Con_CAL
-      ref.Con_GetINISetting
-      ref.Con_HairTint
-      ref.Con_LoadGame
-      ref.Con_ModWaterShader
-      ref.Con_PlayerSpellBook
-      ref.Con_QuitGame
-      ref.Con_RefreshINI
-      ref.Con_RunMemoryPass
-      ref.Con_Save
-      ref.Con_SaveINI
-      ref.Con_SetCameraFOV
-      ref.Con_SetClipDist
-      ref.Con_SetFog
-      ref.Con_SetGameSetting
-      ref.Con_SetGamma
-      ref.Con_SetHDRParam
-      ref.Con_SetINISetting
-      ref.Con_SetImageSpaceGlow
-      ref.Con_SetSkyParam
-      ref.Con_SetTargetRefraction
-      ref.Con_SetTargetRefractionFire
-  if x
-    eval x
-  elseif x
-    eval x
-  else
-    eval x
-  endif
-  Foreach item <- container[1]
-    eval x
-    break
-    continue
-  loop
-  foreach item <- container["string"]
-    eval x
-  loop
-  foreach item <- container[plain]
-    eval x
-  loop
-  foreach item <- container[dot.object]
-    eval x
-  loop
+
+INT re; comment
+begin gamemode
+
+  print "hello"
+  set x to re.getname
+  Activate gename
+  Activate getname
+  getname jkl
 end

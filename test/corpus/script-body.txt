@@ -1,16 +1,17 @@
-===========
+================================================================================
 Script name
-===========
+================================================================================
 scn scriptname
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier)))
 
-===========
+================================================================================
 Var declare
-===========
+================================================================================
 scn scriptname
 int var
 short var
@@ -19,53 +20,65 @@ float var
 string_var var
 array_var var
 ref var
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    var_declaration: (var_declare
-      type_int: (int)
-      variable: (identifier))
-    var_declaration: (var_declare
-      type_int: (int)
-      variable: (identifier))
-    var_declaration: (var_declare
-      type_int: (int)
-      variable: (identifier))
-    var_declaration: (var_declare
-      type_float: (float)
-      variable: (identifier))
-    var_declaration: (var_declare
-      type_string: (str_var)
-      variable: (identifier))
-    var_declaration: (var_declare
-      type_array: (array)
-      variable: (identifier))
-    var_declaration: (var_declare
-      type_ref: (ref)
-      variable: (identifier)))
-==========
+  var_declaration: (var_declare
+    type_int: (int)
+    variable: (identifier))
+  var_declaration: (var_declare
+    type_int: (int)
+    variable: (identifier))
+  var_declaration: (var_declare
+    type_int: (int)
+    variable: (identifier))
+  var_declaration: (var_declare
+    type_float: (float)
+    variable: (identifier))
+  var_declaration: (var_declare
+    type_string: (str_var)
+    variable: (identifier))
+  var_declaration: (var_declare
+    type_array: (array)
+    variable: (identifier))
+  var_declaration: (var_declare
+    type_ref: (ref)
+    variable: (identifier)))
+
+================================================================================
 Block mode
-==========
+================================================================================
 scn scriptname
-begin blockmode {}
+begin gamemode
 end
-begin blockmode {arg}
+begin menumode 1111
 end
-begin blockmode {arg, arg}
+begin function {}
 end
----
+begin function {arg}
+end
+begin function {arg, arg}
+end
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      argument: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      argument: (identifier)
-      argument: (identifier)))
+  block_mode: (block
+    (ERROR))
+  block_mode: (block
+    menu_type: (integer)
+    (ERROR))
+  block_mode: (block
+    (ERROR))
+  block_mode: (block
+    parameter: (identifier)
+    (ERROR))
+  block_mode: (block
+    parameter: (identifier)
+    parameter: (identifier)
+    (ERROR)))

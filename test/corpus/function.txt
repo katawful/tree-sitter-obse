@@ -1,22 +1,23 @@
-==============
+================================================================================
 Plain function
-==============
+================================================================================
 scn scriptname
 begin blockmode
   func
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      plain: (identifier)))
+  (ERROR
+    (identifier)
+    (identifier)))
 
-=======================
+================================================================================
 Function with arguments
-=======================
+================================================================================
 scn scriptname
 begin blockmode
   func argu 1
@@ -25,29 +26,24 @@ begin blockmode
   func array->value
   func literal + value
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      plain: (identifier)
-        plain: (identifier)
-        integer: (integer)
-      plain: (identifier)
-        plain: (identifier)
-        integer: (integer)
-      plain: (identifier)
-        string: (string)
-        option: (opt
-          plain: (identifier))
-      plain: (identifier)
-        array_var: (array_variable
-          array: (identifier)
-          member_access: (mem_access
-          key: (identifier)))
-      plain: (identifier)
-        plain: (identifier)
-        statement: (binary_operator)
-        plain: (identifier)))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (string)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))

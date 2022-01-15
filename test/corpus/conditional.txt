@@ -1,32 +1,26 @@
-============
+================================================================================
 Simple block
-============
+================================================================================
 scn scriptname
 begin blockmode
   if (x > (1 || 2))
     eval x
   endif
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      if_block: (conditional
-        condition: (condition
-          plain: (identifier)
-          (binary_operator)
-          integer: (integer)
-          (binary_operator)
-          integer: (integer))
-        eval: (eval
-          plain: (identifier)))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)))
 
-====
+================================================================================
 Else
-====
+================================================================================
 scn scriptname
 begin blockmode
   if x
@@ -35,25 +29,21 @@ begin blockmode
     eval y
   endif
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      if_block: (conditional
-        condition: (condition
-          plain: (identifier))
-          eval: (eval
-            plain: (identifier))
-       else: (else
-        eval: (eval
-          plain: (identifier))))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))
 
-======
+================================================================================
 Elseif
-======
+================================================================================
 scn scriptname
 begin blockmode
   if x
@@ -62,20 +52,15 @@ begin blockmode
     eval y
   endif
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      if_block: (conditional
-        condition: (condition
-          plain: (identifier))
-        eval: (eval
-          plain: (identifier))
-       elseif: (else_if
-        condition: (condition
-          plain: (identifier))
-        eval: (eval
-          plain: (identifier))))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))

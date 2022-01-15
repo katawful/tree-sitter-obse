@@ -62,7 +62,7 @@ variable: (identifier) @variable
 
 ; block type
 block_type: (identifier) @label
-argument: (identifier) @parameter
+; argument: (identifier) @parameter
 
 ; foreach
 container: (identifier) @attribute

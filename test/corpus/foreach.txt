@@ -1,6 +1,6 @@
-============
+================================================================================
 Simple block
-============
+================================================================================
 scn scriptname
 begin blockmode
   foreach item <- container[1]
@@ -16,44 +16,27 @@ begin blockmode
     eval x
   loop
 end
----
+--------------------------------------------------------------------------------
+
 (script_file
   script_name: (script_name
     declaration: (script_declarator)
     script_name: (identifier))
-    block_mode: (block
-      block_type: (identifier)
-      foreach: (foreach_loop
-        container: (identifier)
-        source: (array_variable
-          array: (identifier)
-          key: (subscript
-            integer: (integer)))
-        eval: (eval
-          plain: (identifier)))
-      foreach: (foreach_loop
-        container: (identifier)
-        source: (array_variable
-          array: (identifier)
-          key: (subscript
-            string: (string)))
-        eval: (eval
-          plain: (identifier)))
-      foreach: (foreach_loop
-        container: (identifier)
-        source: (array_variable
-          array: (identifier)
-          key: (subscript
-            plain: (identifier)))
-        eval: (eval
-          plain: (identifier)))
-      foreach: (foreach_loop
-        container: (identifier)
-        source: (array_variable
-          array: (identifier)
-          key: (subscript
-            quest_var: (quest_var
-              quest: (identifier)
-              variable: (identifier))))
-        eval: (eval
-          plain: (identifier)))))
+  (ERROR
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (string)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)))
